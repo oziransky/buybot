@@ -27,6 +27,7 @@
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v0.3.30, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v3.0.9, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v3.0.9, ruby-1.8.7-p174) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mysql2 (v0.3.7, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v0.9.2, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v2.1.2, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activeresource (v3.0.9, ruby-1.8.7-p174) [gem]" level="application" />
