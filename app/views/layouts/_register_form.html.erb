@@ -1,0 +1,22 @@
+<div id="register_form" class="register_block">
+  <h2>הרשמה</h2>
+
+  <%= form_for(:user, :url => "#", :html => { :id => "ajax_signup" }) do |f| %>
+      <div>
+        <%= f.label :email%><br />
+        <%= f.email_field :email %>
+      </div>
+
+      <div>
+        <%= f.label :password %><br />
+        <%= f.password_field :password %>
+      </div>
+
+      <div>
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation %>
+      </div>
+
+      <div><%= f.submit "הרשם" %></div>
+  <% end %>
+</div>

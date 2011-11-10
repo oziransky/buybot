@@ -1,0 +1,13 @@
+<%= form_for(:url => "#", :html => { :id => "ajax_signin" }) do |f| %>
+    <div>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+    </div>
+
+    <div>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+
+    <div><%= f.submit "Login" %></div>
+<% end %>

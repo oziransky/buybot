@@ -1,8 +1,32 @@
 <header>
-  <%= link_to root_path %>
-  <nav class="round">
+  <div id="user_nav">
+    <% if user_signed_in? %>
+        <div class="logged_area">
+          <ul>
+            <li><%= link_to "יציאה", destroy_user_session_path, :method => :delete %></li>
+            <li>|</li>
+            <li><%= current_user.email %></li>
+            <li>שלום</li>
+          </ul>
+        </div>
+    <% else %>
+        <div style="color:#999" class="login_area">
+          <input type="text" class="" id="directlogin_username" placeholder="מייל">
+          <input type="password" class="" id="directlogin_password" placeholder="סיסמא">
+          <input type="button" value="כניסה" id="directlogin_submit">
+          <input type="button" value="הרשמה" rel="register_form" class="poplight" id="directregister">
+        </div>
+    <% end %>
+  </div>
+
+  <nav class="main_nav">
     <ul>
-      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "קניות שלי", root_path %></li>
+      <li><%= link_to "הגדרות", edit_user_registration_path %></li>
+      <li><%= link_to "עזרה", root_path %></li>
+      <li><%= link_to "הזמן חברים", root_path %></li>
     </ul>
   </nav>
+
+  <%= render 'layouts/register_form' %>
 </header>
