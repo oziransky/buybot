@@ -21,12 +21,12 @@
     <orderEntry type="library" scope="PROVIDED" name="faker (v0.3.1, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v3.10, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="polyglot (v0.3.2, ruby-1.8.7-p174) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.0.5, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v0.14.6, ruby-1.8.7-p174) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.0.5, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v1.6.1, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v3.0.9, ruby-1.8.7-p174) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="railties (v3.0.9, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v0.3.30, ruby-1.8.7-p174) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="railties (v3.0.9, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v0.9.2, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v2.1.2, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activeresource (v3.0.9, ruby-1.8.7-p174) [gem]" level="application" />
@@ -44,8 +44,8 @@
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.6.6, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails (v3.0.9, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activemodel (v3.0.9, ruby-1.8.7-p174) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="bcrypt-ruby (v3.0.1, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="arel (v2.0.10, ruby-1.8.7-p174) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bcrypt-ruby (v3.0.1, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.2.19, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="warden (v1.0.6, ruby-1.8.7-p174) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionpack (v3.0.9, ruby-1.8.7-p174) [gem]" level="application" />

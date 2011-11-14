@@ -3,7 +3,8 @@ Buybot::Application.routes.draw do
   devise_for :users
 
   match '/home', :to => 'pages#home'
-  match '/stores', :to => 'pages#stores'
+
+  match '/store', :to => 'pages#store'
 
   root :to => 'pages#home'
 end

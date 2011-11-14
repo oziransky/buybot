@@ -1,4 +1,4 @@
-<header>
+<div id="header">
   <div id="user_nav">
     <% if user_signed_in? %>
         <div class="logged_area">
@@ -11,8 +11,8 @@
         </div>
     <% else %>
         <div style="color:#999" class="login_area">
-          <input type="text" class="" id="directlogin_username" placeholder="מייל">
-          <input type="password" class="" id="directlogin_password" placeholder="סיסמא">
+          <input type="text" class="bold_input" id="directlogin_username" placeholder="מייל">
+          <input type="password" class="bold_input" id="directlogin_password" placeholder="סיסמא">
           <input type="button" value="כניסה" id="directlogin_submit">
           <input type="button" value="הרשמה" rel="register_form" class="poplight" id="directregister">
         </div>
@@ -29,4 +29,4 @@
   </nav>
 
   <%= render 'layouts/register_form' %>
-</header>
+</div>

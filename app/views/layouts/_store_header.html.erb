@@ -1,0 +1,23 @@
+<div id="header">
+  <div id="user_nav">
+    <% if store_owner_signed_in? %>
+        <div class="logged_area">
+          <ul>
+            <li><%= link_to "יציאה", destroy_store_owner_session_path, :method => :delete %></li>
+            <li>|</li>
+            <li><%= current_store_owner.email %></li>
+            <li>שלום</li>
+          </ul>
+        </div>
+    <% end %>
+  </div>
+
+  <nav class="main_nav">
+    <ul>
+      <li><%= link_to "חדר מצב", root_path %></li>
+      <li><%= link_to "ניהול חנות", root_path %></li>
+      <li><%= link_to "הגדרות שלי", edit_store_owner_registration_path %></li>
+      <li><%= link_to "עזרה", root_path %></li>
+    </ul>
+  </nav>
+</div>
