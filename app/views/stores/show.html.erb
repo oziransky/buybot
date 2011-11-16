@@ -1,0 +1,11 @@
+<%= render "store_menu" %>
+<table id="store_profile" summary="Store profile information">
+  <tr>
+    <td class="main">
+      <span>פרטי חנות</span>
+    </td>
+  </tr>
+  <% unless current_store_owner.stores.empty? %>
+    <%= render @store %>
+  <% end %>
+</table>

@@ -4,7 +4,7 @@
   <title>Store Management</title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag 'jquery', 'store_owner_application' %>
+  <%= javascript_include_tag 'jquery', 'application' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -20,7 +20,7 @@
   <div id="content">
     <%= yield %>
   </div>
-  <%= render 'layouts/footer' %>
+  <%= render 'layouts/store_footer' %>
 </div>
 
 </body>

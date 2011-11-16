@@ -1,0 +1,15 @@
+<%= render "store_mng_menu" %>
+<table id="all_stores" summary="All stores list">
+  <tr>
+    <td class="main">
+      <span>רשימת חנויות שלי</span>
+    </td>
+  </tr>
+  <% unless current_store_owner.stores.empty? %>
+      <% @stores.each do |store| %>
+          <tr>
+            <td><%= link_to store.name, "/stores/" + store.id.to_s %></td>
+          </tr>
+      <% end %>
+  <% end %>
+</table>

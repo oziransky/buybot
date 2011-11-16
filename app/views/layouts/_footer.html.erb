@@ -3,15 +3,22 @@
     <!--<%= debug(params) if Rails.env.development? %>-->
   <!--</div>-->
   <div id="foot">
-    <nav class="footer_nav">
-      <ul>
-        <li><%= link_to "בלוגים", root_path %></li>
-        <li><%= link_to "צור קשר", root_path %></li>
-        <li><%= link_to "תנאי שימוש", root_path %></li>
-        <li><%= link_to "משרות", root_path %></li>
-        <li><%= link_to "אודותנו", root_path %></li>
-        <li><%= link_to "בעלי חנויות", new_store_owner_session_path %></li>
-      </ul>
-    </nav>
+    <div id="foot_right">
+      <nav class="footer_nav">
+        <ul>
+          <li><%= link_to "בלוגים", root_path %></li>
+          <li><%= link_to "צור קשר", root_path %></li>
+          <li><%= link_to "תנאי שימוש", root_path %></li>
+          <li><%= link_to "משרות", root_path %></li>
+          <li><%= link_to "אודותנו", root_path %></li>
+          <li><%= link_to "בעלי חנויות", new_store_owner_session_path %></li>
+        </ul>
+      </nav>
+    </div>
+    <div id="foot_left">
+        <img src="images/twitter.png" alt="עקוב אחרינו בטוויטר">
+        <img src="images/facebook.png" alt="עקוב אחרינו בפייסבוק">
+        <img src="images/rss.png" alt="עקוב אחרינו ברסס">
+    </div>
   </div>
 </div>

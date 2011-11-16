@@ -2,9 +2,11 @@ Buybot::Application.routes.draw do
   devise_for :store_owners
   devise_for :users
 
-  match '/home', :to => 'pages#home'
+  resources :stores
 
-  match '/store', :to => 'pages#store'
+  match '/home', :to => 'pages#home'
+  match '/help', :to => 'pages#help'
+  match '/invite_friends', :to => 'pages#invite_friends'
 
   root :to => 'pages#home'
 end
