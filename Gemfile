@@ -9,6 +9,8 @@ gem 'mysql2', '0.2.7'
 gem 'faker', '0.3.1'
 gem 'will_paginate', '3.0.pre2'
 gem 'devise'
+#gem 'image_science'
+#gem 'selenium-client'
 #gem 'simple_form'
 
 # Use unicorn as the web server

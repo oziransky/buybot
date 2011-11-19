@@ -3,6 +3,7 @@ Buybot::Application.routes.draw do
   devise_for :users
 
   resources :stores
+  resources :products
 
   match '/home', :to => 'pages#home'
   match '/help', :to => 'pages#help'
