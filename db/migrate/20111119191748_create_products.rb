@@ -7,9 +7,12 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :catalog_id
       t.string :image_folder
       t.string :manufacturer
+      t.integer :price_id
 
       t.timestamps
     end
+    add_index :products, :catalog_id
+    add_index :products, :price_id
   end
 
   def self.down

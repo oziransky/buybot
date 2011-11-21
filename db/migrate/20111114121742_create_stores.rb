@@ -5,10 +5,11 @@ class CreateStores < ActiveRecord::Migration
       t.string :address
       t.string :url
       t.string :description
-      t.references :store_owner
+      t.integer :store_owner
 
       t.timestamps
     end
+    add_index :stores, :store_owner
   end
 
   def self.down

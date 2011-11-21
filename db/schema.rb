@@ -10,7 +10,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111114121742) do
+ActiveRecord::Schema.define(:version => 20111120202510) do
+
+  create_table "prices", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "store_id"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "prices", ["product_id"], :name => "index_prices_on_product_id"
+  add_index "prices", ["store_id"], :name => "index_prices_on_store_id"
+
+  create_table "products", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "url"
+    t.integer  "catalog_id"
+    t.string   "image_folder"
+    t.string   "manufacturer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "store_owners", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -38,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20111114121742) do
     t.integer  "store_owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "product_id"
   end
 
   create_table "users", :force => true do |t|
