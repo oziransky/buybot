@@ -1,0 +1,15 @@
+<%= render "product_mng_menu" %>
+<table id="all_products">
+  <tr>
+    <td class="main">
+      <span>רשימת מוצרים שלי</span>
+    </td>
+  </tr>
+  <% unless @store.products.empty? %>
+      <% @products.each do |product| %>
+          <tr>
+            <td><%= link_to product.name, "/products/" + product.id.to_s %></td>
+          </tr>
+      <% end %>
+  <% end %>
+</table>

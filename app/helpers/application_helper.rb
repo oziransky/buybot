@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def title
     base_title = "BuyBot - Buy your way"
     if @title.nil?

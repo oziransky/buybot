@@ -20,6 +20,7 @@ class StoresController < ApplicationController
   def show
     @stores = current_store_owner.stores
     @store = @stores.find(params[:id])
+    session[:current_store_id] = @store.id
   end
 
   def update

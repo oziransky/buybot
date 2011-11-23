@@ -1,0 +1,11 @@
+<%= render "product_menu" %>
+<table id="product_profile">
+  <tr>
+    <td class="main">
+      <span>פרטי מוצר</span>
+    </td>
+  </tr>
+  <% unless @store.products.empty? %>
+    <%= render @product %>
+  <% end %>
+</table>

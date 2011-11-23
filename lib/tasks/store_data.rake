@@ -31,26 +31,17 @@ namespace :db do
 
       #for each store add some products to the store
       3.times do |n|
-        #@product = Product.create!(:name => "Product#{n+1}",
-        #                              :description => Faker::Lorem.sentence(4),
-        #                              :url => "www.monster.com",
-        #                              :catalog_id => 1,
-        #                              :image_folder => "public/data/p#{n+1}",
-        #                              :manufacturer => "Sony")
-
         @product = @store.products.create!(:name => "Product#{n+1}",
                                       :description => Faker::Lorem.sentence(4),
                                       :url => "www.monster.com",
                                       :catalog_id => 1,
                                       :image_folder => "public/data/p#{n+1}",
-                                      :manufacturer => "Sony")
+                                      :manufacturer => "Sony",
+                                      :store_id => @store.id)
 
         @store.prices.create!(:price => 1.2,
                               :product_id => @product.id,
                               :store_id => @store.id)
-        #@price = Price.create!(:price => 1.2,
-        #                      :product_id => @product.id,
-        #                      :store_id => @store.id)
       end
     end
   end
