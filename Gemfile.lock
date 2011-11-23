@@ -28,6 +28,7 @@ GEM
       activemodel (= 3.0.9)
       activesupport (= 3.0.9)
     activesupport (3.0.9)
+    acts_as_tree (0.1.1)
     arel (2.0.10)
     bcrypt-ruby (3.0.1)
     builder (2.1.2)
@@ -84,6 +85,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_tree
   devise
   faker (= 0.3.1)
   mysql2 (= 0.2.7)
