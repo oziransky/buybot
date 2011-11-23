@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  description: MyString
+  url: MyString
+  catalog_id: 1
+  image_folder: MyString
+  manufacturer: MyString
+
+two:
+  name: MyString
+  description: MyString
+  url: MyString
+  catalog_id: 1
+  image_folder: MyString
+  manufacturer: MyString
