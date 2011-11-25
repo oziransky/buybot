@@ -1,8 +1,25 @@
 class AuctionsController < ApplicationController
-  def closed
+  def new
+    @auction = Auction.create!(params[:auctions])
+    if @auction.save
+      flash[:success] = "תהליך נותר בהצלחה"
+    else
+      flash[:error] = "לא ניתן להתחיל תהליך"
+    end
+
+    redirect_to auctions_path
   end
 
-  def open
+  def update
+  end
+
+  def delete
+  end
+
+  def show
+  end
+
+  def index
   end
 
 end
