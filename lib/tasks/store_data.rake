@@ -5,6 +5,13 @@ namespace :db do
   task :populate => :environment do
     Rake::Task['db:reset'].invoke
 
+    10.times do |c|
+      category = Category.create!(:name => "Electronics#{c+1}")
+      5.times do |s|
+        category.children.create!(:name => "Sub#{c+1}_#{s+1}")
+      end
+    end
+
     #create store owners
     10.times do |n|
       name = Faker::Name.name

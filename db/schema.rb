@@ -10,7 +10,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111123064251) do
+ActiveRecord::Schema.define(:version => 20111125053128) do
+
+  create_table "categories", :force => true do |t|
+      t.string   "name"
+      t.datetime "created_at"
+      t.datetime "updated_at"
+      t.integer  "product_id"
+      t.integer  "parent_id"
+    end
+
+    create_table "categories_products", :id => false, :force => true do |t|
+      t.integer "category_id"
+      t.integer "product_id"
+    end
+
+  create_table "auctions", :force => true do |t|
+    t.integer  "product_id"
+    t.string   "stores_list"
+    t.float    "minimal_step"
+    t.float    "maximum_step"
+    t.integer  "max_num_bids"
+    t.float    "current_price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "prices", :force => true do |t|
     t.integer  "product_id"
@@ -33,19 +57,6 @@ ActiveRecord::Schema.define(:version => 20111123064251) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "store_id"
-  end
-
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "product_id"
-    t.integer  "parent_id"
-  end
-
-  create_table "categories_products", :id => false, :force => true do |t|
-    t.integer "category_id"
-    t.integer "product_id"
   end
 
   create_table "store_owners", :force => true do |t|
