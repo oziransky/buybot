@@ -1,0 +1,71 @@
+<div class="start_new_auction">
+  <%= form_tag :controller => 'auctions', :action => 'new'%>
+  <div>
+    <%= f.label "מוצר" %><br />
+    <%= f.text_field :product_id %>
+  </div>
+
+  <div>
+    <%= f.label "רשימת חנויות" %><br />
+    <%= f.text_field :stores_list %>
+  </div>
+
+  <div>
+    <%= f.label "צעד מינימלי" %><br />
+    <%= f.text_field :minimal_step %>
+  </div>
+
+  <div>
+    <%= f.label "צעד מקסימלי" %><br />
+    <%= f.text_field :maximum_step %>
+  </div>
+
+  <div>
+    <%= f.label "מספר צעדים" %><br />
+    <%= f.text_field :max_num_bids %>
+  </div>
+
+  <div>
+    <%= f.label "מחיר נוכחי" %><br />
+    <%= f.text_field :current_price %>
+  </div>
+
+  <div><%= f.submit "התחל מכירה" %></div>
+
+  <%= end_form_tag %>
+
+  <%= form_for(resource, :as => resource_name, :url => auction_path(resource_name)) do |f| %>
+      <div>
+        <%= f.label "מוצר" %><br />
+        <%= f.text_field :product_id %>
+      </div>
+
+      <div>
+        <%= f.label "רשימת חנויות" %><br />
+        <%= f.text_field :stores_list %>
+      </div>
+
+      <div>
+        <%= f.label "צעד מינימלי" %><br />
+        <%= f.text_field :minimal_step %>
+      </div>
+
+      <div>
+        <%= f.label "צעד מקסימלי" %><br />
+        <%= f.text_field :maximum_step %>
+      </div>
+
+      <div>
+        <%= f.label "מספר צעדים" %><br />
+        <%= f.text_field :max_num_bids %>
+      </div>
+
+      <div>
+        <%= f.label "מחיר נוכחי" %><br />
+        <%= f.text_field :current_price %>
+      </div>
+
+      <div><%= f.submit "התחל מכירה" %></div>
+  <% end %>
+
+</div>
