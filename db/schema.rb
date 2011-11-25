@@ -35,6 +35,19 @@ ActiveRecord::Schema.define(:version => 20111123064251) do
     t.integer  "store_id"
   end
 
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "product_id"
+    t.integer  "parent_id"
+  end
+
+  create_table "categories_products", :id => false, :force => true do |t|
+    t.integer "category_id"
+    t.integer "product_id"
+  end
+
   create_table "store_owners", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false

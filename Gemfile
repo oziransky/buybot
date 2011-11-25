@@ -12,6 +12,7 @@ gem 'devise'
 #gem 'image_science'
 #gem 'selenium-client'
 #gem 'simple_form'
+gem 'acts_as_tree'
 
 # Use unicorn as the web server
 # gem 'unicorn'
