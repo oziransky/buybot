@@ -1,13 +1,28 @@
 require 'test_helper'
 
 class AuctionsControllerTest < ActionController::TestCase
-  test "should get closed" do
-    get :closed
+  test "should get new" do
+    get :new
     assert_response :success
   end
 
-  test "should get open" do
-    get :open
+  test "should get update" do
+    get :update
+    assert_response :success
+  end
+
+  test "should get delete" do
+    get :delete
+    assert_response :success
+  end
+
+  test "should get show" do
+    get :show
+    assert_response :success
+  end
+
+  test "should get index" do
+    get :index
     assert_response :success
   end
 

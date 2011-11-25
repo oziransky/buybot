@@ -10,7 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111123064251) do
+ActiveRecord::Schema.define(:version => 20111125053128) do
+
+  create_table "auctions", :force => true do |t|
+    t.integer  "product_id"
+    t.string   "stores_list"
+    t.float    "minimal_step"
+    t.float    "maximum_step"
+    t.integer  "max_num_bids"
+    t.float    "current_price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "prices", :force => true do |t|
     t.integer  "product_id"
