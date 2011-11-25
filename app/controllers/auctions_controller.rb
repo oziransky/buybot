@@ -1,3 +1,4 @@
+# encoding: utf-8
 class AuctionsController < ApplicationController
   def new
     @auction = Auction.create!(params[:auctions])

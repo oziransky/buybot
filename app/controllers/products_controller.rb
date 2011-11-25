@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ProductsController < ApplicationController
   def new
     @product = current_store.products.create!(params[:products])
