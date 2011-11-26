@@ -2,17 +2,17 @@ require 'faker'
 
 
 
-def create_categories_and_products
+def create_categories_and_products(num_of_categories,num_of_sub, num_of_products)
   subcategories = []
-  5.times do |c|
+  num_of_categories.times do |c|
     category = Category.create!(:name => "Electronics#{c+1}")
-    10.times do |s|
+    num_of_sub.times do |s|
       sub_category = category.children.create!(:name => "Sub#{c+1}_#{s+1}")
       subcategories << sub_category
     end
   end
 
-  100.times do |n|
+  num_of_products.times do |n|
     product = Product.create!(:name => "Product#{n+1}",
     :description => Faker::Lorem.sentence(4),
     :url => "www.monster.com",
@@ -28,8 +28,8 @@ end
 
 
 
-def create_stores_owners
-  10.times do |n|
+def create_stores_owners(num_of_owners)
+  num_of_owners.times do |n|
     name = Faker::Name.name
     email = "example-#{n+1}@gmail.com"
     StoreOwner.create!(:name => name,
@@ -50,7 +50,7 @@ def create_stores_and_inventory
     :description => Faker::Lorem.sentence(2),
     :store_owner_id => owner.id)
 
-    #for each store add some products to the store
+    #for each store add some products to the store 
     3.times do |n|
 
       @product = Product.all[rand(Product.count)]
@@ -66,15 +66,19 @@ namespace :db do
   desc "Fill database with sample data"
 
   @manufacturers = ["Sony","Toshiba","Apple","Panasocnic"]
-
+  number_of_categories = 10
+  number_of_sub_categories = 5
+  num_of_products = 100
+  num_of_owners = 10
+ 
   task :populate => :environment do
     Rake::Task['db:reset'].invoke
 
-    create_categories_and_products
+    create_categories_and_products(number_of_categories, number_of_sub_categories,num_of_products)
 
-    create_stores_owners
+    create_stores_owners(num_of_owners)
 
-    create_stores_and_inventory
+    create_stores_and_inventory()
 
   end
 end
