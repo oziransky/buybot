@@ -6,7 +6,7 @@ Buybot::Application.routes.draw do
   resources :stores
   resources :products
   resources :auctions
-
+  resources :categories
   match '/home', :to => 'pages#home'
   match '/help', :to => 'pages#help'
   match '/invite_friends', :to => 'pages#invite_friends'

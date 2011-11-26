@@ -1,0 +1,11 @@
+
+	<%@root_categories.each do |root|%>
+		<ul>
+			<%= root.name%>
+			<%root.children.each do |sub|%>
+				<li><%=sub.name%></li>
+			<%end%>		
+		</ul>
+					
+	<%end%>
+
