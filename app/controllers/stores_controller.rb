@@ -1,20 +1,22 @@
 class StoresController < ApplicationController
 
   def new
-    @store = current_store_owner.stores.create(params[:stores])
+    @store = current_store_owner.stores.new
+  end
+
+  def create
+    @store = current_store_owner.stores.new(params[:stores])
     if @store.save
       flash[:success] = "חנות נוצרה בהצלחה"
     else
       flash[:error] = "לא ניתו ליצור את החנות"
     end
 
-    # Go to the store summary page
     redirect_to stores_path
   end
 
   def index
     @stores = current_store_owner.stores
-    #@stores = Store.paginate(:page => params[:page])
   end
 
   def show

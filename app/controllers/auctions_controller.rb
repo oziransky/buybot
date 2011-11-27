@@ -1,8 +1,12 @@
 class AuctionsController < ApplicationController
   def new
-    @auction = Auction.create!(params[:auctions])
+    @auction = current_user.auctions.new
+  end
+
+  def create
+    @auction = current_user.auctions.new(params[:auction])
     if @auction.save
-      flash[:success] = "תהליך נותר בהצלחה"
+      flash[:success] = "תהליך נוצר בהצלחה"
     else
       flash[:error] = "לא ניתן להתחיל תהליך"
     end
@@ -11,15 +15,19 @@ class AuctionsController < ApplicationController
   end
 
   def update
+    @auction = current_user.auctions.find(params[:id])
   end
 
   def delete
   end
 
-  def show
+  def index
+    @auctions = current_user.auctions
   end
 
-  def index
+  def show
+    @auctions = current_user.auctions
+    @auction = current_user.auctions.find(params[:id])
   end
 
 end

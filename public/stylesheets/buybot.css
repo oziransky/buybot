@@ -165,6 +165,7 @@ body, table, td {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
+    text-align: right;
 }
 
 img.btn_close {
@@ -298,6 +299,26 @@ img.btn_close {
 }
 
 #product_profile {
+    float: right;
+    text-align: right;
+}
+
+#new_auction_form {
+    float: right;
+    text-align: right;
+}
+
+#all_auctions {
+    float: right;
+    text-align: right;
+}
+
+#auction_menu {
+    float: right;
+    text-align: right;
+}
+
+#auction_profile {
     float: right;
     text-align: right;
 }

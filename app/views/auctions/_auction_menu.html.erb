@@ -1,8 +1,6 @@
-<div id="store_menu">
+<div id="auction_menu">
     <ul>
-      <li><%= link_to "עידכון פרטים", edit_store_path %></li>
-      <li><%= link_to "ניהול מוצרים", products_path %></li>
-      <li><%= link_to "ניהול מוכרים", "#" %></li>
-      <li><%= link_to "דוחות", "#" %></li>
+      <li><%= link_to "עדכן", edit_auction_path %></li>
+      <li><%= link_to "בטל", @auction, :method => :delete %></li>
     </ul>
 </div>

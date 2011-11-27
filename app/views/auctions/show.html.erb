@@ -1,2 +1,11 @@
-<h1>Auctions#show</h1>
-<p>Find me in app/views/auctions/show.html.erb</p>
+<%= render "auction_menu" %>
+<table id="auction_profile">
+  <tr>
+    <td class="main">
+      <span>פרטי תהליך</span>
+    </td>
+  </tr>
+  <% unless current_user.auctions.empty? %>
+    <%= render @auction %>
+  <% end %>
+</table>
