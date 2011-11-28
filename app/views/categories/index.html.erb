@@ -1,11 +1,50 @@
+<style type="text/css">
+	td {
 
+		vertical-align: top;
+		padding: 10px;
+		line-height: 150%;
+	}
+	li.sub_category {
+		background-color: #036;
+		color: white;
+	}
+	ul {
+		background-color: #e0ffff;
+	}
+	li {
+		list-style: none;
+	}
+	.sub_category {
+		border-radius: 5px;
+		border: 1px solid #a1a1a1;
+		padding: 5px;
+	}
+	.sub_sub_category a {
+		text-decoration: none;
+		color: black;
+	}
+	
+</style>
+<table class = "categories" >
 	<%@root_categories.each do |root|%>
-		<ul>
-			<%= root.name%>
-			<%root.children.each do |sub|%>
-				<li><%=sub.name%></li>
-			<%end%>		
+	<tr>
+		<td><span class="root_category"><%= root.name%></span></td>
+	</tr>
+	<tr>
+		<ul >
+			<%root.children.each do |sub|%> <td><!--div class = "sub_category"-->
+			<li class = "sub_category">
+				<%= sub.name%>
+			</li> <%sub.children.each do |sub_sub|%>
+			<div class = "sub_sub_category">
+			<li>
+				<%=link_to sub_sub.name, sub_sub %>
+			</li>
+			</div>
+			 <%end%> </td>
+			<%end%> <!--/div-->
 		</ul>
-					
+	</tr>
 	<%end%>
-
+</table>

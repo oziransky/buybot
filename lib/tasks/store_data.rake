@@ -8,7 +8,10 @@ def create_categories_and_products(num_of_categories,num_of_sub, num_of_products
     category = Category.create!(:name => "Electronics#{c+1}")
     num_of_sub.times do |s|
       sub_category = category.children.create!(:name => "Sub#{c+1}_#{s+1}")
-      subcategories << sub_category
+        num_of_sub.times do |ss|
+          sub_sub_category = sub_category.children.create!(:name => "Sub_Sub#{c+1}_#{s+1}_#{ss+1}")
+          subcategories << sub_sub_category
+        end
     end
   end
 
@@ -66,9 +69,9 @@ namespace :db do
   desc "Fill database with sample data"
 
   @manufacturers = ["Sony","Toshiba","Apple","Panasocnic"]
-  number_of_categories = 10
+  number_of_categories = 5
   number_of_sub_categories = 5
-  num_of_products = 100
+  num_of_products = 30
   num_of_owners = 10
  
   task :populate => :environment do
