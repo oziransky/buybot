@@ -1,5 +1,24 @@
-<div class="quick_search">
-  <!--<input type="image" src="images/search.jpeg" value="חפש" id="search_button">-->
-  <input type="button" id="search_button" value="חפש">
-  <input type="text" class="bold_input" placeholder="אני רוצה לקנות" id="search_input">
+<div id="home_container">
+  <ul>
+    <li>
+      <div class="quick_search">
+        <!--<input type="image" src="images/search.jpeg" value="חפש" id="search_button">-->
+        <input type="button" id="search_button" value="חפש">
+        <input type="text" class="bold_input" placeholder="אני רוצה לקנות" id="search_input">
+      </div>
+    </li>
+    <li>טלויזיה LG</li>
+    <li>טלויזיה Samsung</li>
+    <li>
+      <% form_tag(auctions_path, :method =>'post') do %>
+          <%= hidden_field_tag :product_id, 8%>
+          <%= hidden_field_tag "store_ids[]", 1%>
+          <%= hidden_field_tag "store_ids[]", 3%>
+          <div>
+            <%= submit_tag 'התחל מכירה' %>
+          </div>
+      <% end %>
+      <!--<input type="button" id="direct_auction" value="התחל מכירה">-->
+    </li>
+  </ul>
 </div>

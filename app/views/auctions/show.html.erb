@@ -1,11 +1,9 @@
 <%= render "auction_menu" %>
-<table id="auction_profile">
-  <tr>
-    <td class="main">
-      <span>פרטי תהליך</span>
-    </td>
-  </tr>
+<div id="auction_profile">
+  <span>פרטי תהליך</span>
   <% unless current_user.auctions.empty? %>
+  <table>
     <%= render @auction %>
+  </table>
   <% end %>
-</table>
+</div>

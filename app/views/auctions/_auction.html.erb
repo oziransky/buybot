@@ -9,10 +9,16 @@
         <td><%= @auction.current_price %></td>
         <td>מחיר נוחכי</td>
       </tr>
-      <tr>
-        <td>Store1</td>
-        <td>רשימת חנויות בתהליך</td>
-      </tr>
     </table>
   </td>
+</tr>
+<tr>
+  <td>
+      <table>
+        <tr><td>רשימת חנויות בתהליך</td></tr>
+          <% @store_names.each do |n| %>
+              <tr><td><%= n %></td></tr>
+          <% end %>
+      </table>
+    </td>
 </tr>

@@ -147,6 +147,17 @@ body, table, td {
     margin: 0;
 }
 
+#home_container {
+    float: right;
+    text-align: right;
+}
+
+#home_container li {
+    list-style-type: none;
+    padding-right: 20px;
+    padding-bottom: 5px;
+}
+
 .register_block {
     display: none; /*--hidden by default--*/
     background: #fff;
@@ -244,11 +255,11 @@ img.btn_close {
     padding-bottom: 5px;
 }
 
-#store__mng_menu {
+#store_mng_menu {
     float:right;
 }
 
-#store__mng_menu li {
+#store_mng_menu li {
     list-style-type: none;
     padding-right: 20px;
     padding-bottom: 5px;

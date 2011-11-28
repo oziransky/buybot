@@ -80,4 +80,21 @@ $(document).ready(function() {
             });
         });
     });
+
+    $(function() {
+        $("#direct_auction").click(function(){
+            var user_info = {remote: true, commit: "Start Auction", utf8: "✓",
+              product_id: 1, store_ids: [1, 2, 3]};
+            console.log("About to post to /auctions: " + JSON.stringify(user_info));
+            $.ajax({
+                type: "POST",
+                url: "/auctions",
+                data: user_info,
+                success: function(json){
+                    console.log("The Server Response: " + JSON.stringify(json));
+                },
+                dataType: "json"
+            });
+        });
+    });
 });
