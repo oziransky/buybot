@@ -333,3 +333,7 @@ img.btn_close {
     float: right;
     text-align: right;
 }
+
+#update_price_form {
+    margin: 5px;
+}

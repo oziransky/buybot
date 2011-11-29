@@ -24,10 +24,12 @@ class AuctionsController < ApplicationController
     @auction.maximum_step = 100
     @auction.max_num_bids = 10
 
+    # start the auction
+    @auction.status = Auction::ACTIVE
+
     # save the new record
     if @auction.save
       flash[:success] = "תהליך נוצר בהצלחה"
-      @auction.status = Auction::ACTIVE
     else
       flash[:error] = "לא ניתן להתחיל תהליך"
     end

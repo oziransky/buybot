@@ -1,0 +1,15 @@
+<%= render "auction_menu" %>
+<div id="auction_profile">
+  <span>פרטי תהליך</span>
+  <table>
+    <%= render "auction" %>
+    <tr><td>
+      <% form_tag(request.path, :method =>'put') do %>
+          <%= text_field_tag :new_bid, @auction.current_price.to_s, :size => 7 %>
+          <div>
+            <%= submit_tag 'הצע מחיר' %>
+          </div>
+      <% end %>
+    </td></tr>
+  </table>
+</div>

@@ -1,13 +1,15 @@
 class ProductsController < ApplicationController
   def new
-    @product = current_store.products.new
+    @store = Store.find_by_id(session[:current_store_id])
+    @product = @store.products.new
   end
 
   def create
-    @product = current_store.products.new(params[:products])
+    @store = Store.find_by_id(session[:current_store_id])
+    @product = @store.products.create!(params[:products])
     if @product.save
       flash[:success] = "מוצר נוצר בהצלחה"
-      @price = current_store.prices.create!(:price => 1.5,
+      @price = @store.prices.create!(:price => 1.5,
                                             :product_id => @product.id)
     else
       flash[:error] = "לא ניתו ליצור את מוצר"

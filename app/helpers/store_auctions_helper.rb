@@ -1,0 +1,2 @@
+module StoreAuctionsHelper
+end
