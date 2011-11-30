@@ -301,3 +301,33 @@ img.btn_close {
     float: right;
     text-align: right;
 }
+
+#all_categories {
+    float: right;
+    text-align: right;
+}
+#sub_category_display
+{
+    float: right;
+    text-align: right;
+}
+#categories {
+
+		vertical-align: top;
+		padding: 10px;
+		line-height: 150%;
+}
+	li.sub_category {
+		background-color: #036;
+		color: white;
+	}
+	.sub_sub_category {
+		list-style: none;
+	}
+	.sub_sub_category a {
+		text-decoration: none;
+		
+	}
+	
+	
+

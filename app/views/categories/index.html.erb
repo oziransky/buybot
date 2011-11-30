@@ -1,45 +1,18 @@
-<style type="text/css">
-	td {
 
-		vertical-align: top;
-		padding: 10px;
-		line-height: 150%;
-	}
-	li.sub_category {
-		background-color: #036;
-		color: white;
-	}
-	ul {
-		background-color: #e0ffff;
-	}
-	li {
-		list-style: none;
-	}
-	.sub_sub_category a {
-		text-decoration: none;
-		color: black;
-	}
-</style>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-			$(document).ready(function(){
-            $("#categories tr:odd").addClass("odd");
-            $("#categories tr:not(.odd)").hide();
-            $("#categories tr:first-child").show();
-            
-            $("#categories tr.odd").click(function(){
-                $(this).next("tr").toggle();
-                $(this).find(".arrow").toggleClass("up");
-            });
-            //$("#report").jExpand();
-        });
-
+<%= javascript_include_tag "jExpand"%>
+<script type="text/javascript"> 
+$(document).ready(function(){
+  $("#categories").jExpand();
+});
 </script>
+
+<div id="all_categories">
+
 <table id="categories">
-	<tr><th>CATEGORIES</th></tr>
+	<tr><th colspan="4">קטגוריות</th></tr>
 	<%@root_categories.each do |root|%>
 	<tr>
-		<td><span class="root_category"><%= root.name%></span></td>
+		<td colspan="4"><span class="root_category"><%= root.name%></span></td>
 	</tr>
 	<tr>
 		<%root.children.each do |sub|%> <td><!--div class = "sub_category"-->
@@ -60,3 +33,5 @@
 	<%end%>
 	
 </table>
+
+</div>

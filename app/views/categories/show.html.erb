@@ -1,8 +1,11 @@
+<div id="sub_category_display">
 <h1><%=@category.name%></h1>
 
 
 <%=will_paginate @products%>
 <%@products.each do |p|%>
-	<p><%= link_to p.name, p%></p>	
+  
+	<%= render :partial=>"product",:locals=>{:product=>p}%>
 <%end%>
-<%=will_paginate @products%>
+<%=will_paginate @products%>  
+</div>
