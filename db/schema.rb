@@ -10,7 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111128172204) do
+ActiveRecord::Schema.define(:version => 20111201073853) do
+
+  create_table "auction_statuses", :force => true do |t|
+    t.integer  "auction_id"
+    t.integer  "store_id"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "auction_statuses", ["auction_id"], :name => "index_auction_statuses_on_auction_id"
+  add_index "auction_statuses", ["store_id"], :name => "index_auction_statuses_on_store_id"
 
   create_table "auctions", :force => true do |t|
     t.integer  "product_id"
@@ -22,11 +33,6 @@ ActiveRecord::Schema.define(:version => 20111128172204) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "status"
-  end
-
-  create_table "auctions_stores", :id => false, :force => true do |t|
-    t.integer "auction_id"
-    t.integer "store_id"
   end
 
   create_table "categories", :force => true do |t|

@@ -5,5 +5,18 @@ class Auction < ActiveRecord::Base
 
   attr_accessible :product_id, :minimal_step, :maximum_step, :max_num_bids, :current_price, :status
 
-  has_and_belongs_to_many :stores
+  has_many :auction_statuses
+  has_many :stores, :through => :auction_statuses, :readonly => false
+
+  def auction_status
+    if self.status == ACTIVE
+      return "פעיל"
+    end
+    if self.status == INACTIVE
+      return "לא פעיל"
+    end
+    if self.status == PAUSED
+      return "מושהה"
+    end
+  end
 end

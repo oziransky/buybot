@@ -4,7 +4,9 @@ class Store < ActiveRecord::Base
   belongs_to :store_owner
   has_many :prices, :dependent => :destroy
   has_many :products, :dependent => :destroy
-  has_and_belongs_to_many :auctions
+
+  has_many :auction_statuses
+  has_many :auctions, :through => :auction_statuses, :readonly => false
 
   validates :name, :presence => true
   validates :url,  :presence => true

@@ -1,11 +1,18 @@
 class StoreAuctionsController < ApplicationController
   before_filter :only => [:update, :show, :index]
 
-
   def update
+    # TODO: check that the bid is in the set range
     @auction = current_auction
     bid = params[:new_bid]
+
+    # mark the current price with the new one
     @auction.current_price = bid
+
+    # store this store bid in the association table
+    store_id = session[:current_store_id]
+    association = @auction.auction_statuses.where("store_id = ?", store_id)
+    association[0].price = bid
 
     # save the new record
     if @auction.save
@@ -21,7 +28,7 @@ class StoreAuctionsController < ApplicationController
     store_id = session[:current_store_id]
     store = Store.find_by_id(store_id)
     # find all active auctions for that store
-    @auctions = store.auctions.where("status = ?", Auction::ACTIVE)
+    @auctions = store.auctions.where("status = ? OR status = ?", Auction::ACTIVE, Auction::PAUSED)
   end
 
   def show

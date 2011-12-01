@@ -1,6 +1,11 @@
 <div id="auction_menu">
-    <ul>
-      <li><%= link_to "עדכן", edit_auction_path %></li>
-      <li><%= link_to "בטל", @auction, :method => :delete %></li>
-    </ul>
+  <ul>
+    <li>
+      <%= form_tag(request.path, :method =>'put', :id => 'change_status') do %>
+          <%= hidden_field_tag :status, Auction::PAUSED %>
+      <% end %>
+      <%= link_to_function "השהה", "$('form').submit(); return false;" %>
+    </li>
+    <li><%= link_to "בטל", @auction, :method => :delete %></li>
+  </ul>
 </div>

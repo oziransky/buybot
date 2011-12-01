@@ -40,6 +40,16 @@ class AuctionsController < ApplicationController
 
   def update
     @auction = current_user.auctions.find(params[:id])
+    @auction.status = params[:status].to_i
+
+    # save the new record
+    if @auction.save
+      flash[:success] = "תהליך עודכן בהצלחה"
+    else
+      flash[:error] = "לא ניתן לעדכן תהליך"
+    end
+
+    redirect_to auction_path
   end
 
   def delete
