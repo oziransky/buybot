@@ -21,4 +21,8 @@ class Product < ActiveRecord::Base
   def minimum_price
     100+id
   end
+  def stores
+    #temporary should retrieve all stores that cell the product
+    Store.all
+  end
 end

@@ -2,7 +2,7 @@ Buybot::Application.routes.draw do
 
 
   get "customer_products/search"
-
+  get "customer_products/show"
   devise_for :store_owners
   devise_for :users
 

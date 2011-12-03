@@ -1,1 +1,1 @@
-<p> <%=link_to product.name, product%> </p>
+<p> <%=link_to product.name, :action=>'show',:controller=>'customer_products', :productid=>product.id%> </p>
