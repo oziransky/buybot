@@ -1,13 +1,26 @@
 
 <%= javascript_include_tag "jExpand"%>
-<script type="text/javascript"> 
+<!--script type="text/javascript"> 
 $(document).ready(function(){
   $("#categories").jExpand();
 });
-</script>
+</script-->
 
 <div id="all_categories">
 
+
+<% form_tag "customer_products/search", :method => 'get' do %>
+  <p>
+    <%= submit_tag "חפש", :name => nil%>
+    <!--%= text_field_tag :search, params[:search] %-->
+    <%= text_field_tag "search_input",params[:search], :placeholder=>"אני רוצה לקנות",:class=>"bold_input" %>
+  </p>
+<% end %>
+
+<div>&nbsp;</div>
+
+
+<div>
 <table id="categories">
 	<tr><th colspan="4">קטגוריות</th></tr>
 	<%@root_categories.each do |root|%>
@@ -35,3 +48,5 @@ $(document).ready(function(){
 </table>
 
 </div>
+</div>
+

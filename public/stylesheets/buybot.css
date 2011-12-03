@@ -310,13 +310,23 @@ img.btn_close {
 {
     float: right;
     text-align: right;
+
 }
+#products_display
+{
+    float: right;
+    text-align: right;
+
+}
+
+/*
 #categories {
 
 		vertical-align: top;
 		padding: 10px;
 		line-height: 150%;
 }
+*/
 	li.sub_category {
 		background-color: #036;
 		color: white;
