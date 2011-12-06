@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111201073853) do
+ActiveRecord::Schema.define(:version => 20111202130957) do
 
   create_table "auction_statuses", :force => true do |t|
     t.integer  "auction_id"
@@ -68,7 +68,11 @@ ActiveRecord::Schema.define(:version => 20111201073853) do
     t.string   "manufacturer"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "store_id"
+  end
+
+  create_table "products_stores", :id => false, :force => true do |t|
+    t.integer "product_id"
+    t.integer "store_id"
   end
 
   create_table "store_owners", :force => true do |t|

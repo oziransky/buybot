@@ -11,8 +11,8 @@ class StoreAuctionsController < ApplicationController
 
     # store this store bid in the association table
     store_id = session[:current_store_id]
-    association = @auction.auction_statuses.where("store_id = ?", store_id)
-    association[0].price = bid
+    associations = @auction.auction_statuses.where("store_id = ?", store_id)
+    associations.first.price = bid
 
     # save the new record
     if @auction.save
@@ -46,7 +46,6 @@ private
 
   def current_auction
     store = Store.find_by_id(session[:current_store_id])
-    auctions = store.auctions
     auction = store.auctions.find(params[:id])
     auction
   end

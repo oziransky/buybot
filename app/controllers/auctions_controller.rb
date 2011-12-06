@@ -1,23 +1,30 @@
 class AuctionsController < ApplicationController
 
   def create
-    prices = []
     product_id = params[:product_id]
 
     @auction = current_user.auctions.new(:product_id => product_id)
+
     # mark all stores that are participating in the auction
     params[:store_ids].each_with_index do |id, item|
       store = Store.find(id)
       @auction.stores[item] = store
-      # build a list of all prices
-      list = Price.where("product_id = ? AND store_id = ?", product_id, id)
-      list.each do |p|
-        prices.insert(0, p.price)
-      end
+    end
+
+    # save the new record
+    @auction.save
+
+    prices = []
+
+    # build a list of all prices and save them in association table
+    @auction.stores.each_with_index do |store, item|
+      plist = Price.where("product_id = ? AND store_id = ?", product_id, store.id)
+      prices.insert(0, plist.first.price)
+      @auction.auction_statuses[item].update_attributes(:price => plist.first.price)
     end
 
     # save lowest price
-    @auction.current_price = prices.sort!().first()
+    @auction.current_price = prices.sort!().first
 
     # set some defaults
     @auction.minimal_step = 50

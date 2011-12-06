@@ -22,7 +22,18 @@ namespace :db do
                          :password_confirmation => "123456")
     end
 
-    #for each store owner add a store
+    # create some products
+    products = []
+    20.times do |p|
+      products.insert(0, Product.create!(:name => "Product#{p+1}",
+                                         :description => Faker::Lorem.sentence(4),
+                                         :url => "www.monster.com",
+                                         :catalog_id => 1,
+                                         :image_folder => "public/data/p#{p+1}",
+                                         :manufacturer => "Sony"))
+    end
+
+    # for each store owner add a store
     StoreOwner.all.each do |owner|
       #owner.stores.create!(:name => "Example Store",
       #            :address => "Some street in some place",
@@ -30,25 +41,28 @@ namespace :db do
       #            :description => Faker::Lorem.sentence(2),
       #            :id => owner.id)
       @store = owner.stores.create!(:name => "Example Store",
-                  :address => "Some street in some place",
-                  :url => "www.stores.com",
-                  :description => Faker::Lorem.sentence(2),
-                  :store_owner_id => owner.id)
+                                    :address => "Some street in some place",
+                                    :url => "www.stores.com",
+                                    :description => Faker::Lorem.sentence(2),
+                                    :store_owner_id => owner.id)
 
-
-      #for each store add some products to the store
+      # for each store add some products to the store
       3.times do |n|
-        @product = @store.products.create!(:name => "Product#{n+1}",
-                                      :description => Faker::Lorem.sentence(4),
-                                      :url => "www.monster.com",
-                                      :catalog_id => 1,
-                                      :image_folder => "public/data/p#{n+1}",
-                                      :manufacturer => "Sony",
-                                      :store_id => @store.id)
-
+        product = products[rand(19)]
+        @store.products.push(product)
         @store.prices.create!(:price => 1.2,
-                              :product_id => @product.id,
+                              :product_id => product.id,
                               :store_id => @store.id)
+        #@product = @store.products.create!(:name => "Product#{n+1}",
+        #                              :description => Faker::Lorem.sentence(4),
+        #                              :url => "www.monster.com",
+        #                              :catalog_id => 1,
+        #                              :image_folder => "public/data/p#{n+1}",
+        #                              :manufacturer => "Sony")
+        #
+        #@store.prices.create!(:price => 1.2,
+        #                      :product_id => @product.id,
+        #                      :store_id => @store.id)
       end
     end
   end
