@@ -1,9 +1,10 @@
 #encoding: utf-8
 class Product < ActiveRecord::Base
   attr_accessible :name, :description, :url, :catalog_id, :image_folder, :manufacturer, :store_id
-  belongs_to :store
+  has_many :prices
+  has_many :stores, :through=>:prices
   has_and_belongs_to_many :categories
-
+  
   validates :name, :presence => true
   validates :manufacturer,  :presence => true
   
@@ -19,10 +20,8 @@ class Product < ActiveRecord::Base
   end
 
   def minimum_price
-    100+id
+    prices.min
   end
-  def stores
-    #temporary should retrieve all stores that cell the product
-    Store.all
-  end
+  
+    
 end

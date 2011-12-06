@@ -66,7 +66,7 @@ def create_stores_and_inventory()
     :store_owner_id => owner.id)
 
     #for each store add some products to the store 
-    3.times do |n|
+    100.times do |n|
 
       @product = products[rand(products.count)]
       @store.prices.create!(:price => 1.2,
