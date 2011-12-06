@@ -11,8 +11,7 @@ class StoreAuctionsController < ApplicationController
 
     # store this store bid in the association table
     store_id = session[:current_store_id]
-    associations = @auction.auction_statuses.where("store_id = ?", store_id)
-    associations.first.price = bid
+    @auction.auction_statuses.where("store_id = ?", store_id).first.update_attributes(:price => bid)
 
     # save the new record
     if @auction.save

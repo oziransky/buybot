@@ -13,13 +13,17 @@
           <td>.<%= index+1 %></td>
         </tr>
     <% end %>
-    <tr><td>
-      <% form_tag(request.path, :method =>'put') do %>
-          <%= text_field_tag :new_bid, @auction.current_price.to_s, :size => 7 %>
-          <div>
-            <%= submit_tag 'הצע מחיר' %>
-          </div>
-      <% end %>
-    </td></tr>
+    <tr>
+      <td>
+        <% if @auction.active? %>
+            <% form_tag(request.path, :method =>'put') do %>
+                <%= text_field_tag :new_bid, @auction.current_price.to_s, :size => 7 %>
+                <div>
+                  <%= submit_tag 'הצע מחיר' %>
+                </div>
+            <% end %>
+        <% end %>
+      </td>
+    </tr>
   </table>
 </div>

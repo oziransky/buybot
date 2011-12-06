@@ -25,7 +25,7 @@ namespace :db do
     # create some products
     products = []
     20.times do |p|
-      products.insert(0, Product.create!(:name => "Product#{p+1}",
+      products.insert(0, Product.create!(:name => "Product #{p+1}",
                                          :description => Faker::Lorem.sentence(4),
                                          :url => "www.monster.com",
                                          :catalog_id => 1,
@@ -35,12 +35,7 @@ namespace :db do
 
     # for each store owner add a store
     StoreOwner.all.each do |owner|
-      #owner.stores.create!(:name => "Example Store",
-      #            :address => "Some street in some place",
-      #            :url => "www.stores.com",
-      #            :description => Faker::Lorem.sentence(2),
-      #            :id => owner.id)
-      @store = owner.stores.create!(:name => "Example Store",
+      @store = owner.stores.create!(:name => Faker::Lorem.words(2),
                                     :address => "Some street in some place",
                                     :url => "www.stores.com",
                                     :description => Faker::Lorem.sentence(2),

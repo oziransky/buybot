@@ -8,6 +8,10 @@ class Auction < ActiveRecord::Base
   has_many :auction_statuses
   has_many :stores, :through => :auction_statuses, :readonly => false
 
+  def active?
+    self.status == ACTIVE
+  end
+
   def auction_status
     if self.status == ACTIVE
       return "פעיל"

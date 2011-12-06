@@ -2,6 +2,10 @@
   <td>
     <table>
       <tr>
+        <td><%= @auction.auction_status %></td>
+        <td>:מצב תהליך</td>
+      </tr>
+      <tr>
         <td><%= Product.find(@auction.product_id).name %></td>
         <td>מוצר</td>
       </tr>

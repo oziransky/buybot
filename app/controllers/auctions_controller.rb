@@ -59,9 +59,17 @@ class AuctionsController < ApplicationController
     redirect_to auction_path
   end
 
-  def delete
+  def destroy
     # just mark the auction as inactive - will be cleared after
+    @auction = current_user.auctions.find(params[:id])
     @auction.status = Auction::INACTIVE
+
+    # save the new record
+    if @auction.save
+      flash[:success] = "תהליך בוטל בהצלחה"
+    else
+      flash[:error] = "לא ניתן לבטל תהליך"
+    end
 
     # show all open auctions for this user
     redirect_to auctions_path
