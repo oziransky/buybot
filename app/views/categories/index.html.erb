@@ -13,7 +13,7 @@ $(document).ready(function(){
   <p>
     <%= submit_tag "חפש", :name => nil%>
     <!--%= text_field_tag :search, params[:search] %-->
-    <%= text_field_tag "search_input",params[:search], :placeholder=>"אני רוצה לקנות",:class=>"bold_input" %>
+    <%= text_field_tag "search",params[:search], :placeholder=>"אני רוצה לקנות",:class=>"bold_input", :id => "search_input" %>
   </p>
 <% end %>
 
