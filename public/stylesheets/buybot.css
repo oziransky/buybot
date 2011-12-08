@@ -272,6 +272,17 @@ img.btn_close {
     text-align: right;
 }
 
+#customer_product {
+	direction: rtl;
+    float: right;
+    text-align: right;
+}
+#store_list
+{
+float: right;
+    text-align: right;
+	
+}
 #invite_friends_form input {
     float: right;
     text-align: right;
