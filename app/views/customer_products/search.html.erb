@@ -1,34 +1,21 @@
 <div id="products_display">
-<h1>CustomerProducts#search</h1>
-<!--<p><%=@products.count%></p>-->
-<table border="1" >
-<tr>
-  <th>
-  <span>מוצר</span>
-  </th>
-    <th>
-  <span>פירוט</span>
-  </th>
-  <th>
-  <span>מחיר</span>
-  </th>
-<%=will_paginate @products%>
-</tr>
-<%@products.each do |prod|%>
-<tr>
-  <td>
-  <p><%=prod.name%></p>
-  </td>
-  <td>
-  <p><%=prod.description%></p>
-  </td>
-  <td>
-  <p><%=prod.minimum_price%></p>
-  </td>
-  
-</tr>
-<%end%>
-</table>
-  
+    <h1>תוצאות חיפוש</h1>
+    <%=will_paginate @products%>
+    <table>
+        <tr>
+            <th><span>מוצר</span></th>
+            <th><span>פירוט</span></th>
+            <th><span>מחיר</span></th>
+        </tr>
+        <%@products.each do |prod|%>
+            <tr>
+                <td><p><%=link_to prod.name, customer_product_path(prod)%></p></td>
+                <td><p><%=prod.description%></p></td>
+                <td><p><%=prod.minimum_price%></p></td>
+
+            </tr>
+        <%end%>
+    </table>
+      
 </div>
 

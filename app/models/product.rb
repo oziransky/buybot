@@ -2,7 +2,7 @@
 class Product < ActiveRecord::Base
   attr_accessible :name, :description, :url, :catalog_id, :image_folder, :manufacturer, :store_id
   has_many :prices
-  has_many :stores, :through=>:prices
+  has_many :stores, :through=>:prices, :order=> 'price'
   has_and_belongs_to_many :categories
   
   validates :name, :presence => true
@@ -20,7 +20,7 @@ class Product < ActiveRecord::Base
   end
 
   def minimum_price
-    prices.min
+    prices.min.price
   end
   
     

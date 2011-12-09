@@ -15,4 +15,5 @@ class Category < ActiveRecord::Base
   def top_level?
     parent_id.nil?
   end
+  
 end

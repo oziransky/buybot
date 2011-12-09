@@ -58,18 +58,18 @@ def create_stores_and_inventory()
   puts products.count
   storeowners = StoreOwner.all
   puts storeowners.count
+  c = 0
   storeowners.each do |owner|
-    @store = owner.stores.create!(:name => "Example Store",
+    @store = owner.stores.create!(:name => "Example Store #{c+=1}", 
     :address => "Some street in some place",
     :url => "www.stores.com",
     :description => Faker::Lorem.sentence(2),
     :store_owner_id => owner.id)
 
-    #for each store add some products to the store 
     100.times do |n|
 
       @product = products[rand(products.count)]
-      @store.prices.create!(:price => 1.2,
+      @store.prices.create!(:price => rand(2500),
       :product_id => @product.id,
       :store_id => @store.id)
     end
@@ -83,7 +83,7 @@ namespace :db do
   @manufacturers = ["Sony","Toshiba","Apple","Panasocnic"]
   number_of_categories = 3
   number_of_sub_categories = 4
-  num_of_products = 120
+  num_of_products = 150
   num_of_owners = 10
  
   task :populate => :environment do

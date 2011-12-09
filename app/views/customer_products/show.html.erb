@@ -1,25 +1,25 @@
 <div id="customer_product">
-	<h1><%=@product.name%></h1>
-	<p><%=@product.description%></p>
-	
-	<% form_tag start_auction_customer_products_path, :method=>:put do %>
-		<table id="store_list">
-			<tr>
-				<th>חנות</th>
-				<th>מחיר</th>
-			</tr>
-			<% @stores.each do |store| %>
-			  <tr>
-				<td><%=store.name%></td>
-				<td><%=store.product_price(@product)%></td>
-				<td><%=check_box_tag 'selected_store_ids[]', store.id %></td>
-			  </tr>	
-			<%end%>
-		</table>
-		<div>&nbsp;</div>
-		<div id="start_auction_button">
-			<%= submit_tag "התחל מכירה פומבית" %>
-		</div>
-	<%end%>
+    <h1><%=@product.name%></h1>
+    <p><%=@product.description%></p>
+    
+    <% form_tag start_auction_customer_products_path, :method=>:put do %>
+        <table id="store_list">
+            <tr>
+                <th>חנות</th>
+                <th>מחיר</th>
+            </tr>
+            <% @stores.each do |store| %>
+              <tr>
+                <td><%=store.name%></td>
+                <td><%=store.product_price(@product)%></td>
+                <td><%=check_box_tag 'selected_store_ids[]', store.id %></td>
+              </tr> 
+            <%end%>
+        </table>
+
+        <div id="start_auction_button">
+            <%= submit_tag "התחל מכירה פומבית" %>
+        </div>
+    <%end%>
 
 </div>
