@@ -1,3 +1,15 @@
-<!--p> <%=link_to product.name, :action=>:show,:controller=>'customer_products', :productid=>product.id%> </p-->
+<table>
+        <tr>
+            <th><span>מוצר</span></th>
+            <th><span>פירוט</span></th>
+            <th><span>מחיר</span></th>
+        </tr>
+        <%products.each do |prod|%>
+            <tr>
+                <td><p><%=link_to prod.name, customer_product_path(prod)%></p></td>
+                <td><p><%=prod.description%></p></td>
+                <td><p><%=prod.minimum_price%></p></td>
 
-<p> <%=link_to product.name, customer_product_path, :productid=>product.id%> </p>
+            </tr>
+        <%end%>
+    </table>

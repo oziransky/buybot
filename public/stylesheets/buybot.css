@@ -1,4 +1,5 @@
 #container {
+    direction: rtl;
     width: 90%;
     margin: 10px auto;
     min-height: 100%;
