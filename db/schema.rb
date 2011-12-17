@@ -10,17 +10,42 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111125053128) do
+ActiveRecord::Schema.define(:version => 20111202130957) do
+
+  create_table "auction_statuses", :force => true do |t|
+    t.integer  "auction_id"
+    t.integer  "store_id"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "auction_statuses", ["auction_id"], :name => "index_auction_statuses_on_auction_id"
+  add_index "auction_statuses", ["store_id"], :name => "index_auction_statuses_on_store_id"
 
   create_table "auctions", :force => true do |t|
     t.integer  "product_id"
-    t.string   "stores_list"
     t.float    "minimal_step"
     t.float    "maximum_step"
     t.integer  "max_num_bids"
     t.float    "current_price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "status"
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "product_id"
+    t.integer  "parent_id"
+  end
+
+  create_table "categories_products", :id => false, :force => true do |t|
+    t.integer "category_id"
+    t.integer "product_id"
   end
 
   create_table "categories", :force => true do |t|
@@ -56,7 +81,11 @@ ActiveRecord::Schema.define(:version => 20111125053128) do
     t.string   "manufacturer"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "store_id"
+  end
+
+  create_table "products_stores", :id => false, :force => true do |t|
+    t.integer "product_id"
+    t.integer "store_id"
   end
 
   create_table "store_owners", :force => true do |t|

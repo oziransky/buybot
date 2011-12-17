@@ -1,0 +1,28 @@
+<tr>
+  <td>
+    <table>
+      <tr>
+        <td><%= @auction.auction_status %></td>
+        <td>:מצב תהליך</td>
+      </tr>
+      <tr>
+        <td><%= Product.find(@auction.product_id).name %></td>
+        <td>:מוצר</td>
+      </tr>
+      <tr>
+        <td><%= @auction.current_price %></td>
+        <td>:מחיר נוכחי</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+  <td>
+      <table>
+        <tr><td>רשימת חנויות בתהליך</td></tr>
+          <% @store_names.each do |n| %>
+              <tr><td><%= n %></td></tr>
+          <% end %>
+      </table>
+    </td>
+</tr>

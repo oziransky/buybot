@@ -148,6 +148,17 @@ body, table, td {
     margin: 0;
 }
 
+#home_container {
+    float: right;
+    text-align: right;
+}
+
+#home_container li {
+    list-style-type: none;
+    padding-right: 20px;
+    padding-bottom: 5px;
+}
+
 .register_block {
     display: none; /*--hidden by default--*/
     background: #fff;
@@ -166,6 +177,7 @@ body, table, td {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
+    text-align: right;
 }
 
 img.btn_close {
@@ -244,11 +256,11 @@ img.btn_close {
     padding-bottom: 5px;
 }
 
-#store__mng_menu {
+#store_mng_menu {
     float:right;
 }
 
-#store__mng_menu li {
+#store_mng_menu li {
     list-style-type: none;
     padding-right: 20px;
     padding-bottom: 5px;
@@ -274,15 +286,15 @@ img.btn_close {
 }
 
 #customer_product {
-	direction: rtl;
+    direction: rtl;
     float: right;
     text-align: right;
 }
 #store_list
 {
-float: right;
+    float: right;
     text-align: right;
-	
+
 }
 #invite_friends_form input {
     float: right;
@@ -339,17 +351,39 @@ float: right;
 		line-height: 150%;
 }
 */
-	li.sub_category {
-		background-color: #036;
-		color: white;
-	}
-	.sub_sub_category {
-		list-style: none;
-	}
-	.sub_sub_category a {
-		text-decoration: none;
-		
-	}
-	
-	
+li.sub_category {
+    background-color: #036;
+    color: white;
+}
+.sub_sub_category {
+    list-style: none;
+}
+.sub_sub_category a {
+    text-decoration: none;
+
+}
+
+#new_auction_form {
+    float: right;
+    text-align: right;
+}
+
+#all_auctions {
+    float: right;
+    text-align: right;
+}
+
+#auction_menu {
+    float: right;
+    text-align: right;
+}
+
+#auction_profile {
+    float: right;
+    text-align: right;
+}
+
+#update_price_form {
+    margin: 5px;
+}
 

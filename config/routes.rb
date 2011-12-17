@@ -1,9 +1,8 @@
 Buybot::Application.routes.draw do
 
+  get "store_auctions/show"
+  get "store_auctions/update"
 
-  #get "customer_products/search"
-  #get "customer_products/show"
-  #put "customer_products/start_auction"
   devise_for :store_owners
   devise_for :users
 
@@ -17,7 +16,8 @@ Buybot::Application.routes.draw do
       put :start_auction
    end
   end
-      
+  resources :store_auctions
+
   match '/home', :to => 'pages#home'
   match '/help', :to => 'pages#help'
   match '/invite_friends', :to => 'pages#invite_friends'
