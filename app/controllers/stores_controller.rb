@@ -8,9 +8,9 @@ class StoresController < ApplicationController
   def create
     @store = current_store_owner.stores.new(params[:stores])
     if @store.save
-      flash[:success] = "חנות נוצרה בהצלחה"
+      flash[:success] = "Your store was created!"
     else
-      flash[:error] = "לא ניתו ליצור את החנות"
+      flash[:error] = "Unable to create a store."
     end
 
     redirect_to stores_path
@@ -18,6 +18,8 @@ class StoresController < ApplicationController
 
   def index
     @stores = current_store_owner.stores
+
+    redirect_to @stores[0] if @stores.count == 1
   end
 
   def show

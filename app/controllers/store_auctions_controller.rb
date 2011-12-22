@@ -15,9 +15,9 @@ class StoreAuctionsController < ApplicationController
 
     # save the new record
     if @auction.save
-      flash[:success] = "תהליך עודכן בהצלחה"
+      flash[:success] = "New process was created successfully"
     else
-      flash[:error] = "לא ניתן תעדכן תהליך"
+      flash[:error] = "Unable to create a new process"
     end
 
     redirect_to store_auction_path
@@ -26,8 +26,14 @@ class StoreAuctionsController < ApplicationController
   def index
     store_id = session[:current_store_id]
     store = Store.find_by_id(store_id)
-    # find all active auctions for that store
-    @auctions = store.auctions.where("status = ? OR status = ?", Auction::ACTIVE, Auction::PAUSED)
+
+    if store.nil?
+      flash[:error] = "Please choose a store first"
+      redirect_to stores_path
+    else
+      # find all active auctions for that store
+      @auctions = store.auctions.where("status = ? OR status = ?", Auction::ACTIVE, Auction::PAUSED)
+    end
   end
 
   def show

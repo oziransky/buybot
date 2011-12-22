@@ -13,6 +13,7 @@ gem 'devise'
 #gem 'selenium-client'
 #gem 'simple_form'
 gem 'acts_as_tree'
+gem 'delayed_job_active_record'
 
 # Use unicorn as the web server
 # gem 'unicorn'
