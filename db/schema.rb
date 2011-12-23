@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111202130957) do
+ActiveRecord::Schema.define(:version => 20111223083245) do
+
+  create_table "auction_histories", :force => true do |t|
+    t.string   "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "bids"
+    t.integer  "closed_reason"
+  end
 
   create_table "auction_statuses", :force => true do |t|
     t.integer  "auction_id"
@@ -48,18 +56,21 @@ ActiveRecord::Schema.define(:version => 20111202130957) do
     t.integer "product_id"
   end
 
-  create_table "categories", :force => true do |t|
-    t.string   "name"
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "product_id"
-    t.integer  "parent_id"
   end
 
-  create_table "categories_products", :id => false, :force => true do |t|
-    t.integer "category_id"
-    t.integer "product_id"
-  end
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "prices", :force => true do |t|
     t.integer  "product_id"

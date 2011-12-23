@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 class AuctionsController < ApplicationController
 
   def create
@@ -37,9 +38,11 @@ class AuctionsController < ApplicationController
 
     # save the new record
     if @auction.save
-      flash[:success] = "תהליך נוצר בהצלחה"
+      flash[:success] = "New auction was created successfully!"
+      logger.debug "Created auction. Auction id: #{@auction.id}."
     else
-      flash[:error] = "לא ניתן להתחיל תהליך"
+      flash[:error] = "Unable to create the auction."
+      logger.error "Unable to create auction."
     end
 
     # show all open auctions for this user
@@ -52,9 +55,11 @@ class AuctionsController < ApplicationController
 
     # save the new record
     if @auction.save
-      flash[:success] = "תהליך עודכן בהצלחה"
+      flash[:success] = "Your auction was updated successfully!"
+      logger.debug "Updating auction. Auction id: #{@auction.id}. Auction status: #{@auction.status}"
     else
-      flash[:error] = "לא ניתן לעדכן תהליך"
+      flash[:error] = "Unable to update your auction."
+      logger.error "Unable to update auction. Auction id: #{@auction.id}. Auction status: #{@auction.status}"
     end
 
     redirect_to auction_path
@@ -63,17 +68,22 @@ class AuctionsController < ApplicationController
   def destroy
     # just mark the auction as inactive - will be cleared after
     @auction = current_user.auctions.find(params[:id])
-    @auction.status = Auction::INACTIVE
+    @auction.status = Auction::CANCELED
 
     # save the new record
     if @auction.save
-      flash[:success] = "תהליך בוטל בהצלחה"
+      # create a background task that will handle the analysis and delete the auction
+      Delayed::Job.enqueue(AuctionDeleteJob.new(@auction.id))
+
+      flash[:success] = "Your auction was deleted!"
+      logger.debug "Deleting auction. Auction id: #{@auction.id}"
     else
-      flash[:error] = "לא ניתן לבטל תהליך"
+      flash[:error] = "Unable to delete the auction."
+      logger.error "Unable to delete auction. Auction id: #{@auction.id}"
     end
 
-    # show all open auctions for this user
-    redirect_to auctions_path
+    # let the system process, go home
+    redirect_to root_path
   end
 
   def index

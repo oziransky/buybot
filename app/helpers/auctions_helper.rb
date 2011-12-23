@@ -9,9 +9,9 @@ module AuctionsHelper
 
   def get_toggle_link
     if @auction.status == Auction::ACTIVE
-      "השהה"
+      "Pause Auction"
     else
-      "הפעלה"
+      "Start Auction"
     end
   end
 end

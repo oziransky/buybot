@@ -1,11 +1,10 @@
 <div id="auction_menu">
   <ul>
     <li>
-      <%= form_tag(request.path, :method =>'put', :id => 'change_status') do %>
-          <%= hidden_field_tag :status, get_toggle_status %>
-      <% end %>
-      <%= link_to_function get_toggle_link, "$('form').submit(); return false;" %>
+      <%= button_to get_toggle_link, {:action => "update", :status => get_toggle_status }, :method => :put %>
     </li>
-    <li><%= link_to "בטל", auction_path(@auction), :confirm => "?האם אתה בטוח", :method => :delete %></li>
+    <li>
+      <%= button_to "Delete Auction", { :action => "destroy" }, :confirm => "Are you sure?", :method => :delete %>
+    </li>
   </ul>
 </div>

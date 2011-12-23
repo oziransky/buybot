@@ -1,7 +1,10 @@
 class Auction < ActiveRecord::Base
-  ACTIVE = 1
-  INACTIVE = 0
-  PAUSED = 3
+
+  CANCELED = 0    # stopped - canceled
+  ACTIVE = 1      # running
+  SOLD = 2        # stopped - product sold
+  PAUSED = 3      # user has suspended the auction
+  TIMEOUT = 4     # stopped - due to timeout
 
   attr_accessible :product_id, :minimal_step, :maximum_step, :max_num_bids, :current_price, :status
 
@@ -14,13 +17,10 @@ class Auction < ActiveRecord::Base
 
   def auction_status
     if self.status == ACTIVE
-      return "פעיל"
-    end
-    if self.status == INACTIVE
-      return "לא פעיל"
+      return "Active"
     end
     if self.status == PAUSED
-      return "מושהה"
+      return "Paused"
     end
   end
 end
