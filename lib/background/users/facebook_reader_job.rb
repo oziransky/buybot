@@ -1,0 +1,3 @@
+class FacebookReaderJob
+  
+end

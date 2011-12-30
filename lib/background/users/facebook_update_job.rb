@@ -1,0 +1,3 @@
+class FacebookUpdateJob
+  
+end

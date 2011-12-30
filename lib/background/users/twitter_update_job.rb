@@ -1,0 +1,3 @@
+class TwitterUpdateJob
+  
+end

@@ -36,6 +36,9 @@ class AuctionsController < ApplicationController
     # start the auction
     @auction.status = Auction::ACTIVE
 
+    # mark the close date
+    @auction.close_at = (Time.now + Auction::DEFAULT_TIME).to_s(:db)
+
     # save the new record
     if @auction.save
       flash[:success] = "New auction was created successfully!"

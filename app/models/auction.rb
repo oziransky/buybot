@@ -6,6 +6,8 @@ class Auction < ActiveRecord::Base
   PAUSED = 3      # user has suspended the auction
   TIMEOUT = 4     # stopped - due to timeout
 
+  DEFAULT_TIME = 10 * 60 # default time is 10 minutes
+
   attr_accessible :product_id, :minimal_step, :maximum_step, :max_num_bids, :current_price, :status
 
   has_many :auction_statuses

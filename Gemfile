@@ -9,3 +9,4 @@ gem 'devise'
 gem 'acts_as_tree'
 gem 'delayed_job_active_record'
 gem 'log4r'
+gem 'whenever', :require => false

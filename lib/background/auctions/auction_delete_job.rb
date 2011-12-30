@@ -4,6 +4,8 @@
 # 3. Save the delete reason (timeout or cancellation)
 class AuctionDeleteJob < Struct.new(:auction_id)
   def perform
+    logger = Log4r::Logger[Rails.env]
+
     auction = Auction.find(auction_id)
     history = AuctionHistory.new(:product_id => auction.product_id)
 
@@ -18,7 +20,7 @@ class AuctionDeleteJob < Struct.new(:auction_id)
     history.save!
 
     # delete the auction record
-    #logger.info "Deleted auction record id:#{auction.id}"
+    logger.info "Deleted auction record id:#{auction.id}"
     auction.destroy
   end
 end
