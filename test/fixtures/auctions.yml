@@ -1,6 +1,4 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
+a1:
   product_id: 1
   stores_list: MyString
   minimal_step: 1.5
@@ -8,7 +6,7 @@ one:
   max_num_bids: 1
   current_price: 1.5
 
-two:
+a2s:
   product_id: 1
   stores_list: MyString
   minimal_step: 1.5

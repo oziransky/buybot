@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :name, :description, :url, :catalog_id, :image_folder, :manufacturer, :store_id
+  attr_accessible :name, :description, :url, :image_folder, :manufacturer, :store_id
 
   has_many :prices
   has_many :stores, :through=>:prices, :order=> 'price', :readonly => false
@@ -11,7 +11,7 @@ class Product < ActiveRecord::Base
   def self.search(search)
     if search
       where("name LIKE ?","%#{search}%")
-    else
+    else        buy
       find(:all)
     end
   end

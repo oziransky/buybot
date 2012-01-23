@@ -1,0 +1,7 @@
+store1:
+  name: Cool store in some cool place
+  url: http://www.ebay.com
+
+store2:
+  name: Cheap store
+  url: http://www.cheapest.com

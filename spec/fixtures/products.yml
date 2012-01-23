@@ -1,6 +1,4 @@
-# fixture for different types of products
-
-p1:
+product1:
   name: "Television"
   description: "Some kind of a cool television"
   url: "www.sony.com"
@@ -8,7 +6,7 @@ p1:
   manufacturer: "Sony inc."
   categories: electornics
 
-p2:
+product2:
   name: "Red Couch"
   description: "Some kind of a cool couch"
   url: "www.ikea.com"

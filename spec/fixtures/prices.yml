@@ -1,0 +1,19 @@
+price1_1:
+  price: 100
+  product: product1
+  store: store1
+
+price1_2:
+  price: 110
+  product: product1
+  store: store2
+
+price2_1:
+  price: 200
+  product: product2
+  store: store1
+
+price2_2:
+  price: 210
+  product: product2
+  store: store2

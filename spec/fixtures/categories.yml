@@ -1,0 +1,7 @@
+electornics:
+  name: "Electronics"
+  products: product1
+
+furniture:
+  name: "Furniture"
+  products: product2

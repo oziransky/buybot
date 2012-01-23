@@ -1,4 +1,4 @@
-set :cron_log, "/log/cron_log.log"
+set :cron_log, "~/cron_log.log"
 
 # run auction timers every 30 seconds to update the close time
 every 1.minute do
