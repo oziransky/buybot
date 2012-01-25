@@ -1,6 +1,7 @@
 .idea
 .bundle
 .project
+.DS_Store
 db/*.sqlite3
 db/migrate/
 log/*.log
