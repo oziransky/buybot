@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Auction < ActiveRecord::Base
 
   CANCELED = 0    # stopped - canceled

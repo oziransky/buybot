@@ -1,13 +1,13 @@
 <table id="all_auctions">
   <tr>
     <td class="main">
-      <span>רשימת תהליכים שלי</span>
+      <span><%=t(:my_auctions)%></span>
     </td>
   </tr>
   <% @auctions.each do |auction| %>
       <tr>
-        <td><%= link_to "פרטים", "/auctions/" + auction.id.to_s %></td>
-        <td>מחיר נוכחי <%= auction.current_price %></td>
+        <td><%= link_to t(:details), "/auctions/" + auction.id.to_s %></td>
+        <td><%= t(:current_price, :price=>auction.current_price) %></td>
         <td><%= Product.find(auction.product_id).name %></td>
       </tr>
   <% end %>

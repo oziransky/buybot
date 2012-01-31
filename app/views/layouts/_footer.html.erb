@@ -3,19 +3,14 @@
     <div id="foot_right">
       <nav class="footer_nav">
         <ul>
-          <li><%= link_to "בלוגים", root_path %></li>
-          <li><%= link_to "צור קשר", root_path %></li>
-          <li><%= link_to "תנאי שימוש", root_path %></li>
-          <li><%= link_to "משרות", root_path %></li>
-          <li><%= link_to "אודותנו", root_path %></li>
-          <li><%= link_to "בעלי חנויות", new_store_owner_session_path %></li>
+          <li><%= link_to t('blogs.footer'), root_path %></li>
+          <li><%= link_to t('footer.contact_us'), root_path %></li>
+          <li><%= link_to t('footer.terms'), root_path %></li>
+          <li><%= link_to t('footer.jobs'), root_path %></li>
+          <li><%= link_to t('footer.about'), root_path %></li>
+          <li><%= link_to t('footer.merchant'), new_store_owner_session_path %></li>
         </ul>
       </nav>
-    </div>
-    <div id="foot_left">
-      <%= image_tag("twitter.png") %>
-      <%= image_tag("facebook.png") %>
-      <%= image_tag("rss.png") %>
     </div>
   </div>
 </div>

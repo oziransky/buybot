@@ -1,3 +1,4 @@
+# encoding: utf-8
 module AuctionsHelper
   def get_toggle_status
     if @auction.status == Auction::ACTIVE

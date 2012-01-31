@@ -1,21 +1,41 @@
-<div id="products_display">
-    <h1>תוצאות חיפוש</h1>
-    <%=will_paginate @products%>
-    <table>
-        <tr>
-            <th><span>מוצר</span></th>
-            <th><span>פירוט</span></th>
-            <th><span>מחיר</span></th>
-        </tr>
-        <%@products.each do |prod|%>
-            <tr>
-                <td><p><%=link_to prod.name, customer_product_path(prod)%></p></td>
-                <td><p><%=prod.description%></p></td>
-                <td><p><%=prod.minimum_price%></p></td>
 
-            </tr>
-        <%end%>
-    </table>
+<div id="products_display">
+    <h1><%=t(:search_results)%></h1>
+    <%=render 'active_filters'%>
+    <%= render :partial=>"categories/product",:locals=>{:products=>@products}%>
+    <%=will_paginate @products%>
+    
       
 </div>
+<div id="right-side-bar">
+ 
 
+		<div id="price-ranges">
+			<div class>			
+				<%=t(:price_ranges)%>
+			</div>
+			<div><%=link_to '10-100', search_customer_products_path(Hash[params].update(:price_range=>'10-100'))%></div>
+			<div><%=link_to '100-200', search_customer_products_path(Hash[params].update(:price_range=>'100-200'))%></div>
+			<div><%=link_to '200-300', search_customer_products_path(Hash[params].update(:price_range=>'200-300'))%></div>
+			<div><%=link_to '300-400', search_customer_products_path(Hash[params].update(:price_range=>'300-400'))%></div>			
+		</div>
+		<div id="possible-categories">
+			<div class>			
+				<%=t(:categories)%>
+			</div>
+			
+			<%for cat in @categories do%>
+				<div><%=link_to cat.name, search_customer_products_path(Hash[params].update(:categories=>cat.id))%></div>
+			<%end%>
+			
+		</div>
+		<div id="manufacturers">
+			<div class>			
+				<%=t(:manufacturers)%>
+			</div>
+			<%for manufacturer in @manufacturers do%>
+				<div><%=link_to manufacturer, search_customer_products_path(Hash[params].update(:manufacturer=>manufacturer))%></div>
+			<%end%>
+			
+		</div>
+  </div>

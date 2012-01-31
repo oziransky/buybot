@@ -3,9 +3,9 @@
     <div id="foot_right">
       <nav class="footer_nav">
         <ul>
-          <li><%= link_to "צור קשר", root_path %></li>
-          <li><%= link_to "תנאי שימוש", root_path %></li>
-          <li><%= link_to "אודותנו", root_path %></li>
+          <li><%= link_to t(:contact_us,:scope=>:footer), root_path %></li>
+          <li><%= link_to t(:terms, :scope=>:footer), root_path %></li>
+          <li><%= link_to t(:about,:scope=>:footer), root_path %></li>
         </ul>
       </nav>
     </div>

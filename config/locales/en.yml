@@ -3,3 +3,94 @@
 
 en:
   hello: "Hello world"
+  search: "Search"
+  products: "Products"
+  product: "Product"
+  description: "Description"
+  minimum_price: "Minimum price"
+  welcome: "Welcome %{user}"
+  logout: "Logout"
+  login: "Login"
+  help: "Help"
+  invite_friends: "Invite Friends"
+  account_settings: "Settings"
+  purchase_hist: "Purchase History"
+  sign_up: "Sign Up"
+  update: "Update"
+  cancel: "Cancel"
+  price: "Price"
+  delete: "Delete"
+  edit: "Edit"  
+  copy: "Copy"
+  
+  
+  stores: "Stores"
+  new_store: "New Store"
+  store_name: "Store Name"
+  tell_a_friend: "Tell A Friend"
+  site: "Site"
+  store_list: "Store List"
+  store_mangement: "Store Management"
+  
+  
+  manage_products: "Manage Products"
+  manage_clerks: "Manage Clerks"
+  reports: "Reports"
+  #store main nav
+  current_auctions: "Current Auctions"
+  store_management: "Store Management"
+  #auction menu
+  send_message: "Send Message"
+  cancel_auction: "Cancel Auction"
+  process_details: "Process Details"
+  
+  #auction show
+  other_bids: "Other Bids"
+  make_bid: "Make a Bid"
+  
+  could_not_create_process: "Could not create process"
+  could_not_delete_process: "Could not delete process"
+  process_created: "Successfuly created the process"
+  process_deleted: "Successfuly deleted the process"
+  could_not_update_process: "Could not update process"
+  process_updated: "Successfuly updated the process"  
+  #sore auctions
+  my_auctions: "My Auctions"
+  details: "Details"
+  current_price: "Current price: %{price}"
+  current_price_s: "Current price:"
+  
+  #new user
+  resend_confirmation_instructions: "Resend confirmation instructions"
+  resend_unlock_instructions: "Resend unlock instructions"
+  #links
+  forgot_password: "Forgot your password?"
+  didnt_receive_confirmation: "Didn't receive confirmation instructions?"
+  didnt_receive_unlock: "Didn't receive unlock instructions?"
+  sign_in_with: "Sign in with %{provider}"
+  
+  send_reset_password: "Send me reset password instructions"
+  #devise edit
+  new_password: "New password"
+  confirm_password: "Confirm password"
+  change_password: "Change my password"
+  current_password_s: "Current password"
+  email_s: "Email"
+  password_s: "Password"
+  remember_me_s: "Remember Me"
+  enter: "Enter"
+  
+  delete_account: "Delete account"
+  are_you_sure: "Are You Sure?"
+  #new auction
+  begin_auction: "Begin Auction"
+  
+  search_results: "Search Results"
+  footer:
+      blogs: "Blogs"
+      contact_us: "Contuct us"
+      jobs: "Jobs"
+      about: "About us"
+      merchant: "Merchant Login"
+
+

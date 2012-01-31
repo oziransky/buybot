@@ -1,25 +1,38 @@
 <div id="customer_product">
-  <h1><%=@product.name%></h1>
-  <p><%=@product.description%></p>
-
-  <% form_tag(auctions_path, :method =>'post') do %>
-      <table id="store_list">
-        <tr>
-          <th>חנות</th>
-          <th>מחיר</th>
-        </tr>
-        <% @stores.each do |store| %>
-            <tr>
-              <td><%=store.name%></td>
-              <td><%=store.product_price(@product)%></td>
-              <td><%=check_box_tag 'store_ids[]', store.id %></td>
-            </tr>
-        <%end%>
-      </table>
-      <%= hidden_field_tag :product_id, @product.id %>
-      <div id="start_auction_button">
-        <%= submit_tag "התחל מכירה פומבית" %>
-      </div>
-  <%end%>
-
+	<h1><%= @product.name%></h1>
+	<p>
+		<%= @product.description%>
+	</p>
+	<div id="stores-display">
+		<% form_tag(auctions_path, :method =>'post') do %>
+		<div class="store-line">
+			<div class="store-display-item">
+				<%= t(:store)%>
+			</div>
+			<div class="store-display-item">
+				<%= t(:price)%>
+			</div>
+			<div class="store-display-item">
+				<%= t(:invite_to_auction)%>
+			</div>
+		</div>
+		<%for store in @stores do%>
+		<div class="store-line">
+			<div class="store-display-item">
+				<%= store.name%>
+			</div>
+			<div class="store-display-item">
+				<%= store.product_price(@product)%>
+			</div>
+			<div class="store-display-item">
+				<%= check_box_tag 'store_ids[]', store.id %>
+			</div>
+		</div>
+		<%end%>
+		<%= hidden_field_tag :product_id, @product.id %>
+		<div id="start_auction_button">
+			<%= submit_tag t(:begin_auction) %>
+		</div>
+		<%end%>
+	</div>
 </div>

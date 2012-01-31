@@ -1,10 +1,10 @@
 <%= render "auction_menu" %>
 <div id="auction_profile">
-  <span>פרטי תהליך</span>
+  <span><%=t(:process_details)%></span>
   <table>
     <%= render "auction" %>
     <tr>
-      <td>הצעות נוספות</td>
+      <td><%=t(:other_bids)%>></td>
       <td>&nbsp;</td>
     </tr>
     <% other_bids.each_with_index do |bid, index| %>
@@ -19,7 +19,7 @@
             <% form_tag(request.path, :method =>'put') do %>
                 <%= text_field_tag :new_bid, @auction.current_price.to_s, :size => 7 %>
                 <div>
-                  <%= submit_tag 'הצע מחיר' %>
+                  <%= submit_tag t(:make_bid) %>
                 </div>
             <% end %>
         <% end %>

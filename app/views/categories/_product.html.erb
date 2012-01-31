@@ -1,15 +1,17 @@
-<table>
-        <tr>
-            <th><span>מוצר</span></th>
-            <th><span>פירוט</span></th>
-            <th><span>מחיר</span></th>
-        </tr>
-        <%products.each do |prod|%>
-            <tr>
-                <td><p><%=link_to prod.name, customer_product_path(prod)%></p></td>
-                <td><p><%=prod.description%></p></td>
-                <td><p><%=prod.minimum_price%></p></td>
+<div id="products-display" class="ui-widget">
 
-            </tr>
+    <div class="product-line ui-widget-header">
+        <div class="prod-display-item"><%=t(:product)%></div>
+        <div class="prod-display-item"><%=t(:description)%></div>
+        <div class="prod-display-item"><%=t(:minimum_price)%></div>
+    </div>
+
+        <%for prod in products do%>
+            <div class="product-line ui-widget-content">
+                <div class="prod-display-item"><%=link_to prod.name, customer_product_path(prod)%></div>
+                <div class="prod-display-item"><%=prod.description%></div>
+                <div class="prod-display-item"><%=prod.minimum_price%></div>
+
+            </div>
         <%end%>
-    </table>
+</div>

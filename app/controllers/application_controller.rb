@@ -1,8 +1,16 @@
 # encoding: utf-8
 class ApplicationController < ActionController::Base
+  before_filter :load_categories
   protect_from_forgery
-
   layout :layout_by_resource
+ #   helper :all
+ 
+
+    private
+      def load_categories
+        @root_categories = @root_categories || Category.top_categories.unshift
+        
+      end
 
   def title
     "BuyBot"

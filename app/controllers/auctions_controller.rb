@@ -41,10 +41,10 @@ class AuctionsController < ApplicationController
 
     # save the new record
     if @auction.save
-      flash[:success] = "New auction was created successfully!"
+      flash[:success] = t(:process_created)
       logger.debug "Created auction. Auction id: #{@auction.id}."
     else
-      flash[:error] = "Unable to create the auction."
+      flash[:error] = t(:could_not_create_process)
       logger.error "Unable to create auction."
     end
 
@@ -58,10 +58,10 @@ class AuctionsController < ApplicationController
 
     # save the new record
     if @auction.save
-      flash[:success] = "Your auction was updated successfully!"
+      flash[:success] = t(:process_updated)
       logger.debug "Updating auction. Auction id: #{@auction.id}. Auction status: #{@auction.status}"
     else
-      flash[:error] = "Unable to update your auction."
+      flash[:error] = t(:could_not_update_process)
       logger.error "Unable to update auction. Auction id: #{@auction.id}. Auction status: #{@auction.status}"
     end
 
@@ -77,11 +77,10 @@ class AuctionsController < ApplicationController
     if @auction.save
       # create a background task that will handle the analysis and delete the auction
       Delayed::Job.enqueue(AuctionDeleteJob.new(@auction.id))
-
-      flash[:success] = "Your auction was deleted!"
+      flash[:success] = t(:process_deleted)
       logger.debug "Deleting auction. Auction id: #{@auction.id}"
     else
-      flash[:error] = "Unable to delete the auction."
+      flash[:error] = t(:could_not_delete_process)
       logger.error "Unable to delete auction. Auction id: #{@auction.id}"
     end
 

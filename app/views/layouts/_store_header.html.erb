@@ -3,10 +3,10 @@
     <% if store_owner_signed_in? %>
         <div class="logged_area">
           <ul>
-            <li><%= link_to "יציאה", destroy_store_owner_session_path, :method => :delete %></li>
+            <li><%= t :welcome, :user=>current_user.email %></li>
             <li>|</li>
-            <li><%= current_store_owner.email %></li>
-            <li>שלום</li>
+            <li><%= link_to t(:logout), destroy_store_owner_session_path, :method => :delete %></li>
+
           </ul>
         </div>
     <% end %>
@@ -14,10 +14,10 @@
 
   <nav class="main_nav">
     <ul>
-      <li><%= link_to "חדר מצב", store_auctions_path %></li>
-      <li><%= link_to "ניהול חנות", stores_path %></li>
-      <li><%= link_to "הגדרות שלי", edit_store_owner_registration_path %></li>
-      <li><%= link_to "עזרה", help_path %></li>
+      <li><%= link_to t(:current_auctions), store_auctions_path %></li>
+      <li><%= link_to t(:store_management), stores_path %></li>
+      <li><%= link_to t(:account_settings), edit_store_owner_registration_path %></li>
+      <li><%= link_to t(:help), help_path %></li>
     </ul>
   </nav>
 </div>

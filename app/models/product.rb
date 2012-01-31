@@ -16,6 +16,16 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def self.all_categories(products)
+    categories = products.collect {|p| p.categories}
+    categories.flatten.uniq
+  end
+  
+  def self.all_manufacturers(products)
+    manufacturers = products.collect {|p| p.manufacturer}
+    manufacturers.flatten.uniq
+  end
+  
   def minimum_price
     prices.min.price
   end
