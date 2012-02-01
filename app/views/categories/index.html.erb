@@ -1,19 +1,11 @@
 
-<%= javascript_include_tag "jExpand"%>
-<!--script type="text/javascript"> 
-$(document).ready(function(){
-  $("#categories").jExpand();
-});
-</script-->
-
 <div id="all_categories">
 
 
 <% form_tag "customer_products/search", :method => 'get' do %>
   <p>
-    <%= submit_tag "חפש", :name => nil%>
-    <!--%= text_field_tag :search, params[:search] %-->
-    <%= text_field_tag "search",params[:search], :placeholder=>"אני רוצה לקנות",:class=>"bold_input", :id => "search_input" %>
+    <%= submit_tag t(:search), :name => nil%>
+    <%= text_field_tag "search",params[:search], :placeholder=>"I want to buy...",:class=>"bold_input", :id => "search_input" %>
   </p>
 <% end %>
 

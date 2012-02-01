@@ -1,16 +1,16 @@
-<div id="products-display" class="ui-widget">
+<div id="products-display">
 
-    <div class="product-line ui-widget-header">
-        <div class="prod-display-item"><%=t(:product)%></div>
-        <div class="prod-display-item"><%=t(:description)%></div>
-        <div class="prod-display-item"><%=t(:minimum_price)%></div>
+    <div class="table-row">
+        <div class="table-item"><%=t(:product)%></div>
+        <div class="table-item"><%=t(:description)%></div>
+        <div class="table-item"><%=t(:minimum_price)%></div>
     </div>
 
         <%for prod in products do%>
-            <div class="product-line ui-widget-content">
-                <div class="prod-display-item"><%=link_to prod.name, customer_product_path(prod)%></div>
-                <div class="prod-display-item"><%=prod.description%></div>
-                <div class="prod-display-item"><%=prod.minimum_price%></div>
+            <div class="table-row">
+                <div class="table-item"><%=link_to prod.name, customer_product_path(prod)%></div>
+                <div class="table-item"><%=prod.description%></div>
+                <div class="table-item"><%=prod.minimum_price%></div>
 
             </div>
         <%end%>

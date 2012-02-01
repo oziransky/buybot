@@ -5,26 +5,26 @@
 	</p>
 	<div id="stores-display">
 		<% form_tag(auctions_path, :method =>'post') do %>
-		<div class="store-line">
-			<div class="store-display-item">
+		<div class="table-row">
+			<div class="table-item">
 				<%= t(:store)%>
 			</div>
-			<div class="store-display-item">
+			<div class="table-item">
 				<%= t(:price)%>
 			</div>
-			<div class="store-display-item">
+			<div class="table-item">
 				<%= t(:invite_to_auction)%>
 			</div>
 		</div>
 		<%for store in @stores do%>
-		<div class="store-line">
-			<div class="store-display-item">
+		<div class="table-row">
+			<div class="table-item">
 				<%= store.name%>
 			</div>
-			<div class="store-display-item">
+			<div class="table-item">
 				<%= store.product_price(@product)%>
 			</div>
-			<div class="store-display-item">
+			<div class="table-item">
 				<%= check_box_tag 'store_ids[]', store.id %>
 			</div>
 		</div>

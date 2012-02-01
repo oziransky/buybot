@@ -1,0 +1,406 @@
+$dir:left;
+
+.gen-table
+{
+    float:$dir;
+    text-align:$dir;
+}
+
+#container {
+    width: 90%;
+    margin: 10px auto;
+    min-height: 100%;
+}
+
+body, table, td {
+    font-family: arial;
+    font-size: 12px;
+    color: #676767;
+}
+
+#header {
+    padding-top: 20px;
+    height: 75px;
+}
+
+#content {
+    width: 800px;
+    clear: both;
+    padding-right: 10px;
+    padding-left: 10px;
+    overflow: auto;
+    padding-bottom: 150px;
+}
+
+#directregister {
+    color: #ffffff;
+    background-color: #036;
+    padding: 2px 10px;
+    height: 24px;
+    display: inline-block;
+}
+
+#directlogin_submit {
+    color: #ffffff;
+    background-color: #cc6600;
+    padding: 2px 10px;
+    height: 24px;
+    display: inline-block;
+}
+
+.bold_input {
+    display: inline-block;
+    height: 16px;
+    padding: 2px 10px;
+    width: 200px;
+    text-align: $dir;
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.logged_area {
+    float: $dir;
+    ul {
+        float: $dir;
+        width: 100%;
+        li {
+            display: inline;
+
+        }
+    }
+}
+
+
+.main_nav ul
+{
+    padding-left: 0;
+    margin-left: 0;
+    background-color: #036;
+    color: White;
+    float: $dir;
+    width: 100%;
+    font-family: arial, helvetica, sans-serif;
+    ul {
+        li {
+            display: inline;
+            a {
+                padding: 0.2em 1em;
+                background-color: #036;
+                color: White;
+                text-decoration: none;
+                float: $dir;
+                border-right: 1px solid #fff;
+            }
+            a:hover {
+                background-color: #cc6600;
+                color: #fff;
+            }
+        }
+    }
+}
+#footer {
+    position: relative;
+    margin-top: -150px;
+    height: 150px;
+    clear: both;
+}
+
+#foot {
+    width: 800px;
+    margin: 0 auto;
+    height: 140px;
+    line-height: 1.1em;
+    padding: 0 10px 0 10px;
+}
+
+.footer_nav {
+    padding-top: 20px;
+    float: none;
+    li {
+        float: $dir;
+        display: inline;
+        list-style-type: none;
+        padding-right: 20px;
+    }
+}
+
+
+#search_button {
+    height: 24px;
+    padding: 2px 10px;
+    display: inline-block;
+}
+
+#fade { /*--Transparent background layer--*/
+    display: none; /*--hidden by default--*/
+    background: #000;
+    position: fixed; left: 0; top: 0;
+    width: 100%; height: 100%;
+    opacity: .80;
+    z-index: 9999;
+}
+
+.login_area {
+    float: $dir;
+    margin: 0;
+}
+
+.quick_search {
+    float: $dir;
+    margin: 0;
+}
+
+#home_container {
+    float: $dir;
+    text-align: $dir;
+    li {
+        list-style-type: none;
+        padding-right: 20px;
+        padding-bottom: 5px;
+    }
+}
+
+
+.register_block {
+    display: none; /*--hidden by default--*/
+    background: #fff;
+    padding: 20px;
+    border: 20px solid #ddd;
+    float: $dir;
+    font-size: 1.2em;
+    position: fixed;
+    top: 50%; left: 50%;
+    z-index: 99999;
+    /*--CSS3 Box Shadows--*/
+    -webkit-box-shadow: 0px 0px 20px #000;
+    -moz-box-shadow: 0px 0px 20px #000;
+    box-shadow: 0px 0px 20px #000;
+    /*--CSS3 Rounded Corners--*/
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    text-align: $dir;
+}
+
+img.btn_close {
+    float: $dir;
+    margin: -55px -55px 0 0;
+}
+
+/*--Making IE6 Understand Fixed Positioning--*/
+*html #fade {
+    position: absolute;
+}
+
+*html .popup_block {
+    position: absolute;
+}
+
+.filter {
+    border: solid 1px #999;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    background-color: #DDD;
+    padding: 2px 8px;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+.flash {
+    float: $dir;
+    background-color: #ffcc66;
+}
+
+.debug {
+    float: $dir;
+    background-color: #cccccc;
+}
+
+#store_title {
+    float: $dir;
+    font-size: 24px;
+    font-family: arial;
+    color: #036;
+}
+
+.store_info {
+    float: $dir;
+}
+
+.store_owner_auth {
+    float: $dir;
+    margin: 5px;
+    width: 250px;
+    display: inline-block;
+    text-align: $dir;
+}
+
+.store_owner_auth form {
+    text-align: $dir;
+}
+
+#store_owner_submit {
+    color: #ffffff;
+    background-color: #cc6600;
+    padding: 2px 10px;
+    height: 24px;
+    display: inline;
+}
+
+#store_menu {
+    float: $dir;
+}
+
+#store_menu li {
+    list-style-type: none;
+    padding-right: 20px;
+    padding-bottom: 5px;
+}
+
+#store_mng_menu {
+    float:$dir;
+}
+
+#store_mng_menu li {
+    list-style-type: none;
+    padding-right: 20px;
+    padding-bottom: 5px;
+}
+
+#auction_menu {
+    float: $dir;
+}
+
+#auction_menu li {
+    list-style-type: none;
+    padding-right: 20px;
+    padding-bottom: 5px;
+}
+
+#help_view {
+    float: $dir;
+}
+
+#invite_friends_form {
+    float: $dir;
+    text-align: $dir;
+}
+
+#customer_product {
+    direction: rtl;
+    float: $dir;
+    text-align: $dir;
+}
+#store_list
+{
+    float: $dir;
+    text-align: $dir;
+
+}
+#invite_friends_form input {
+    float: $dir;
+    text-align: $dir;
+}
+
+#invite_friends_form textarea {
+    float: $dir;
+    text-align: $dir;
+}
+
+#store_profile {
+    float: $dir;
+    text-align: $dir;
+}
+
+#all_stores {
+    float: $dir;
+    text-align: $dir;
+}
+
+#all_products {
+    float: $dir;
+    text-align: $dir;
+}
+
+#product_profile {
+    float: $dir;
+    text-align: $dir;
+}
+
+#all_categories {
+    float: $dir;
+    text-align: $dir;
+}
+#sub_category_display
+{
+    float: $dir;
+    text-align: $dir;
+
+}
+#products_display
+{
+    float: $dir;
+    text-align: $dir;
+
+}
+
+
+#categories {
+    tr{
+    
+		vertical-align: top;
+    }
+		padding: 10px;
+		line-height: 150%;
+}
+
+li.sub_category {
+    background-color: #036;
+    color: white;
+}
+.sub_sub_category {
+    list-style: none;
+}
+.sub_sub_category a {
+    text-decoration: none;
+
+}
+
+#new_auction_form {
+    float: $dir;
+    text-align: $dir;
+}
+
+#all_auctions {
+    @extend .gen-table; 
+
+}
+
+#auction_menu {
+    float: $dir;
+    text-align: $dir;
+}
+
+#auction_profile {
+    float: $dir;
+    text-align: $dir;
+}
+
+#update_price_form {
+    margin: 5px;
+}
+.table-row, .table-item{
+    float:$dir;
+    width:100%;
+}
+
+#products-display ,#stores-display {
+    .table-row{
+        .table-item {
+            width: 30%;
+        }
+    }
+}
+
