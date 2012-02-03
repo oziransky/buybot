@@ -2,16 +2,16 @@
   <td>
     <table>
       <tr>
+        <td><%=t(:auction_status)  %></td>
         <td><%= @auction.auction_status %></td>
-        <td>:מצב תהליך</td>
       </tr>
       <tr>
+        <td><%= t(:product) %></td>
         <td><%= Product.find(@auction.product_id).name %></td>
-        <td>:מוצר</td>
       </tr>
       <tr>
+        <td><%= t(:current_price_s) %></td>
         <td><%= @auction.current_price %></td>
-        <td>:מחיר נוכחי</td>
       </tr>
     </table>
   </td>
@@ -19,7 +19,7 @@
 <tr>
   <td>
       <table>
-        <tr><td>רשימת חנויות בתהליך</td></tr>
+        <tr><td><%= t(:list_of_participants) %></td></tr>
           <% @store_names.each do |n| %>
               <tr><td><%= n %></td></tr>
           <% end %>

@@ -1,11 +1,11 @@
 <div id="new_auction_form">
 <%= form_for(@auction) do |f| %>
     <div class="field">
-      <%= f.label "מוצר" %><br />
+      <%= f.label t(:product) %><br />
       <%= f.text_field :product_id %>
     </div>
     <div class="actions">
-      <%= f.submit "התחל מכירה" %>
+      <%= f.submit t(:begin_auction) %>
     </div>
 <% end %>
 </div>

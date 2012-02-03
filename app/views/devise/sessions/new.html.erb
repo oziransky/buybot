@@ -1,18 +1,18 @@
 <div class="store_owner_auth">
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-      <div><%= f.label "מייל" %><br />
+      <div><%= f.label t(:email_s) %><br />
         <%= f.email_field :email %>
       </div>
 
-      <div><%= f.label "סיסמא" %><br />
+      <div><%= f.label t(:password_s) %><br />
         <%= f.password_field :password %>
       </div>
 
       <% if devise_mapping.rememberable? -%>
-          <div><%= f.check_box :remember_me %> <%= f.label "זכור אותי" %><br /></div>
+          <div><%= f.check_box :remember_me %> <%= f.label t(:remember_me_s) %><br /></div>
       <% end -%>
 
-      <div><%= f.submit "כניסה" %></div>
+      <div><%= f.submit t(:enter) %></div>
   <% end %>
 
   <%= render :partial => "devise/shared/links" %>

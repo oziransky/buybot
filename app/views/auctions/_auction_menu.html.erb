@@ -4,7 +4,7 @@
       <%= button_to get_toggle_link, {:action => "update", :status => get_toggle_status }, :method => :put %>
     </li>
     <li>
-      <%= button_to "Delete Auction", { :action => "destroy" }, :confirm => "Are you sure?", :method => :delete %>
+      <%= button_to t(:delete), { :action => "destroy" }, :confirm => t(:are_you_sure), :method => :delete %>
     </li>
   </ul>
 </div>

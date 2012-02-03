@@ -1,0 +1,27 @@
+<div id="active_filters">
+	<%if not params[:search].nil? %>
+	<div class='active_filter_item'>
+			<span><%=params[:search].to_s%></span>
+			<%= link_to 'x',search_customer_products_path(params.select{ |key,val| key != 'search'}) %>
+			
+		</div>
+	<%end%>
+	<%if not params[:price_range].nil? %>
+	<div class='active_filter_item'>
+			<span><%=params[:price_range].gsub("_"," - ")%></span>
+			<%= link_to 'x' ,search_customer_products_path(params.select{|key,val| key!='price_range'}) %>
+		</div>
+	<%end%>
+	<%if not params[:manufacturer].nil? %>
+		<div class='active_filter_item'>
+			<span><%=params[:manufacturer].to_s%></span>		
+			<%= link_to 'x',search_customer_products_path(params.select{|key,val| key!='manufacturer'}) %>
+		</div>
+	<%end%>
+	<%if not params[:categories].nil? %>
+		<div class='active_filter_item'>
+			<span><%=params[:categories].to_s%></span>		
+			<%= link_to 'x',search_customer_products_path(params.select{|key,val| key!='categories'}) %>
+		</div>
+	<%end%>
+</div>

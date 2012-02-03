@@ -1,7 +1,14 @@
+require 'log4r'
+include Log4r
+
 class CustomerProductsController < ApplicationController
   def search
+    logger.debug 'hello'
+    logger.debug "peforming serach for #{params[:search]} in category #{params[:categories]}"
+    @current_search = params[:search]
     @products = Product.search("#{params[:search]}").paginate(:per_page=>5,:page=>params[:page])
-    
+    @categories = Product.all_categories @products
+    @manufacturers = Product.all_manufacturers @products
   end
   
   def show

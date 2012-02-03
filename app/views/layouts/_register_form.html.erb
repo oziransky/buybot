@@ -3,20 +3,20 @@
 
   <%= form_for(:user, :url => "#", :html => { :id => "ajax_signup" }) do |f| %>
       <div>
-        <%= f.label "מייל" %><br />
+        <%= f.label t(:email_s) %><br />
         <%= f.email_field :email %>
       </div>
 
       <div>
-        <%= f.label "סיסמא" %><br />
+        <%= f.label t(:password_s) %><br />
         <%= f.password_field :password %>
       </div>
 
       <div>
-        <%= f.label "הזן סיסמא שנית" %><br />
+        <%= f.label t(:confirm_password) %><br />
         <%= f.password_field :password_confirmation %>
       </div>
 
-      <div><%= f.submit "הרשם" %></div>
+      <div><%= f.submit t(:sign_up) %></div>
   <% end %>
 </div>

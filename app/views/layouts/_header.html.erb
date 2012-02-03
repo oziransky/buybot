@@ -1,32 +1,39 @@
 <div id="header">
-  <div id="user_nav">
-    <% if user_signed_in? %>
-        <div class="logged_area">
-          <ul>
-            <li><%= link_to "יציאה", destroy_user_session_path, :method => :delete %></li>
-            <li>|</li>
-            <li><%= current_user.email %></li>
-            <li>שלום</li>
-          </ul>
+    <div id="logo-and-login">
+        <div id="logo">
+            <%= link_to(image_tag("buybot.png"),'home')%>
         </div>
-    <% else %>
-        <div style="color:#999" class="login_area">
-          <input type="text" class="bold_input" id="directlogin_username" placeholder="מייל">
-          <input type="password" class="bold_input" id="directlogin_password" placeholder="סיסמא">
-          <input type="button" value="כניסה" id="directlogin_submit">
-          <input type="button" value="הרשמה" rel="register_form" class="poplight" id="directregister">
+        <div id="user_nav" class="ui-widget">
+            <% if user_signed_in? %>
+                <div class="logged_area ui-widget-content">
+                    <ul>
+                        <li><%= t :welcome, :user=>current_user.email %></li>
+                        <li>|</li>
+                        <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
+                        
+                    </ul>
+                    <nav>
+                    <ul>
+                        <li><%= link_to t(:purchase_hist), auctions_path %></li>
+                        <li><%= link_to t(:account_settings), edit_user_registration_path %></li>
+                        <li><%= link_to t(:help), help_path %></li>
+                        <li><%= link_to t(:invite_friends), invite_friends_path %></li>
+                    </ul>
+                    </nav>
+                </div>
+            <% else %>
+                <div style="color:#999" class="login_area">
+                
+                  <%= tag 'input',:type=>'text',:id=>'directlogin_username',:class=>'bold_input',:placeholder=>t(:email_s) %>
+                  <%= tag 'input',:type=>'password',:id=>'directlogin_password',:class=>'bold_input',:placeholder=>t(:password_s) %>
+                  <%= tag "input",:value=>t(:login), :type=>'button', :id=> "directlogin_submit"%>
+                  <%= tag 'input',:value=>t(:sign_up), :type=>'button',:class=>'poplight',:rel=>'register_form',:id=>'directregister' %>
+                </div>
+            <% end %>
         </div>
-    <% end %>
-  </div>
+    </div>
+   
 
-  <nav class="main_nav">
-    <ul>
-      <li><%= link_to "קניות שלי", auctions_path %></li>
-      <li><%= link_to "הגדרות", edit_user_registration_path %></li>
-      <li><%= link_to "עזרה", help_path %></li>
-      <li><%= link_to "הזמן חברים", invite_friends_path %></li>
-    </ul>
-  </nav>
 
   <%= render 'layouts/register_form' %>
 </div>

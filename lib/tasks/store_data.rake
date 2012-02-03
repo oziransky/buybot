@@ -1,20 +1,25 @@
 # encoding: utf-8
 require 'faker'
 
-def create_categories_and_products(num_of_categories,num_of_sub, num_of_products)
+
+
+def create_categories_and_products(num_of_categories,min_num_of_sub,max_num_of_sub, num_of_products)
   subcategories = []
-  Category.create!(:name => "מכשירי חשמל")
-  Category.create!(:name => "רהיטים")
-  Category.create!(:name => "לגן")
+  Category.create!(:name => "Electronics")
+  Category.create!(:name => "Enterainment")
+  Category.create!(:name => "Home Outdoor & Decor")
+  Category.create!(:name => "Fashion")
 
   3.times do |c|
     category = Category.find(c+1)
+    num_of_sub = min_num_of_sub + Random.rand(4)
     num_of_sub.times do |s|
       sub_category = category.children.create!(:name => category.name + "#{s+1}")
-      num_of_sub.times do |ss|
-        sub_sub_category = sub_category.children.create!(:name => category.name + "#{s+1}_#{ss+1}")
-        subcategories << sub_sub_category
-      end
+        num_of_sub_sub = Random.rand(5)
+        num_of_sub_sub.times do |ss|
+          sub_sub_category = sub_category.children.create!(:name => category.name + "#{s+1}_#{ss+1}")
+          subcategories << sub_sub_category
+        end
     end
   end
 
@@ -72,17 +77,18 @@ namespace :db do
   desc "Fill database with sample data"
 
   @manufacturers = ["Sony","Toshiba","Apple","Panasocnic"]
-  number_of_categories = 3
-  number_of_sub_categories = 4
+  number_of_categories = 2+Random.rand(4)
+  number_of_sub_categories = 3+Random.rand(5)
   num_of_products = 150
   num_of_owners = 10
 
   task :populate => :environment do
     #Rake::Task['db:reset'].invoke
 
+    create_categories_and_products(number_of_categories, 3,5,num_of_products)
     #create_categories_and_products(number_of_categories, number_of_sub_categories, num_of_products)
 
-    #create_stores_owners(num_of_owners)
+    create_stores_owners(num_of_owners)
 
     create_stores_and_inventory()
   end
