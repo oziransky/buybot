@@ -1,6 +1,6 @@
-electornics:
+electronics:
   name: "Electronics"
-  products: product1
+  products: product1, product3
 
 furniture:
   name: "Furniture"
