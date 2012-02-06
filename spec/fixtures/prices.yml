@@ -17,3 +17,8 @@ price2_2:
   price: 210
   product: product2
   store: store2
+  
+price2_3:
+  price: 230
+  product: product3
+  store: store2  

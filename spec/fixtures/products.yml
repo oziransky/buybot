@@ -15,7 +15,7 @@ product2:
   categories: furniture
   
 product3:
-  name: "Television2"
+  name: "Television Toshiba "
   description: "Some Other kind of a cool television"
   url: "www.toshiba.com"
   image_folder: "public/data/p1"
