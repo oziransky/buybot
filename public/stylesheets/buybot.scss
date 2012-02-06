@@ -71,12 +71,11 @@ body, table, td {
     }
 }
 
-
 .main_nav ul
 {
     padding-left: 0;
     margin-left: 0;
-    background-color: #036;
+    background-color: #ffffff;
     color: White;
     float: $dir;
     width: 100%;
@@ -99,6 +98,7 @@ body, table, td {
         }
     }
 }
+
 #footer {
     position: relative;
     margin-top: -150px;
@@ -345,7 +345,6 @@ img.btn_close {
     text-align: $dir;
 
 }
-
 
 #categories {
     tr{

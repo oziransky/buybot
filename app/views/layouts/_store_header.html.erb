@@ -3,10 +3,11 @@
     <% if store_owner_signed_in? %>
         <div class="logged_area">
           <ul>
-            <li><%= t :welcome, :user=>current_user.email %></li>
+            <li><%= t :welcome, :user=>current_store_owner.email %></li>
             <li>|</li>
-            <li><%= link_to t(:logout), destroy_store_owner_session_path, :method => :delete %></li>
-
+            <li>
+              <%= link_to t(:logout), destroy_store_owner_session_path, :method => :delete %>
+            </li>
           </ul>
         </div>
     <% end %>

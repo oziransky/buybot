@@ -4,8 +4,8 @@
 
 <% form_tag "customer_products/search", :method => 'get' do %>
   <p>
-    <%= submit_tag t(:search), :name => nil%>
     <%= text_field_tag "search",params[:search], :placeholder=>"I want to buy...",:class=>"bold_input", :id => "search_input" %>
+    <%= submit_tag t(:search), :name => nil%>
   </p>
 <% end %>
 
@@ -14,7 +14,7 @@
 
 <div>
 <table id="categories">
-	<tr><th colspan="4">קטגוריות</th></tr>
+	<tr><th colspan="4"><%= t(:categories) %></th></tr>
 	<%@root_categories.each do |root|%>
 	<tr>
 		<td colspan="4"><span class="root_category"><%= root.name%></span></td>
