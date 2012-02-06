@@ -87,10 +87,10 @@ en:
   
   search_results: "Search Results"
   footer:
-      blogs: "Blogs"
-      contact_us: "Contuct us"
-      jobs: "Jobs"
-      about: "About us"
-      merchant: "Merchant Login"
-
+  blogs: "Blogs"
+  contact_us: "Contact us"
+  jobs: "Jobs"
+  about: "About us"
+  merchant: "Merchant Login"
+  categories: "Categories"
 
