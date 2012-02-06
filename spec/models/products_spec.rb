@@ -10,13 +10,10 @@ describe 'Product model' do
        it "should find by prodct by name" do
            
            category = categories(:electronics)
-           puts category.id
-           puts category.name
-           puts category.products.count
            prod = Product.search :search=>"Tele", 
                                  :categories=>category.id, 
                                  :manufacturer=>"Toshiba"
-           print prod.to_a
+           
            prod.should_not be_empty
            prod[0].name  == "Television2"
        end 
