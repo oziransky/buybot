@@ -6,7 +6,7 @@ require 'faker'
 def create_categories_and_products(num_of_categories,min_num_of_sub,max_num_of_sub, num_of_products)
   subcategories = []
   Category.create!(:name => "Electronics")
-  Category.create!(:name => "Enterainment")
+  Category.create!(:name => "Entertainment")
   Category.create!(:name => "Home Outdoor & Decor")
   Category.create!(:name => "Fashion")
 
@@ -76,7 +76,7 @@ end
 namespace :db do
   desc "Fill database with sample data"
 
-  @manufacturers = ["Sony","Toshiba","Apple","Panasocnic"]
+  @manufacturers = ["Sony","Toshiba","Apple","Panasonic"]
   number_of_categories = 2+Random.rand(4)
   number_of_sub_categories = 3+Random.rand(5)
   num_of_products = 150

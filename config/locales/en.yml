@@ -5,9 +5,10 @@ en:
   hello: "Hello world"
   search: "Search"
   products: "Products"
-  product: "Product"
-  description: "Description"
-  minimum_price: "Minimum price"
+  new_product: "New product"
+  product: "Product:"
+  description: "Description:"
+  minimum_price: "Minimum price:"
   welcome: "Welcome %{user}"
   logout: "Logout"
   login: "Login"
@@ -26,9 +27,9 @@ en:
   
   stores: "Stores"
   new_store: "New Store"
-  store_name: "Store Name"
+  store_name: "Store Name:"
   tell_a_friend: "Tell A Friend"
-  site: "Site"
+  site: "Site:"
   store_list: "Store List"
   store_mangement: "Store Management"
   
@@ -93,4 +94,6 @@ en:
   about: "About us"
   merchant: "Merchant Login"
   categories: "Categories"
+  auction_details: "Auction details"
+  register: "Register"
 

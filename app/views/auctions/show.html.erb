@@ -1,6 +1,6 @@
 <%= render "auction_menu" %>
 <div id="auction_profile">
-  <span>פרטי תהליך</span>
+  <span><%= t(:auction_details) %></span>
   <% unless current_user.auctions.empty? %>
   <table>
     <%= render "auction" %>

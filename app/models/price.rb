@@ -1,7 +1,7 @@
 class Price < ActiveRecord::Base
   include Comparable
 
-  attr_accessible :price, :product_id, :price_id
+  attr_accessible :price, :product_id, :price_id, :store_id
 
   belongs_to :product
   belongs_to :store, :dependent => :destroy

@@ -2,16 +2,16 @@
   <td>
     <table>
       <tr>
-        <td><%= store.name %></td>
         <td><%=t(:store_name)%></td>
+        <td><%= store.name %></td>
       </tr>
       <tr>
-        <td><%= store.url %></td>
         <td><%=t(:site)%></td>
+        <td><%= store.url %></td>
       </tr>
       <tr>
         <td>
-          <%= link_to t(:delete), store, :method => :delete, :confirm => t(:are_you_sure), :title => store.name %>
+          <%= link_to t(:delete), @store, :method => :delete, :confirm => t(:are_you_sure), :title => store.name %>
         </td>
       </tr>
     </table>

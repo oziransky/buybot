@@ -1,4 +1,4 @@
-<div class="store_owner_auth">
+<div class="simple_form">
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
       <%= devise_error_messages! %>
 
@@ -16,7 +16,4 @@
 
       <div><%= f.submit t(:update) %></div>
   <% end %>
-
-  <p>לא מרוצה - <%= link_to t(:delete_account), registration_path(resource_name), :confirm => t(:are_you_sure), :method => :delete %></p>
-</div>
 </div>

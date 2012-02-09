@@ -6,9 +6,9 @@ class StoresController < ApplicationController
   end
 
   def create
-    @store = current_store_owner.stores.new(params[:stores])
+    @store = current_store_owner.stores.build(params[:store])
     if @store.save
-      flash[:success] = "Your store was created!"
+      flash[:success] = "Your store was created."
     else
       flash[:error] = "Unable to create a store."
     end
@@ -28,12 +28,32 @@ class StoresController < ApplicationController
     session[:current_store_id] = @store.id
   end
 
-  def update
+  def edit
+    @stores = current_store_owner.stores
+    @store = @stores.find(params[:id])
+  end
 
+  def update
+    @stores = current_store_owner.stores
+    @store = @stores.find(params[:id])
+    if @store.update_attributes!(params[:store])
+      flash[:success] = "Store updated."
+      redirect_to @store
+    else
+      flash[:error] = "Unable to update store."
+      render 'edit'
+    end
   end
 
   def destroy
-    @store.destroy
+    @stores = current_store_owner.stores
+    @store = @stores.find(params[:id])
+    if @store.destroy
+      flash[:success] = "Your store was deleted."
+    else
+      flash[:error] = "Unable to delete a store."
+    end
+
     redirect_back_or store_path
   end
 
