@@ -19,11 +19,12 @@
       <%= collection_select('product', 'category_ids', Category.top_categories, :id, :name, {}, { :name => 'product[category_ids][]'}) %><br />
 
       <%= f.fields_for :prices do |builder| %>
-          <%= builder.label :price %>:<br />
-          <%= builder.text_field :price %><br />
-          <%= builder.hidden_field :store_id, :value => @product.store_id %>
+          <% if builder.object.store_id == @store.id %>
+              <%= builder.label :price %>:<br />
+              <%= builder.text_field :price %><br />
+          <% end %>
       <% end %>
 
-      <%= f.submit "Create Product" %>
+      <%= f.submit "Update Product" %>
   <% end %>
 </div>

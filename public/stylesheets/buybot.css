@@ -5,16 +5,18 @@
 #container {
     width: 90%;
     margin: 10px auto;
-    min-height: 100%; }
+    min-height: 100%;
+}
 
-body, table, td {
-    font-family: arial;
-    font-size: 12px;
-    color: #676767; }
+body {
+    font-size: 90%;
+    font-family: verdana, sans-serif;
+    color: #333;
+}
 
 #header {
     padding-top: 20px;
-    height: 75px;
+    height: 100px;
     width: 800px;
 }
 
@@ -25,22 +27,8 @@ body, table, td {
     padding-right: 10px;
     padding-left: 10px;
     overflow: auto;
-    padding-bottom: 150px; }
-
-#directregister {
-    color: #ffffff;
-    background-color: #036;
-    padding: 2px 10px;
-    height: 24px;
-    display: inline-block;
+    padding-bottom: 150px;
 }
-
-#directlogin_submit {
-    color: #ffffff;
-    background-color: #cc6600;
-    padding: 2px 10px;
-    height: 24px;
-    display: inline-block; }
 
 .logged_area {
     float: left;
@@ -59,6 +47,7 @@ body, table, td {
 .main_nav {
     padding-top: 20px;
     float: left;
+    display: block;
 }
 
 .main_nav li {
@@ -126,6 +115,7 @@ body, table, td {
 #home_container {
     float: left;
     text-align: left; }
+
 #home_container li {
     list-style-type: none;
     padding-right: 20px;
@@ -175,56 +165,34 @@ img.btn_close {
     font-size: 12px; }
 
 .flash {
-    float: left;
-    background-color: #ffcc66; }
+    background-color: #FF9;
+    display: block;
+    border: 1px solid #999;
+    width: 30%;
+    text-align: left;
+    margin: 0pt;
+    padding: 0.5em;
+    text-align: center;
+}
 
 .debug {
     float: left;
-    background-color: #cccccc; }
+    background-color: #cccccc;
+}
 
 .store_info {
     float: left; }
 
-.store_owner_auth {
+.simple_form {
     float: left;
     margin: 5px;
     width: 250px;
     display: inline-block;
     text-align: left; }
 
-.store_owner_auth form {
-    text-align: left; }
-
-#store_owner_submit {
-    color: #ffffff;
-    background-color: #cc6600;
-    padding: 2px 10px;
-    height: 24px;
-    display: inline; }
-
-#store_menu {
-    float: left; }
-
-#store_menu li {
-    list-style-type: none;
-    padding-right: 20px;
-    padding-bottom: 5px; }
-
-#store_mng_menu {
-    float: left; }
-
-#store_mng_menu li {
-    list-style-type: none;
-    padding-right: 20px;
-    padding-bottom: 5px; }
-
-#auction_menu {
-    float: left; }
-
-#auction_menu li {
-    list-style-type: none;
-    padding-right: 20px;
-    padding-bottom: 5px; }
+.simple_form form {
+    text-align: left;
+}
 
 #help_view {
     float: left; }
@@ -234,7 +202,6 @@ img.btn_close {
     text-align: left; }
 
 #customer_product {
-    direction: rtl;
     float: left;
     text-align: left; }
 
@@ -299,10 +266,6 @@ li.sub_category {
     float: left;
     text-align: left; }
 
-#auction_menu {
-    float: left;
-    text-align: left; }
-
 #auction_profile {
     float: left;
     text-align: left; }
@@ -316,3 +279,18 @@ li.sub_category {
 
 #products-display .table-row .table-item, #stores-display .table-row .table-item {
     width: 30%; }
+
+.simple_menu {
+    float: left;
+}
+
+.simple_menu li {
+    list-style-type: none;
+    padding-right: 20px;
+    padding-bottom: 5px;
+}
+
+.simple_align {
+    float: left;
+    text-align: left;
+}

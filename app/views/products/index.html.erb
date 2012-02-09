@@ -1,15 +1,28 @@
 <%= render "product_mng_menu" %>
-<table id="all_products">
+<table class="simple_align">
   <tr>
-    <td class="main">
+    <td>
       <span><%=t(:products)%></span>
     </td>
   </tr>
-  <% unless @store.products.empty? %>
-      <% @products.each do |product| %>
-          <tr>
-            <td><%= link_to product.name, "/products/" + product.id.to_s %></td>
-          </tr>
-      <% end %>
-  <% end %>
+  <tr>
+    <td>
+      <div class="simple_menu">
+        <ul>
+          <% for product in @products %>
+            <li><%= link_to product.name, "/products/#{product.id}" %></li>
+           <% end %>
+        </ul>
+      </div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <span><%= will_paginate @products %></span>
+    </td>
+  </tr>
 </table>
+
+
+

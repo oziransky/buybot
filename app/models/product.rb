@@ -1,13 +1,13 @@
-
-require 'log4r'
-include Log4r
 class Product < ActiveRecord::Base
-  attr_accessible :name, :description, :url, :image_folder, :manufacturer, :store_id
+  attr_accessible :name, :description, :url, :image_folder, :manufacturer,
+                  :store_id, :prices_attributes, :categories_attributes, :category_ids
 
   has_many :prices
   has_many :stores, :through=>:prices, :order=> 'price', :readonly => false
   has_and_belongs_to_many :categories
-  
+
+  accepts_nested_attributes_for :prices, :categories
+
   validates :name, :presence => true
   validates :manufacturer,  :presence => true
   
