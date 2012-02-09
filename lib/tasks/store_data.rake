@@ -85,10 +85,10 @@ namespace :db do
   task :populate => :environment do
     #Rake::Task['db:reset'].invoke
 
-    create_categories_and_products(number_of_categories, 3,5,num_of_products)
+    #create_categories_and_products(number_of_categories, 3,5,num_of_products)
     #create_categories_and_products(number_of_categories, number_of_sub_categories, num_of_products)
 
-    create_stores_owners(num_of_owners)
+    #create_stores_owners(num_of_owners)
 
     create_stores_and_inventory()
   end
