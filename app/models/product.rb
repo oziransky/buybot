@@ -26,6 +26,12 @@ class Product < ActiveRecord::Base
     categories = products.collect {|p| p.categories}
     categories.flatten.uniq
   end
+
+  def self.price_range(products)
+    all_prices = products.collect {|p| p.prices}
+    flat  = all_prices.flatten
+    [flat.min.price,flat.max.price]
+  end
   
   def self.all_manufacturers(products)
     manufacturers = products.collect {|p| p.manufacturer}

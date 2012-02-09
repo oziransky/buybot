@@ -1,6 +1,11 @@
 electronics:
   name: "Electronics"
+
+
+televisions:
+  name: "Televisions"
   products: product1, product3
+  parent: electronics
 
 furniture:
   name: "Furniture"

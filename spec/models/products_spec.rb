@@ -1,9 +1,15 @@
 require 'spec_helper'
 
-describe 'Product model' do
+describe 'Product' do
 	
-    fixtures :categories, :products
+    fixtures :all
     
+    it "is not valid without a name" do
+		prod = Product.new(:name=>"",:manufacturer=>"Sony").should_not be_valid
+	end
+	it "is not valid without a manufacturer" do
+		prod = Product.new(:name=>"some product",:manufacturer=>"").should_not be_valid
+	end
     describe 'search' do
         #this test is strongly connected to the fixtures.
         #changing the fixtures may break this tests.
@@ -18,21 +24,25 @@ describe 'Product model' do
 		end
 		it "should filter the search results by category and manufacturer" do
            
-			category = categories(:electronics)
+			category = categories(:televisions)
 			prod = Product.search :search=>"Tele", 
                                  :categories=>category.id, 
                                  :manufacturer=>"Toshiba"
            
 			prod.should_not be_empty
-			prod[0].name  == "Television2"
-		end 
-		it "product is not valid without a name" do
-			prod = Product.new(:name=>"",:manufacturer=>"Sony").should_not be_valid
+			prod[0].name.should  == "Television Toshiba"
 		end
-		it "product is not valid without a manufacturer" do
-			prod = Product.new(:name=>"some product",:manufacturer=>"").should_not be_valid
-		end
+	end	 
+		
+		
+		
+	it 'should be calculate price range' do
+		_products = Product.find(:all)
+		range = Product.price_range(_products)
+		range[0].should == 100
+		range[1].should == 230
+	end
         
-    end
+    
     
 end
