@@ -6,7 +6,11 @@ class CustomerProductsController < ApplicationController
     logger.debug 'hello'
     logger.debug "Performing search for #{params[:search]} in category #{params[:categories]}"
     @current_search = params[:search]
-    @products = Product.search("#{params[:search]}").paginate(:per_page=>5,:page=>params[:page])
+    search_params = {:search=>params[:search],
+					 :categories=>params[:categories],
+					 :manufacturer=>params[:manufacturer],
+					 :price_range=>params[:price_range]}
+    @products = Product.search(search_params).paginate(:per_page=>5,:page=>params[:page])
     @categories = Product.all_categories @products
     @manufacturers = Product.all_manufacturers @products
   end
