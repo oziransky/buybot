@@ -1,7 +1,11 @@
 store1:
   name: Cool store in some cool place
+  address: Cool place road 5
   url: http://www.ebay.com
+  description: Store that sells cool stuff
 
 store2:
   name: Cheap store
+  address: Cheap road 1
   url: http://www.cheapest.com
+  description: Cheapest store in the area

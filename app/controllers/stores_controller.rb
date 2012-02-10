@@ -50,11 +50,11 @@ class StoresController < ApplicationController
     @store = @stores.find(params[:id])
     if @store.destroy
       flash[:success] = "Your store was deleted."
+      redirect_to stores_path
     else
       flash[:error] = "Unable to delete a store."
+      redirect_to @store
     end
-
-    redirect_back_or store_path
   end
 
 end

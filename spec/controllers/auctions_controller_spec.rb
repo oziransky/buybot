@@ -46,7 +46,7 @@ describe AuctionsController do
 
     get :index
 
-    assigns[:auctions].size.should == 3
+    assigns[:auctions].size.should eql(3)
 
     response.should be_success
   end
