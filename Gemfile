@@ -17,4 +17,5 @@ group :test, :development do
   gem "factory_girl_rails", "~> 1.2"
   gem 'spork'
   gem 'shoulda'
+  gem 'ruby-debug19'
 end
