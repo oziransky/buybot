@@ -13,9 +13,9 @@ class Category < ActiveRecord::Base
   end
   
   # helper method to extract all sub categories
-  def self.sub_categories
-    select("*").where("parent_id is not null")
-  end
+  #def self.sub_categories
+  #  select("*").where("parent_id is not null")
+  #end
   
   def top_level?
     parent_id.nil?
