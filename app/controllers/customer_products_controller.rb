@@ -3,7 +3,6 @@ include Log4r
 
 class CustomerProductsController < ApplicationController
   def search
-
     logger.debug "Performing search for #{params[:search]} in category #{params[:categories]}"
     @current_search = params[:search]
     search_params = {:search=>params[:search],

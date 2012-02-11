@@ -8,7 +8,7 @@ FactoryGirl.define do
   
   factory :televisions, :class=>Category do
 	sequence(:name) {|n| "Television#{n}" }
-	association :parent, :factory=> :root, :name=>"Electronics"  
+#	association :parent, :factory=> :root, :name=>"Electronics"  
   end
 
 end
