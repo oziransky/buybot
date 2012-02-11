@@ -1,5 +1,10 @@
 require 'spec_helper'
 
+RSpec.configure do |c|
+  # declare an exclusion filter
+  c.filter_run_excluding :broken => true
+end
+
 describe 'Product' do
 	
     fixtures :all
@@ -25,12 +30,27 @@ describe 'Product' do
 		it "should filter the search results by category and manufacturer" do
            
 			category = categories(:televisions)
-			prod = Product.search :search=>"Tele", 
+			prod = Product.search(:search=>"Tele", 
                                  :categories=>category.id, 
-                                 :manufacturer=>"Toshiba"
+                                 :manufacturer=>"Toshiba")
            
 			prod.should_not be_empty
 			prod[0].name.should  == "Television Toshiba"
+		end
+		
+		it "should filter the search results by top level category" do
+           
+			category = categories(:electronics)
+			
+			prod = Product.search(:search=>"", 
+                                 :categories=>category.id)
+			
+			prod.should_not be_empty
+			product_names = prod.collect{|p| p.name}
+			product_names.should  include("Television Toshiba")
+			product_names.should  include("Television")
+			product_names.should  include("Stereo")
+			product_names.should_not  include("Red Couch")
 		end
 	end	 
 		
@@ -43,6 +63,12 @@ describe 'Product' do
 		range[1].should == 230
 	end
         
-    
+	it 'should find all categories fo given set of tems' do
+		products = [products(:product1),products(:product3),products(:product4)]
+		categories = Product.all_categories products
+		categories.should include(categories(:televisions))
+		categories.should include(categories(:stereos))
+		categories.should_not include(categories(:furniture))
+	end
     
 end

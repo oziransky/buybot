@@ -24,8 +24,8 @@
 				<%=t(:categories)%>
 			</div>
 			
-			<%for cat in @categories do%>
-				<div><%=link_to cat.name, search_customer_products_path(Hash[params].update(:categories=>cat.id))%></div>
+			<%for cat in @prod_categories do%>
+				<div><%=link_to cat.name, search_customer_products_path(Hash[params].update('category'=>cat.id.to_s))%></div>
 			<%end%>
 			
 		</div>

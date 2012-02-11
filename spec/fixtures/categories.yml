@@ -6,6 +6,11 @@ televisions:
   name: "Televisions"
   products: product1, product3
   parent: electronics
+  
+stereos:
+  name: "Stereo"
+  products: product4
+  parent: electronics
 
 furniture:
   name: "Furniture"

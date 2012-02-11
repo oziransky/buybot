@@ -21,7 +21,7 @@ describe CustomerProductsController, "searching for a product" do
             Product.should_receive('all_categories').with(@all_products).and_return(categories)
             Product.should_receive('all_manufacturers').with(@all_products).and_return(manufacturers)
             get :search, :search=>"product1"
-            assigns[:categories].should eq(categories)
+            assigns[:prod_categories].should eq(categories)
             assigns[:manufacturers].should eq(manufacturers) 
         end
     end
