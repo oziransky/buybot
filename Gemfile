@@ -13,7 +13,7 @@ gem 'whenever', :require => false
 
 group :test, :development do
   gem 'faker', '0.3.1'
-  gem "rspec-rails", "2.7.0"
+  gem "rspec-rails"
   gem "factory_girl_rails", "~> 1.2"
   gem 'spork'
   gem 'shoulda'
