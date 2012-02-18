@@ -52,6 +52,24 @@ describe 'Product' do
 			product_names.should  include("Stereo")
 			product_names.should_not  include("Red Couch")
 		end
+                
+                it 'should filter the search results by price ranges' do
+                        category = categories(:electronics)
+                      
+			prod = Product.search(:search=>"", 
+                                             :price_range=>"100_200")
+			
+			prod.should_not be_empty
+		        prices = prod.collect{|p| p.minimum_price}
+
+                        prices.should_not be_empty
+                        for p in prices do
+                          p.should_not >= 200.0
+                          p.should_not < 100.0
+                        end
+                         
+
+                end
 	end	 
 		
 		

@@ -44,32 +44,32 @@ class Product < ActiveRecord::Base
   
   def child_of?(category_id)
 	#puts "foo " + product.name + " " +category_id.to_s
-	return true if (category_ids.include?(category_id)) 
-	for cat in categories do
-				ancestors_ids = cat.ancestors.collect {|a| a.id}
-	#			puts "ancectors of " + cat.name 
-	#			ancestors_ids.each {|a| puts "\t"+a.to_s}
-	#			puts ancestors_ids.include?(category_id)
-				if ancestors_ids.include?(category_id)
-					return 	true
-				end	
-			end
-	return false
-  end
-  
-  #filters the search result by category and manufacturer. todo-price-ranges
-  private 
+    return true if (category_ids.include?(category_id)) 
+    for cat in categories do
+      ancestors_ids = cat.ancestors.collect {|a| a.id}
+        if ancestors_ids.include?(category_id)
+          return	true
+        end	
+    end
+    return false
+end
+
+#filters the search result by category and manufacturer. todo-price-ranges
+private 
   def self.filter(products, filters)
     result = products
-    if filters[:categories] != nil
-        result = result.find_all{ |product| product.child_of?(filters[:categories].to_i)}
-	
-		logger.debug result.size
+    if filters[:categories] != nil and filters[:categories] != ""
+      result = result.find_all{ |product| product.child_of?(filters[:categories].to_i)}
+      logger.debug result.size
     end
     if filters[:manufacturer] != nil 
-        result = result.find_all{|product| product.manufacturer == filters[:manufacturer]}
+      result = result.find_all{|product| product.manufacturer == filters[:manufacturer]}
     end
-    
+    if filters[:price_range] != nil
+      range =filters[:price_range].partition "_"
+      products.each {|p| puts p.minimum_price}
+      result = result.find_all{|product| product.minimum_price >= range[0].to_f and  product.minimum_price < range[2].to_f}
+    end
     result
   end
   
