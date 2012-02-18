@@ -8,31 +8,22 @@
       
 </div>
 <div id="right-side-bar">
- 
-
-		<div id="price-ranges">
-			<div class>			
-				<%=t(:price_ranges)%>
-			</div>
-			<div><%=link_to '10-100', search_customer_products_path(Hash[params].update(:price_range=>'10-100'))%></div>
-			<div><%=link_to '100-200', search_customer_products_path(Hash[params].update(:price_range=>'100-200'))%></div>
-			<div><%=link_to '200-300', search_customer_products_path(Hash[params].update(:price_range=>'200-300'))%></div>
-			<div><%=link_to '300-400', search_customer_products_path(Hash[params].update(:price_range=>'300-400'))%></div>			
-		</div>
-		<div id="possible-categories">
-			<div class>			
-				<%=t(:categories)%>
-			</div>
-			
-			<%for cat in @prod_categories do%>
-				<div><%=link_to cat.name, search_customer_products_path(Hash[params].update('category'=>cat.id.to_s))%></div>
-			<%end%>
-			
-		</div>
-		<div id="manufacturers">
-			<div class>			
-				<%=t(:manufacturers)%>
-			</div>
+  <div id="price-ranges">
+    <div><%=t(:price_ranges)%></div>
+       <div><%=link_to '10-100', search_customer_products_path(Hash[params].update(:price_range=>'10-100'))%></div>
+      <div><%=link_to '100-200', search_customer_products_path(Hash[params].update(:price_range=>'100-200'))%></div>
+      <div><%=link_to '200-300', search_customer_products_path(Hash[params].update(:price_range=>'200-300'))%></div>
+      <div><%=link_to '300-400', search_customer_products_path(Hash[params].update(:price_range=>'300-400'))%></div>			
+    </div>
+    <div id="possible-categories">
+      <div><%=t(:categories)%></div>
+        <%for cat in @prod_categories do%>
+          <div><%=link_to cat.name, search_customer_products_path(Hash[params].update('category'=>cat.id.to_s))%></div>
+	<%end%>
+	
+      </div>
+      <div id="manufacturers">
+        <div class><%=t(:manufacturers)%></div>
 			<%for manufacturer in @manufacturers do%>
 				<div><%=link_to manufacturer, search_customer_products_path(Hash[params].update(:manufacturer=>manufacturer))%></div>
 			<%end%>
