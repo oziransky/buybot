@@ -12,14 +12,23 @@ def create_categories_and_products(num_of_categories,min_num_of_sub,max_num_of_s
 
   3.times do |c|
     category = Category.find(c+1)
-    num_of_sub = min_num_of_sub + Random.rand(4)
+    num_of_sub = 5
     num_of_sub.times do |s|
       sub_category = category.children.create!(:name => category.name + "#{s+1}")
-        num_of_sub_sub = Random.rand(5)
-        num_of_sub_sub.times do |ss|
-          sub_sub_category = sub_category.children.create!(:name => category.name + "#{s+1}_#{ss+1}")
-          subcategories << sub_sub_category
+      num_of_sub_sub = 5
+      num_of_sub_sub.times do |ss|
+        sub_sub_category = sub_category.children.create!(:name => category.name + "#{s+1}_#{ss+1}")
+        subcategories << sub_sub_category
+        5.times do |n|
+          p = Product.create!(:name => sub_sub_category.name + "#{n+1}",
+                              :description => Faker::Lorem.sentence(4),
+                              :url => "www.monster.com",
+                              :catalog_id => n,
+                              :image_folder => "public/data/p#{n+1}",
+                              :manufacturer => @manufacturers[rand(@manufacturers.count - 1)])
+          p.categories << sub_sub_category                  
         end
+      end
     end
   end
 
@@ -69,6 +78,23 @@ def create_stores_and_inventory()
                             :product_id => @product.id,
                             :store_id => @store.id)
     end
+
+
+
+  end
+  store_ids = Store.all.collect {|s| s.id }
+  puts "there are #{store_ids.count} stores"
+  for p in products do
+    10.times do
+      index = rand(store_ids.count)
+      puts "index is #{index}"
+      store_id = store_ids[index]
+      puts "creating price #{p.id} - #{store_id} "
+      Price.create!(:price => rand(2500),
+                    :product_id => p.id,
+                    :store_id => store_id) 
+    end
+
   end
 end
 
@@ -79,16 +105,16 @@ namespace :db do
   @manufacturers = ["Sony","Toshiba","Apple","Panasonic"]
   number_of_categories = 2+Random.rand(4)
   number_of_sub_categories = 3+Random.rand(5)
-  num_of_products = 150
+  num_of_products = 30
   num_of_owners = 10
 
   task :populate => :environment do
-    #Rake::Task['db:reset'].invoke
+    Rake::Task['db:reset'].invoke
 
-    #create_categories_and_products(number_of_categories, 3,5,num_of_products)
+    create_categories_and_products(number_of_categories, 3,5,num_of_products)
     #create_categories_and_products(number_of_categories, number_of_sub_categories, num_of_products)
 
-    #create_stores_owners(num_of_owners)
+    create_stores_owners(num_of_owners)
 
     create_stores_and_inventory()
   end
