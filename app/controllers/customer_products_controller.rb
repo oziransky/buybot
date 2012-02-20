@@ -14,6 +14,11 @@ class CustomerProductsController < ApplicationController
     @prod_categories = Product.all_categories search_result
    # @prod_categories.each{|c| puts "catecgory id: #{c.id}  #{c.name}"}
     @manufacturers = Product.all_manufacturers search_result
+    @price_range = []
+    if params[:price_range] != ""
+      @price_range=Product.price_range(search_result)
+    end
+
   end
   
   def show

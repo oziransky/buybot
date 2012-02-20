@@ -28,9 +28,13 @@ class Product < ActiveRecord::Base
   end
 
   def self.price_range(products)
-    all_prices = products.collect {|p| p.prices}
-    flat  = all_prices.flatten
-    [flat.min.price,flat.max.price]
+    if not products.empty?
+      all_prices = products.collect {|p| p.minimum_price}
+      [all_prices.min,all_prices.max]
+    else
+      []
+    end
+
   end
   
   def self.all_manufacturers(products)
@@ -66,9 +70,8 @@ private
       result = result.find_all{|product| product.manufacturer == filters[:manufacturer]}
     end
     if filters[:price_range] != nil
-      range =filters[:price_range].partition "_"
-      products.each {|p| puts p.minimum_price}
-      result = result.find_all{|product| product.minimum_price >= range[0].to_f and  product.minimum_price < range[2].to_f}
+      range =filters[:price_range].partition "-"
+      result = result.find_all{|product| (product.minimum_price >= range[0].to_f and  product.minimum_price < range[2].to_f)}
     end
     result
   end
