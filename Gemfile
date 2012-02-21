@@ -18,4 +18,5 @@ group :test, :development do
   gem 'spork'
   gem 'shoulda'
   gem 'ruby-debug19'
+  gem 'simplecov', :require=>false
 end

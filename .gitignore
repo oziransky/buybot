@@ -7,4 +7,4 @@ db/migrate/
 log/*.log
 tmp/
 Gemfile.lock
-
+coverage
