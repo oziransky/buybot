@@ -19,12 +19,21 @@ class Auction < ActiveRecord::Base
     self.status == ACTIVE
   end
 
-  def auction_status
+  def status_to_s
     if self.status == ACTIVE
       return "Active"
     end
     if self.status == PAUSED
       return "Paused"
+    end
+    if self.status == CANCELED
+      return "Canceled"
+    end
+    if self.status == SOLD
+      return "Sold"
+    end
+    if self.status == TIMEOUT
+      return "Timeout"
     end
   end
 end
