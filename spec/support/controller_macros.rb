@@ -12,4 +12,5 @@ module ControllerMacros
       sign_in FactoryGirl.create(:store_owner)
     end
   end
+
 end

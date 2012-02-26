@@ -18,7 +18,12 @@ price2_2:
   product: product2
   store: store2
   
-price2_3:
+price3_1:
   price: 230
   product: product3
-  store: store2  
+  store: store1
+
+price3_2:
+  price: 230
+  product: product3
+  store: store2

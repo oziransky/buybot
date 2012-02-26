@@ -5,7 +5,7 @@ product1:
   image_folder: "public/data/p1"
   manufacturer: "Sony inc."
   categories: electronics
-  
+
 product2:
   name: "Red Couch"
   description: "Some kind of a cool couch"
@@ -13,7 +13,7 @@ product2:
   image_folder: "public/data/p2"
   manufacturer: "IKEA"
   categories: furniture
-  
+
 product3:
   name: "Television Toshiba "
   description: "Some Other kind of a cool television"

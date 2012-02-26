@@ -8,11 +8,4 @@ FactoryGirl.define do
     current_price 100
     status Auction::ACTIVE
   end
-
-  factory :store do
-    name Faker::Name.name
-    address Faker::Address.street_address
-    url Faker::Internet.domain_name
-    description Faker::Lorem.sentence(2)
-  end
 end
