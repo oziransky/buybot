@@ -1,3 +1,4 @@
+require 'spec_helper'
 describe Store do
 	
 	it 'belongs to store_owner' do

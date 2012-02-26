@@ -2,16 +2,16 @@
   <td>
     <table>
       <tr>
-        <td><%= @auction.auction_status %></td>
-        <td>:מצב תהליך</td>
+        <td><%= t(:operation_status)%></td>
+        <td><%= @auction.status_to_s%></td>
       </tr>
       <tr>
+        <td><%=t(:product)%></td>
         <td><%= Product.find(@auction.product_id).name %></td>
-        <td>מוצר</td>
       </tr>
       <tr>
+        <td><%=t(:current_price_s)%></td>
         <td><%= @auction.current_price %></td>
-        <td>מחיר נוכחי</td>
       </tr>
     </table>
   </td>

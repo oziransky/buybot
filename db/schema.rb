@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112064715) do
+ActiveRecord::Schema.define(:version => 20120225131107) do
 
   create_table "auction_histories", :force => true do |t|
     t.string   "product_id"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20120112064715) do
     t.datetime "updated_at"
     t.text     "bids"
     t.integer  "closed_reason"
+    t.integer  "user_id"
   end
 
   create_table "auction_statuses", :force => true do |t|

@@ -1,3 +1,5 @@
+
+require 'spec_helper'
 describe AuctionStatus do
 	
 	it {should validate_presence_of(:store_id)}	

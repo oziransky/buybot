@@ -12,8 +12,6 @@ class Product < ActiveRecord::Base
   validates :manufacturer,  :presence => true
   
   def self.search(search_params)
-	logger.debug search_params
-	logger.debug search_params[:search]
     if (search_params[:search] != nil)
       logger.debug "the search parameter is " + search_params[:search]
       filter(where("name LIKE ?","%#{search_params[:search]}%"),search_params)
@@ -47,7 +45,6 @@ class Product < ActiveRecord::Base
   end
   
   def child_of?(category_id)
-	#puts "foo " + product.name + " " +category_id.to_s
     return true if (category_ids.include?(category_id)) 
     for cat in categories do
       ancestors_ids = cat.ancestors.collect {|a| a.id}
@@ -63,13 +60,15 @@ private
   def self.filter(products, filters)
     result = products
     if filters[:categories] != nil and filters[:categories] != ""
+      logger.debug "filtering by category id #{filters[:categories]}"
       result = result.find_all{ |product| product.child_of?(filters[:categories].to_i)}
-      logger.debug result.size
     end
     if filters[:manufacturer] != nil 
+      logger.debug "filtering by maufacturer #{filters[:manufacturer]}"
       result = result.find_all{|product| product.manufacturer == filters[:manufacturer]}
     end
     if filters[:price_range] != nil
+      logger.debug "filtering by price range #{filters[:price_range]}"
       range =filters[:price_range].partition "-"
       result = result.find_all{|product| (product.minimum_price >= range[0].to_f and  product.minimum_price < range[2].to_f)}
     end
