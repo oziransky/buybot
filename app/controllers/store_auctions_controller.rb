@@ -50,6 +50,7 @@ private
   end
 
   def current_auction
+    #debugger
     store = Store.find_by_id(session[:current_store_id])
     auction = store.auctions.find(params[:id])
     auction
