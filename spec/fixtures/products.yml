@@ -13,7 +13,6 @@ product2:
   image_folder: "public/data/p2"
   manufacturer: "IKEA"
   categories: furniture
-  
 
 product3:
   name: "Television Toshiba"

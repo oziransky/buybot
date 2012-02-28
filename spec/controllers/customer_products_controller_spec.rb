@@ -3,7 +3,9 @@ require 'spec_helper'
 describe CustomerProductsController, "searching for a product" do
     
     fixtures :all
+
     describe "search" do
+
         it "should pass the parameters to 'find' method" do
             @all_products = Product.all
             search_params = {:search=>"product1", :categories=>nil, :manufacturer=>nil, :price_range=>nil}
