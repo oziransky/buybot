@@ -16,7 +16,7 @@ log4r_config:
   outputters:
   - type: DateFileOutputter
     name: datefile
-    dirname: "/Users/michaeloziransky/rails_projects/buybot/log"
+    dirname: "#{home}/log"
     file: "my_log" # this will be overrided by rails' config.
     formatter:
       date_pattern: '%H:%M:%S'

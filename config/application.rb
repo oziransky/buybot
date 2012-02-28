@@ -48,6 +48,8 @@ module Buybot
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     # assign log4r's logger as rails' logger.
+    yfcg = YamlConfigurator
+    yfcg['home'] = Rails.root.to_s	
     log4r_config= YAML.load_file(File.join(File.dirname(__FILE__),"log4r.yml"))
     YamlConfigurator.decode_yaml( log4r_config['log4r_config'] )
     config.logger = Log4r::Logger[Rails.env]

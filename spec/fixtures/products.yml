@@ -4,8 +4,8 @@ product1:
   url: "www.sony.com"
   image_folder: "public/data/p1"
   manufacturer: "Sony inc."
-  categories: electronics
-
+  categories: televisions
+  
 product2:
   name: "Red Couch"
   description: "Some kind of a cool couch"
@@ -15,10 +15,18 @@ product2:
   categories: furniture
 
 product3:
-  name: "Television Toshiba "
+  name: "Television Toshiba"
   description: "Some Other kind of a cool television"
   url: "www.toshiba.com"
-  image_folder: "public/data/p1"
+  image_folder: "public/data/p"
   manufacturer: "Toshiba"
-  categories: electronics
+  categories: televisions
+  
+product4:
+  name: "Stereo"
+  description: "Some Stereo Sys"
+  url: "www.toshiba.com"
+  image_folder: "public/data/p4"
+  manufacturer: "Toshiba"
+  categories: stereos  
 

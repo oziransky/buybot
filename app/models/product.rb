@@ -18,13 +18,23 @@ class Product < ActiveRecord::Base
       logger.debug "the search parameter is " + search_params[:search]
       filter(where("name LIKE ?","%#{search_params[:search]}%"),search_params)
     else
-      find(:all)
+      filter(find(:all),search_params)
     end
   end
 
   def self.all_categories(products)
     categories = products.collect {|p| p.categories}
     categories.flatten.uniq
+  end
+
+  def self.price_range(products)
+    if not products.empty?
+      all_prices = products.collect {|p| p.minimum_price}
+      [all_prices.min,all_prices.max]
+    else
+      []
+    end
+
   end
   
   def self.all_manufacturers(products)
@@ -36,17 +46,34 @@ class Product < ActiveRecord::Base
     prices.min.price
   end
   
-  #filters the search result by category and manufacturer. todo-price-ranges
-  private 
+  def child_of?(category_id)
+	#puts "foo " + product.name + " " +category_id.to_s
+    return true if (category_ids.include?(category_id)) 
+    for cat in categories do
+      ancestors_ids = cat.ancestors.collect {|a| a.id}
+        if ancestors_ids.include?(category_id)
+          return	true
+        end	
+    end
+    return false
+end
+
+#filters the search result by category and manufacturer. todo-price-ranges
+private 
   def self.filter(products, filters)
     result = products
-    if filters[:categories] != nil
-        result = result.find_all{|product| product.category_ids.include?(filters[:categories].to_i)}
+    if filters[:categories] != nil and filters[:categories] != ""
+      result = result.find_all{ |product| product.child_of?(filters[:categories].to_i)}
+      logger.debug result.size
     end
     if filters[:manufacturer] != nil 
-        result = result.find_all{|product| product.manufacturer == filters[:manufacturer]}
+      result = result.find_all{|product| product.manufacturer == filters[:manufacturer]}
     end
-    
+    if filters[:price_range] != nil
+      range =filters[:price_range].partition "-"
+      result = result.find_all{|product| (product.minimum_price >= range[0].to_f and  product.minimum_price < range[2].to_f)}
+    end
     result
   end
+  
 end

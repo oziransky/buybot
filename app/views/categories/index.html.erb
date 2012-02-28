@@ -2,9 +2,10 @@
 <div id="all_categories">
 
 
-<% form_tag "customer_products/search", :method => 'get' do %>
+<%= form_tag "customer_products/search", :method => 'get' do %>
   <p>
     <%= text_field_tag "search",params[:search], :placeholder=>"I want to buy...",:class=>"bold_input", :id => "search_input" %>
+    <%= select_tag(:category, ('<option value="">'+t(:select_a_category) +'</option>' + options_from_collection_for_select(@root_categories, :id, :name)).html_safe) %>
     <%= submit_tag t(:search), :name => nil%>
   </p>
 <% end %>

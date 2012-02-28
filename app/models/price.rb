@@ -6,6 +6,8 @@ class Price < ActiveRecord::Base
   belongs_to :product
   belongs_to :store, :dependent => :destroy
 
+	validates :price, :numericality=>{:greater_than_or_equal_to=>0.0}
+
   def <=> (other)
     self.price <=> other.price 
   end
