@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe AuctionsController do
-  fixtures :all
-
   login_user
 
   it "should have a valid user signed in" do
@@ -10,8 +8,9 @@ describe AuctionsController do
   end
 
   it "should create new auction with given product" do
-    # TODO: change to factories and not fixtures for the product here
-    product = Product.first
+    price1 = FactoryGirl.create(:price)
+    product = Product.find(price1.product_id)
+    price2 = FactoryGirl.create(:price, :product => product)
 
     post :create, :product_id => product.id,
                   :store_ids => [ product.stores.first.id, product.stores.last.id ]

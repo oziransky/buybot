@@ -30,8 +30,9 @@ FactoryGirl.define do
   factory :price do |p|
     price 100
 
-    p.product {|a| a.association(:product)}
-    p.store { |a| a.association(:store)}
+    p.product { |a| a.association(:product) }
+    p.store { |a| a.association(:store) }
+
   end
 
 end
