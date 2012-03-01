@@ -13,7 +13,7 @@ describe AuctionsController do
     price2 = FactoryGirl.create(:price, :product => product)
 
     post :create, :product_id => product.id,
-                  :store_ids => [ product.stores.first.id, product.stores.last.id ]
+      :store_ids => [ product.stores.first.id, product.stores.last.id ]
 
     assigns[:auction].product_id.should eql(product.id)
     assigns[:auction].status.should eql(Auction::ACTIVE)
@@ -21,16 +21,27 @@ describe AuctionsController do
     response.should redirect_to(auctions_path)
   end
 
-  it "should update existing auction with new status" do
-    auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id)
+  describe 'update' do
+    it "should update existing auction with new status" do
+      auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id)
 
-    post :update, :id => auction.id, :status => Auction::PAUSED
+      post :update, :id => auction.id, :status => Auction::PAUSED
 
-    assigns[:auction].status.should eql(Auction::PAUSED)
+      assigns[:auction].status.should eql(Auction::PAUSED)
 
-    response.should redirect_to(auction_path)
+      response.should redirect_to(auction_path)
+    end
+
+    it "should flash message if the action status is changed to 'SOLD'" do
+      auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id)
+
+      post :update, :id => auction.id, :status => Auction::SOLD
+
+      assigns[:auction].status.should eql(Auction::SOLD)
+
+      flash[:success].should_not be_nil
+    end
   end
-
   it "should delete existing auction" do
     auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id)
 

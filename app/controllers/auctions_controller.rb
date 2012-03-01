@@ -62,7 +62,7 @@ class AuctionsController < ApplicationController
       logger.debug "Updating auction. Auction id: #{@auction.id}. Auction status: #{@auction.status}"
       if @auction.status == Auction::SOLD
         #should redirect to selling the product
-        flash[:success] = t(:product_sold)
+        flash[:notice] = t(:product_sold)
         Delayed::Job.enqueue(AuctionDeleteJob.new(@auction.id))
       end
     else
@@ -98,7 +98,6 @@ class AuctionsController < ApplicationController
   end
 
   def show
-    debugger
     @auctions = current_user.auctions
     @auction = current_user.auctions.find(params[:id])
 
