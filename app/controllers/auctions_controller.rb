@@ -60,6 +60,11 @@ class AuctionsController < ApplicationController
     if @auction.save
       flash[:success] = t(:process_updated)
       logger.debug "Updating auction. Auction id: #{@auction.id}. Auction status: #{@auction.status}"
+      if @auction.status == Auction::SOLD
+        #should redirect to selling the product
+        flash[:success] = t(:product_sold)
+        Delayed::Job.enqueue(AuctionDeleteJob.new(@auction.id))
+      end
     else
       flash[:error] = t(:could_not_update_process)
       logger.error "Unable to update auction. Auction id: #{@auction.id}. Auction status: #{@auction.status}"
@@ -93,6 +98,7 @@ class AuctionsController < ApplicationController
   end
 
   def show
+    debugger
     @auctions = current_user.auctions
     @auction = current_user.auctions.find(params[:id])
 

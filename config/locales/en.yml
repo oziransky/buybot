@@ -23,7 +23,7 @@ en:
   delete: "Delete"
   edit: "Edit"  
   copy: "Copy"
-  
+  buy: "Buy"
   
   stores: "Stores"
   new_store: "New Store"
@@ -55,6 +55,7 @@ en:
   process_deleted: "Successfuly deleted the process"
   could_not_update_process: "Could not update process"
   process_updated: "Successfuly updated the process"  
+  product_sold: "Product sold!"
   #sore auctions
   my_auctions: "My Auctions"
   details: "Details"
