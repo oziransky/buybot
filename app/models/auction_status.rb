@@ -1,5 +1,5 @@
 class AuctionStatus < ActiveRecord::Base
-  attr_accessible :store_id, :auction_id, :price
+  attr_accessible :store_id, :auction_id, :price, :user_rate
 
   belongs_to :store
   belongs_to :auction

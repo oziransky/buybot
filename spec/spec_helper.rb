@@ -1,4 +1,3 @@
-
 require 'spork'
 require 'simplecov'
 SimpleCov.start 'rails'

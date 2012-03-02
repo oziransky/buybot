@@ -32,7 +32,6 @@ FactoryGirl.define do
 
     p.product { |a| a.association(:product) }
     p.store { |a| a.association(:store) }
-
   end
 
 end

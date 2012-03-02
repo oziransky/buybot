@@ -2,7 +2,6 @@ require 'spec_helper'
 require 'faker'
 
 describe ProductsController do
-  fixtures :all
 
   login_store_owner
 

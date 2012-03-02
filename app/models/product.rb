@@ -47,8 +47,7 @@ class Product < ActiveRecord::Base
   end
   
   def child_of?(category_id)
-	#puts "foo " + product.name + " " +category_id.to_s
-    return true if (category_ids.include?(category_id)) 
+    return true if (category_ids.include?(category_id))
     for cat in categories do
       ancestors_ids = cat.ancestors.collect {|a| a.id}
         if ancestors_ids.include?(category_id)

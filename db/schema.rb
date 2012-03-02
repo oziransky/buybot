@@ -10,14 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112064715) do
+ActiveRecord::Schema.define(:version => 20120229191003) do
 
   create_table "auction_histories", :force => true do |t|
-    t.string   "product_id"
+    t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "bids"
     t.integer  "closed_reason"
+    t.integer  "user_id"
   end
 
   create_table "auction_statuses", :force => true do |t|
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20120112064715) do
     t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_rate"
   end
 
   add_index "auction_statuses", ["auction_id"], :name => "index_auction_statuses_on_auction_id"

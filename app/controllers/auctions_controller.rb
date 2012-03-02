@@ -48,6 +48,9 @@ class AuctionsController < ApplicationController
       logger.error "Unable to create auction."
     end
 
+    # run the rate calculation background job
+    Delayed::Job.enqueue(AuctionUserRateJob.new(current_user.id, @auction.id))
+
     # show all open auctions for this user
     redirect_to auctions_path
   end
@@ -76,7 +79,7 @@ class AuctionsController < ApplicationController
     # save the new record
     if @auction.save
       # create a background task that will handle the analysis and delete the auction
-      Delayed::Job.enqueue(AuctionDeleteJob.new(@auction.id))
+      Delayed::Job.enqueue(AuctionDeleteJob.new(current_user.id, @auction.id))
       flash[:success] = t(:process_deleted)
       logger.debug "Deleting auction. Auction id: #{@auction.id}"
     else

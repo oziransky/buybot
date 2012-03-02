@@ -1,6 +1,6 @@
 require 'spec_helper'
 describe Auction do
-  it 'should have many auctioin_statuses' do
+  it 'should have many auction_statuses' do
     should have_many(:auction_statuses)
   end
   it 'should have many stores' do
