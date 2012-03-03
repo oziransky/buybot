@@ -43,18 +43,18 @@ en:
   #auction menu
   send_message: "Send Message"
   cancel_auction: "Cancel Auction"
-  process_details: "Process Details"
+  process_details: "Auction Details"
   
   #auction show
   other_bids: "Other Bids"
   make_bid: "Make a Bid"
   
-  could_not_create_process: "Could not create process"
-  could_not_delete_process: "Could not delete process"
-  process_created: "Successfuly created the process"
-  process_deleted: "Successfuly deleted the process"
-  could_not_update_process: "Could not update process"
-  process_updated: "Successfuly updated the process"  
+  could_not_create_process: "Could not create auction"
+  could_not_delete_process: "Could not delete auction"
+  process_created: "Successfully created the auction"
+  process_deleted: "Successfully deleted the auction"
+  could_not_update_process: "Could not update auction"
+  process_updated: "Successfully updated the auction"
   #sore auctions
   my_auctions: "My Auctions"
   details: "Details"
@@ -96,6 +96,6 @@ en:
   merchant: "Merchant Login"
   categories: "Categories"
   auction_details: "Auction details"
-  auction_status: "Auction status"
+  auction_status: "Auction status:"
   register: "Register"
 
