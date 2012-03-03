@@ -6,6 +6,7 @@
   </tr>
   <% @auctions.each do |auction| %>
       <tr>
+        <td><%= t(:user_rating, :rate => user_rate(auction)) %></td>
         <td><%= link_to t(:details), "/store_auctions/" + auction.id.to_s %></td>
         <td><%= t(:current_price, :price=>auction.current_price) %></td>
         <td><%= Product.find(auction.product_id).name %></td>

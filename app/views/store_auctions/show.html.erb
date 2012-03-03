@@ -4,13 +4,13 @@
   <table>
     <%= render "auction" %>
     <tr>
-      <td><%=t(:other_bids)%>></td>
+      <td><%=t(:other_bids)%></td>
       <td>&nbsp;</td>
     </tr>
     <% other_bids.each_with_index do |bid, index| %>
         <tr>
+          <td><%= index+1 %>.</td>
           <td><%= bid %></td>
-          <td>.<%= index+1 %></td>
         </tr>
     <% end %>
     <tr>

@@ -60,6 +60,7 @@ en:
   details: "Details"
   current_price: "Current price: %{price}"
   current_price_s: "Current price:"
+  user_rating: "User rating: %{rate}"
   
   #new user
   resend_confirmation_instructions: "Resend confirmation instructions"
@@ -95,5 +96,6 @@ en:
   merchant: "Merchant Login"
   categories: "Categories"
   auction_details: "Auction details"
+  auction_status: "Auction status"
   register: "Register"
 
