@@ -11,14 +11,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def layout_by_resource
-    if store_owner_signed_in?
+    if user_signed_in?
+      "application"
+    elsif store_owner_signed_in?
       "store_owner_application"
     else
-      if devise_controller?
-        "store_owner_application"
-      else
-        "application"
-      end
+      "application"
     end
   end
 

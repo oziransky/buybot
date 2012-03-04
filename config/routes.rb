@@ -1,5 +1,7 @@
 Buybot::Application.routes.draw do
 
+  root :to => 'categories#index'
+
   devise_for :store_owners
   devise_for :users
 
@@ -21,5 +23,4 @@ Buybot::Application.routes.draw do
   match '/help', :to => 'pages#help'
   match '/invite_friends', :to => 'pages#invite_friends'
 
-  root :to => 'categories#index'
 end

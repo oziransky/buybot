@@ -1,7 +1,9 @@
 class CategoriesController < ApplicationController
 
   def index
-    #@root_categories = Category.top_categories
+    if store_owner_signed_in?
+      redirect_to stores_path
+    end
   end
 
   def show

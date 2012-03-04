@@ -11,6 +11,7 @@
 
 <div id="container">
   <%= render :partial=>'layouts/header'%>
+
   <% flash.each do |key, value| %>
       <div class="flash <%= key %>"><%= value %></div>
   <% end %>
