@@ -1,3 +1,5 @@
+
+require 'spec_helper'
 describe Price do
 
 	it 'should belong to "product"'do 

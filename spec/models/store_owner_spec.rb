@@ -1,3 +1,4 @@
+require 'spec_helper'
 describe StoreOwner do
 	it 'should have many stores' do
 		should have_many(:stores)

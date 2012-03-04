@@ -38,7 +38,6 @@ describe AuctionsController do
 
       history.add_bid(product.stores[0].id, 100)
       history.add_bid(product.stores[1].id, 110)
-
       history.save!
 
       # create auction with 2 stores
@@ -58,15 +57,26 @@ describe AuctionsController do
     end
   end
 
+  describe "update" do
+    it "should update existing auction with new status" do
+      auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id)
 
-  it "should update existing auction with new status" do
-    auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id)
+      post :update, :id => auction.id, :status => Auction::PAUSED
 
-    post :update, :id => auction.id, :status => Auction::PAUSED
+      assigns[:auction].status.should eql(Auction::PAUSED)
 
-    assigns[:auction].status.should eql(Auction::PAUSED)
+      response.should redirect_to(auction_path)
+    end
 
-    response.should redirect_to(auction_path)
+    it "should flash message if the action status is changed to 'SOLD'" do
+      auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id)
+
+      post :update, :id => auction.id, :status => Auction::SOLD
+
+      assigns[:auction].status.should eql(Auction::SOLD)
+
+      flash[:success].should_not be_nil
+    end
   end
 
   it "should delete existing auction" do

@@ -79,10 +79,11 @@ describe ProductsController do
   end
 
   it "should show all available products" do
-    FactoryGirl.create_list(:price, 3)
+    store = FactoryGirl.create(:store)
+    FactoryGirl.create_list(:price, 3,:store_id=>store.id)
     price = Price.first
-    store = Store.find(price.store_id)
-
+    #store = Store.find(price.store_id)
+    #debugger
     # emulate coming from a specific store
     session[:current_store_id] = store.id
 

@@ -1,4 +1,5 @@
 class AuctionHistory < ActiveRecord::Base
+
   before_create :create_bids
 
   attr_accessible :product_id, :closed_reason, :bids

@@ -2,44 +2,46 @@
 <div id="all_categories">
 
 
-<%= form_tag "customer_products/search", :method => 'get' do %>
-  <p>
-    <%= text_field_tag "search",params[:search], :placeholder=>"I want to buy...",:class=>"bold_input", :id => "search_input" %>
-    <%= select_tag(:category, ('<option value="">'+t(:select_a_category) +'</option>' + options_from_collection_for_select(@root_categories, :id, :name)).html_safe) %>
-    <%= submit_tag t(:search), :name => nil%>
-  </p>
-<% end %>
+  <%= form_tag "customer_products/search", :method => 'get' do %>
+    <p>
+      <%= text_field_tag "search",params[:search], :placeholder=>"I want to buy...",:class=>"bold_input", :id => "search_input" %>
+      <%= select_tag(:category, ('<option value="">'+t(:select_a_category) +'</option>' + options_from_collection_for_select(@root_categories, :id, :name)).html_safe) %>
+      <%= submit_tag t(:search), :name => nil%>
+    </p>
+  <% end %>
 
-<div>&nbsp;</div>
+  <div>&nbsp;</div>
 
 
-<div>
-<table id="categories">
-	<tr><th colspan="4"><%= t(:categories) %></th></tr>
-	<%@root_categories.each do |root|%>
-	<tr>
-		<td colspan="4"><span class="root_category"><%= root.name%></span></td>
-	</tr>
-	<tr>
-		<%root.children.each do |sub|%> <td><!--div class = "sub_category"-->
-		<ul >
-			<li class = "sub_category">
-				<%= sub.name%>
-			</li>
-			<%sub.children.each do |sub_sub|%>
-			<div class = "sub_sub_category">
-				<li>
-					<%= link_to sub_sub.name, sub_sub %>
-				</li>
-			</div>
-			<%end%>
-		</ul>  </td>
-		<%end%> <!--/div-->
-	</tr>
-	<%end%>
-	
-</table>
+  <div>
+    <table id="categories">
+      <tr><th colspan="4"><%= t(:categories) %></th></tr>
+      <%@root_categories.each do |root|%>
+        <tr>
+          <td colspan="4"><span class="root_category"><%= root.name%></span></td>
+        </tr>
+        <tr>
+          <%root.children.each do |sub|%> 
+            <td>
+              <ul >
+                <li class = "sub_category">
+                  <%= sub.name%>
+                </li>
+                <%sub.children.each do |sub_sub|%>
+                  <div class = "sub_sub_category">
+                    <li>
+                      <%= link_to sub_sub.name, search_customer_products_path('category'=>sub_sub.id) %>
+                    </li>
+                  </div>
+                <%end%>
+            </ul> 
+          </td>
+          <%end%>
+        </tr>
+      <%end%>
 
-</div>
+    </table>
+
+  </div>
 </div>
 

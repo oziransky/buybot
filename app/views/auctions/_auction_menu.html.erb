@@ -1,6 +1,9 @@
 <div class="simple_menu">
   <ul>
     <li>
+      <%= button_to( t(:buy) , {:action => "update", :status=>Auction::SOLD  }, :method => :put) %>
+    </li>
+    <li>
       <%= button_to get_toggle_link, {:action => "update", :status => get_toggle_status }, :method => :put %>
     </li>
     <li>

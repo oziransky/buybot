@@ -23,8 +23,7 @@ en:
   delete: "Delete"
   edit: "Edit"  
   copy: "Copy"
-  
-  
+  buy: "Buy"
   stores: "Stores"
   new_store: "New Store"
   store_name: "Store Name:"
@@ -32,47 +31,35 @@ en:
   site: "Site:"
   store_list: "Store List"
   store_mangement: "Store Management"
-  
-  
   manage_products: "Manage Products"
   manage_clerks: "Manage Clerks"
   reports: "Reports"
-  #store main nav
   current_auctions: "Current Auctions"
   store_management: "Store Management"
-  #auction menu
   send_message: "Send Message"
   cancel_auction: "Cancel Auction"
   process_details: "Auction Details"
-  
-  #auction show
   other_bids: "Other Bids"
   make_bid: "Make a Bid"
-  
   could_not_create_process: "Could not create auction"
   could_not_delete_process: "Could not delete auction"
   process_created: "Successfully created the auction"
   process_deleted: "Successfully deleted the auction"
   could_not_update_process: "Could not update auction"
   process_updated: "Successfully updated the auction"
-  #sore auctions
+  product_sold: "Product sold!"
   my_auctions: "My Auctions"
   details: "Details"
   current_price: "Current price: %{price}"
   current_price_s: "Current price:"
   user_rating: "User rating: %{rate}"
-  
-  #new user
   resend_confirmation_instructions: "Resend confirmation instructions"
   resend_unlock_instructions: "Resend unlock instructions"
-  #links
   forgot_password: "Forgot your password?"
   didnt_receive_confirmation: "Didn't receive confirmation instructions?"
   didnt_receive_unlock: "Didn't receive unlock instructions?"
   sign_in_with: "Sign in with %{provider}"
-  
   send_reset_password: "Send me reset password instructions"
-  #devise edit
   new_password: "New password"
   confirm_password: "Confirm password"
   change_password: "Change my password"
@@ -81,12 +68,9 @@ en:
   password_s: "Password"
   remember_me_s: "Remember Me"
   enter: "Enter"
-  
   delete_account: "Delete account"
   are_you_sure: "Are You Sure?"
-  #new auction
   begin_auction: "Begin Auction"
-  
   search_results: "Search Results"
   footer:
   blogs: "Blogs"
