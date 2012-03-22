@@ -1,5 +1,6 @@
 <div class="simple_menu">
   <ul>
+    <% unless @auction.status == Auction::SOLD %>
     <li>
       <%= button_to( t(:buy) , {:action => "update", :status=>Auction::SOLD  }, :method => :put) %>
     </li>
@@ -7,7 +8,8 @@
       <%= button_to get_toggle_link, {:action => "update", :status => get_toggle_status }, :method => :put %>
     </li>
     <li>
-      <%= button_to t(:delete), { :action => "destroy" }, :confirm => t(:are_you_sure), :method => :delete %>
+      <%= button_to t(:cancel_auction), { :action => "destroy" }, :confirm => t(:are_you_sure), :method => :delete %>
     </li>
+    <% end %>
   </ul>
 </div>

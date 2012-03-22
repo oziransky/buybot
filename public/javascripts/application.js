@@ -52,7 +52,7 @@ $(document).ready(function() {
                 success: function(json){
                     console.log("The Devise Response: " + JSON.stringify(json));
                     // Close the register popup form
-                    $('#fade , .register_block').fadeOut(function() {
+                    $('#fade, .register_block').fadeOut(function() {
                         $('#fade, a.close').remove();  //fade them both out
                     });
                 },
@@ -66,7 +66,7 @@ $(document).ready(function() {
             var email = $("#directlogin_username").val();
             var password = $("#directlogin_password").val();
             var user_info = {remote: true, commit: "Sign in", utf8: "✓",
-              user: {remember_me: 1, password: password, email: email}};
+                user: {remember_me: 1, password: password, email: email}};
             console.log("About to post to /users/sign_in: " + JSON.stringify(user_info));
             $.ajax({
                 type: "POST",
@@ -84,7 +84,7 @@ $(document).ready(function() {
     $(function() {
         $("#direct_auction").click(function(){
             var user_info = {remote: true, commit: "Start Auction", utf8: "✓",
-              product_id: 1, store_ids: [1, 2, 3]};
+                product_id: 1, store_ids: [1, 2, 3]};
             console.log("About to post to /auctions: " + JSON.stringify(user_info));
             $.ajax({
                 type: "POST",

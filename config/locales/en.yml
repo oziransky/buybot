@@ -12,6 +12,7 @@ en:
   welcome: "Welcome %{user}"
   logout: "Logout"
   login: "Login"
+  home: "Home"
   help: "Help"
   invite_friends: "Invite Friends"
   account_settings: "Settings"
@@ -52,7 +53,7 @@ en:
   details: "Details"
   current_price: "Current price: %{price}"
   current_price_s: "Current price:"
-  user_rating: "User rating: %{rate}"
+  user_rating: "User rating:"
   resend_confirmation_instructions: "Resend confirmation instructions"
   resend_unlock_instructions: "Resend unlock instructions"
   forgot_password: "Forgot your password?"
@@ -81,5 +82,6 @@ en:
   categories: "Categories"
   auction_details: "Auction details"
   auction_status: "Auction status:"
+  auction_close_time: "Close time:"
   register: "Register"
 

@@ -12,7 +12,7 @@ module AuctionsHelper
     if @auction.status == Auction::ACTIVE
       "Pause Auction"
     else
-      "Start Auction"
+      "Resume Auction"
     end
   end
 end

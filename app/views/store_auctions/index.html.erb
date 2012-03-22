@@ -10,7 +10,7 @@
           <div class="simple_menu">
             <ul>
               <li><%= Product.find(auction.product_id).name %>
-              <li><%= t(:user_rating, :rate => user_rate(auction)) %>
+              <li><%= t(:user_rating) + " " + user_rate(auction) %>
               <li><%= t(:current_price, :price=>auction.current_price) %>
               <li><%= link_to t(:details), "/store_auctions/" + auction.id.to_s %>
             </ul>

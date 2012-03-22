@@ -1,29 +1,42 @@
-<%= render "auction_menu" %>
-<div id="auction_profile">
-  <span><%=t(:process_details)%></span>
-  <table>
-    <%= render "auction" %>
-    <tr>
-      <td><%=t(:other_bids)%></td>
-      <td>&nbsp;</td>
-    </tr>
-    <% other_bids.each_with_index do |bid, index| %>
-        <tr>
-          <td><%= index+1 %>.</td>
-          <td><%= bid %></td>
-        </tr>
-    <% end %>
-    <tr>
-      <td>
-        <% if @auction.active? %>
-            <% form_tag(request.path, :method =>'put') do %>
-                <%= text_field_tag :new_bid, @auction.current_price.to_s, :size => 7 %>
-                <div>
-                  <%= submit_tag t(:make_bid) %>
-                </div>
-            <% end %>
-        <% end %>
-      </td>
-    </tr>
-  </table>
+<!-- Run periodic polling on the status of the auction -->
+<%= javascript_tag do %>
+    $(document).ready(
+        function(){
+            setInterval(function(){
+                $('#auction_details').load("/store_auctions/<%= @auction.id.to_s %> #auction_details");
+            }, 30000 );
+        });
+<% end %>
+<div id="auction_details">
+  <%= render "auction_menu" %>
+  <div id="auction_profile">
+    <span><%=t(:process_details)%></span>
+    <table>
+      <%= render "auction" %>
+      <% unless @auction.status == Auction::SOLD %>
+          <tr>
+            <td><%=t(:other_bids)%></td>
+            <td>&nbsp;</td>
+          </tr>
+          <% other_bids.each_with_index do |bid, index| %>
+              <tr>
+                <td><%= index+1 %>.</td>
+                <td><%= bid %></td>
+              </tr>
+          <% end %>
+      <% end %>
+      <tr>
+        <td>
+          <% if @auction.active? %>
+              <% form_tag(request.path, :method =>'put') do %>
+                  <%= text_field_tag :new_bid, @auction.current_price.to_s, :size => 7 %>
+                  <div>
+                    <%= submit_tag t(:make_bid) %>
+                  </div>
+              <% end %>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>

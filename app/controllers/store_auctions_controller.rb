@@ -2,7 +2,6 @@ class StoreAuctionsController < ApplicationController
   before_filter :only => [:update, :show, :index]
 
   def update
-    # TODO: check that the bid is in the set range
     @auction = current_auction
     bid = params[:new_bid]
 
@@ -15,9 +14,9 @@ class StoreAuctionsController < ApplicationController
 
     # save the new record
     if @auction.save
-      flash[:success] = "New process was created successfully"
+      flash[:success] = "Auction was updated successfully"
     else
-      flash[:error] = "Unable to create a new process"
+      flash[:error] = "Unable to update auction"
     end
 
     redirect_to store_auction_path

@@ -10,7 +10,8 @@ class Auction < ActiveRecord::Base
 
   DEFAULT_TIME = 10 * 60 # default time is 10 minutes
 
-  attr_accessible :product_id, :minimal_step, :maximum_step, :max_num_bids, :current_price, :status
+  #attr_accessible :product_id, :minimal_step, :maximum_step, :max_num_bids, :current_price, :status, :close_at
+  attr_accessible :product_id, :current_price, :status, :close_at
 
   has_many :auction_statuses
   has_many :stores, :through => :auction_statuses, :readonly => false
