@@ -1,21 +1,19 @@
 require 'spec_helper'
 require 'ruby-debug'
-describe StoreAuctionsController do
 
+describe StoreAuctionsController do
 
   login_store_owner
 
-	before(:each) do
-      @auction = FactoryGirl.create(:auction)
-      @store = FactoryGirl.create(:store)
-      subject.current_store_owner.stores << @store
-      @store.auctions << @auction
-      @store.save
-      
-	end
+  before(:each) do
+    @auction = FactoryGirl.create(:auction)
+    @store = FactoryGirl.create(:store)
+    subject.current_store_owner.stores << @store
+    @store.auctions << @auction
+    @store.save
+  end
 
   describe 'update' do
-
     
 	it "should assign 'auction' to current_auction"  do 
     
@@ -26,6 +24,7 @@ describe StoreAuctionsController do
       assigns[:auction] = @auction
       
     end
+
     it "should update the price"  do 
     
       new_bid = 100.0
@@ -37,7 +36,8 @@ describe StoreAuctionsController do
       auction_status.price.should eql(new_bid)
       
     end
-    it "display flash 'sucess' on successfull save"  do 
+
+    it "display flash 'success' on successful save"  do
     
       new_bid = 100.0
       session[:current_store_id]=@store.id
@@ -57,19 +57,21 @@ describe StoreAuctionsController do
       
     end
   end
+
   describe 'index' do
-	it 'should redircet to store_path if store is not selected' do
+	it "should redirect to store_path if store is not selected" do
 		#set non existent store
 		session[:current_store_id]= -1
 		post 'index'
 		
 		flash[:error].should_not be_nil
 		response.should redirect_to stores_path
-	end
-	it 'should assign Active or Paused auctions ' do
+    end
+
+	it "should assign Active or Paused auctions" do
 		#create more auctions
 		auctions = FactoryGirl.create_list(:auction,3)
-		#set the first one status to canceled. it should not be displyed
+		#set the first one status to canceled. it should not be displayed
 		auctions.first.status = Auction::CANCELED
 		assert auctions.first.save
 		
@@ -82,13 +84,12 @@ describe StoreAuctionsController do
 		assigns[:auctions].size.should eql(3)
 		assigns[:auctions].should include(@auction,auctions[1],auctions[2])
 		assigns[:auctions].should_not include(auctions[0])
-		
-		
 	end
   end
+
   describe 'show' do
   
-	it 'should assign auctions to all store auctions ' do
+	it "should assign auctions to all store auctions" do
 		#create more auctions
 		auctions = FactoryGirl.create_list(:auction,3)
 		auctions.each {|a| @store.auctions << a}
@@ -100,7 +101,6 @@ describe StoreAuctionsController do
 		assigns[:auctions].size.should eql(4)
 		assigns[:auctions].should include(@auction,auctions[0],auctions[1],auctions[2])
 		assigns[:auction].should == @auction
-		
 		
 	end
   end
