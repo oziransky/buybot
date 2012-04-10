@@ -10,7 +10,9 @@ gem 'acts_as_tree'
 gem 'delayed_job_active_record'
 gem 'log4r'
 gem 'whenever', :require => false
-
+#gem 'omniauth'
+gem 'fb_graph'
+#gem 'omniauth-facebook'
 group :test, :development do
   gem 'faker', '0.3.1'
   gem "rspec-rails"
@@ -19,4 +21,6 @@ group :test, :development do
   gem 'shoulda'
   gem 'ruby-debug19'
   gem 'simplecov', :require=>false
+  gem 'nifty-generators'
 end
+gem "mocha", :group => :test

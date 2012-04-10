@@ -4,9 +4,11 @@
       <% if user_signed_in? %>
           <div class="logged_area ui-widget-content">
             <ul>
-              <li><%= t :welcome, :user=>current_user.email %></li>
+
+              <li><%= t :welcome, :user=>current_user.display_name %></li>
               <li>|</li>
               <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
+              <li><%= link_to t(:connect_to_facebook), connect_to_fb_users_path, :method => :get%></li>
             </ul>
             <nav class="main_nav">
               <ul>
@@ -23,6 +25,7 @@
             <%= tag 'input',:type=>'password',:id=>'directlogin_password',:class=>'bold_input',:placeholder=>t(:password_s) %>
             <%= tag "input",:value=>t(:login), :type=>'button', :id=> "directlogin_submit"%>
             <%= tag 'input',:value=>t(:sign_up), :type=>'button',:rel=>'register_form', :id=>'directregister' %>
+            <%= link_to "Sign in with Facebook", connect_to_fb_users_path %>
           </div>
       <% end %>
     </div>
