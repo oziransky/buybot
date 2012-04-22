@@ -5,7 +5,7 @@ class StoreOwner < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :remember_me
 
   has_many :stores, :dependent => :destroy
 end

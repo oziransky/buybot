@@ -19,6 +19,9 @@ class StoreAuctionsController < ApplicationController
       flash[:error] = "Unable to update auction"
     end
 
+    # send email to user indicating that auction was updated
+    Delayed::Job.enqueue(AuctionUserMailJob.new(@auction.user_id, @auction.id))
+
     redirect_to store_auction_path
   end
 
