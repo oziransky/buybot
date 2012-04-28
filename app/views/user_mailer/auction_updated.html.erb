@@ -1,14 +1,14 @@
-<p><%= @store_owner.name %>,</p>
+<p>Hello <%= @user.first_name %>,</p>
 
-<p>Auction was updated</p>
+<p>Auction price was updated!</p>
 <table>
   <tr>
-    <td><%= t(:auction_status) %></td>
+    <td><%=t(:auction_status)  %></td>
     <td><%= @auction.status_to_s %></td>
   </tr>
   <tr>
-    <td><%= t(:auction_close_time) %></td>
-    <td><%= @auction.close_at.to_time %></td>
+    <td><%=t(:auction_close_time)  %></td>
+    <td><%= @auction.close_at.to_s %></td>
   </tr>
   <tr>
     <td><%= t(:product) %></td>

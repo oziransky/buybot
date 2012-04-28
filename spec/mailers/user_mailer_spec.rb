@@ -7,7 +7,8 @@ describe UserMailer do
 
   describe "auction user mailer" do
     it "should send auction status update for price change" do
-      auction = FactoryGirl.create(:auction)
+      product = FactoryGirl.create(:product)
+      auction = FactoryGirl.create(:auction, :product_id => product.id)
       auction.current_price = 1212
       user = FactoryGirl.create(:user)
       user.auctions << auction
@@ -19,6 +20,7 @@ describe UserMailer do
       # test the content of the email
       email.to.should include(user.email)
       email.subject.should include("#{auction.current_price}")
+      email.body.should include("#{user.first_name}")
     end
   end
 

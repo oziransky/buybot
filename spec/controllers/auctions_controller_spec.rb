@@ -48,7 +48,9 @@ describe AuctionsController do
         assigns[:auction].product_id.should eql(product.id)
         assigns[:auction].status.should eql(Auction::ACTIVE)
 
+        # verify emails
         ActionMailer::Base.deliveries.should_not be_empty
+        ActionMailer::Base.deliveries.size.should eql(2)
 
     end
 

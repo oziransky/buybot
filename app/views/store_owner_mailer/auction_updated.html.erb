@@ -1,6 +1,6 @@
-<p><%= @store_owner.name %>,</p>
+<p>Hello <%= @store_owner.first_name %>,</p>
 
-<p>A new auction was started</p>
+<p>Auction status was updated</p>
 <table>
   <tr>
     <td><%= t(:auction_status) %></td>
@@ -9,10 +9,6 @@
   <tr>
     <td><%= t(:auction_close_time) %></td>
     <td><%= @auction.close_at.to_time %></td>
-  </tr>
-  <tr>
-    <td><%= t(:user_rating) %></td>
-    <td><%= user_rate(@auction) %></td>
   </tr>
   <tr>
     <td><%= t(:product) %></td>
