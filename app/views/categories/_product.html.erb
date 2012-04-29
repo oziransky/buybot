@@ -5,13 +5,11 @@
         <div class="table-item"><%=t(:description)%></div>
         <div class="table-item"><%=t(:minimum_price)%></div>
     </div>
-
         <%for prod in products do%>
             <div class="table-row">
                 <div class="table-item"><%=link_to prod.name, customer_product_path(prod)%></div>
                 <div class="table-item"><%=prod.description%></div>
                 <div class="table-item"><%=prod.minimum_price%></div>
-
             </div>
         <%end%>
 </div>
