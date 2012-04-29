@@ -2,6 +2,8 @@
 
 class AuctionsController < ApplicationController
 
+  before_filter :require_login
+
   def create
     product_id = params[:product_id]
 
@@ -120,4 +122,14 @@ class AuctionsController < ApplicationController
     end
   end
 
+  private
+
+  def require_login
+    unless user_signed_in?
+      flash[:error] = t(:must_be_logged)
+      # save the current url to return to
+      session["user_return_to"] = request.fullpath
+      redirect_to new_user_session_path
+    end
+  end
 end

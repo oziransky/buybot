@@ -86,4 +86,5 @@ en:
   register: "Register"
   auction_started: "New Auction was started"
   auction_updated: "Auction was updated. Current status - %{status}"
+  must_be_logged: "You must be logged in to access this section!"
 
