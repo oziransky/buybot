@@ -4,8 +4,8 @@
       <% if user_signed_in? %>
           <div class="logged_area ui-widget-content">
             <ul>
-
-              <li><%= t :welcome, :user=>current_user.display_name %></li>
+              <li><%= link_to t(:home), root_path %></li>
+              <li><%= t :welcome, :user=>current_user.email %></li>
               <li>|</li>
               <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
               <li><%= link_to t(:connect_to_facebook), connect_to_fb_users_path, :method => :get%></li>
@@ -19,13 +19,15 @@
               </ul>
             </nav>
           </div>
-      <% else %>
+      <% else %>  
           <div class="login_area">
-            <%= tag 'input',:type=>'text',:id=>'directlogin_username',:class=>'bold_input',:placeholder=>t(:email_s) %>
-            <%= tag 'input',:type=>'password',:id=>'directlogin_password',:class=>'bold_input',:placeholder=>t(:password_s) %>
-            <%= tag "input",:value=>t(:login), :type=>'button', :id=> "directlogin_submit"%>
-            <%= tag 'input',:value=>t(:sign_up), :type=>'button',:rel=>'register_form', :id=>'directregister' %>
-            <%= link_to "Sign in with Facebook", connect_to_fb_users_path %>
+            <% if not devise_controller? %>
+                <!--%= link_to "Sign in with Facebook", connect_to_fb_users_path %-->
+                <%= link_to t(:login), new_user_session_path %>
+            <%= link_to t(:sign_up), new_user_registration_path %>
+            <% else %>
+                <%= link_to t(:home), root_path %>
+            <% end %>
           </div>
       <% end %>
     </div>

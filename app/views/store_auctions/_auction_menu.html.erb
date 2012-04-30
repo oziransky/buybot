@@ -1,6 +1,8 @@
 <div class="simple_menu">
     <ul>
       <li><%= link_to t(:send_message), "#" %></li>
-      <li><%= link_to t(:cancel_auction), "#" %></li>
+      <% unless @auction.status == Auction::SOLD %>
+        <li><%= link_to t(:cancel_auction), "#" %></li>
+      <% end %>
     </ul>
 </div>

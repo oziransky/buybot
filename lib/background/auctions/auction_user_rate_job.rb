@@ -1,8 +1,6 @@
 # Background job that creates auction user rating
 class AuctionUserRateJob < Struct.new(:user_id, :auction_id)
   def perform
-    logger = Log4r::Logger[Rails.env]
-
     # get the current user
     user = User.find(user_id)
 

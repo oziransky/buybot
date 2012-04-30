@@ -51,6 +51,10 @@ class AuctionsController < ApplicationController
     # run the rate calculation background job
     Delayed::Job.enqueue(AuctionUserRateJob.new(current_user.id, @auction.id))
 
+    # send emails to all store owners indicating that auction was started
+    Delayed::Job.enqueue(AuctionStoreMailJob.new(@auction.id,
+                                                 StoreOwnerMailer::STARTED))
+
     # show all open auctions for this user
     redirect_to auctions_path
   end
@@ -59,6 +63,9 @@ class AuctionsController < ApplicationController
     @auction = current_user.auctions.find(params[:id])
     @auction.status = params[:status].to_i
 
+    # send emails to all store owners indicating that auction was updated
+    Delayed::Job.enqueue(AuctionStoreMailJob.new(@auction.id,
+                                                 StoreOwnerMailer::UPDATED))
     # save the new record
     if @auction.save
       flash[:success] = t(:process_updated)
@@ -81,6 +88,9 @@ class AuctionsController < ApplicationController
     @auction = current_user.auctions.find(params[:id])
     @auction.status = Auction::CANCELED
 
+    # send emails to all store owners indicating that auction was updated
+    Delayed::Job.enqueue(AuctionStoreMailJob.new(@auction.id,
+                                                 StoreOwnerMailer::UPDATED))
     # save the new record
     if @auction.save
       # create a background task that will handle the analysis and delete the auction

@@ -1,0 +1,22 @@
+<p>Hello <%= @user.first_name %>,</p>
+
+<p>Auction price was updated!</p>
+<table>
+  <tr>
+    <td><%=t(:auction_status)  %></td>
+    <td><%= @auction.status_to_s %></td>
+  </tr>
+  <tr>
+    <td><%=t(:auction_close_time)  %></td>
+    <td><%= @auction.close_at.to_s %></td>
+  </tr>
+  <tr>
+    <td><%= t(:product) %></td>
+    <td><%= Product.find(@auction.product_id).name %></td>
+  </tr>
+  <tr>
+    <td><%= t(:current_price_s) %></td>
+    <td><%= @auction.current_price %></td>
+  </tr>
+</table>
+<p><%= link_to "Auction details", auction_path(@auction) %></p>

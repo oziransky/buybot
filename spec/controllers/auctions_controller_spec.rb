@@ -4,15 +4,31 @@ describe AuctionsController do
 
   login_user
 
+  before (:each) do
+    ActionMailer::Base.deliveries.clear
+
+    # run the background job without delay
+    Delayed::Worker.delay_jobs = false
+  end
+
   it "should have a valid user signed in" do
     subject.current_user.should_not be_nil
   end
 
   describe "auction creation" do
+    price1 = FactoryGirl.create(:price)
+    product = Product.find(price1.product_id)
+    price2 = FactoryGirl.create(:price, :product => product)
+    owner1 = FactoryGirl.create(:store_owner)
+    owner2 = FactoryGirl.create(:store_owner)
+    store1 = Store.find(product.stores[0].id)
+    store1.store_owner_id = owner1.id
+    store1.save
+    store2 = Store.find(product.stores[1].id)
+    store2.store_owner_id = owner2.id
+    store2.save
+
     it "should create new auction with given product and minimal stores" do
-        price1 = FactoryGirl.create(:price)
-        product = Product.find(price1.product_id)
-        price2 = FactoryGirl.create(:price, :product => product)
 
         post :create, :product_id => product.id,
                       :store_ids => [ product.stores[0].id, product.stores[1].id ]
@@ -21,17 +37,24 @@ describe AuctionsController do
         assigns[:auction].status.should eql(Auction::ACTIVE)
 
         response.should redirect_to(auctions_path)
+
     end
 
-    it "should create new auction with given product and large number of stores"
+    it "should create new auction and send update email to store owners" do
+
+        post :create, :product_id => product.id,
+                      :store_ids => [ product.stores[0].id, product.stores[1].id ]
+
+        assigns[:auction].product_id.should eql(product.id)
+        assigns[:auction].status.should eql(Auction::ACTIVE)
+
+        # verify emails
+        ActionMailer::Base.deliveries.should_not be_empty
+        ActionMailer::Base.deliveries.size.should eql(2)
+
+    end
 
     it "should calculate user rates for sold auction with returning store" do
-      # run the background job without delay
-      Delayed::Worker.delay_jobs = false
-
-      price1 = FactoryGirl.create(:price)
-      product = Product.find(price1.product_id)
-      price2 = FactoryGirl.create(:price, :product => product)
 
       history = FactoryGirl.create(:auction_history)
       subject.current_user.auction_histories << history
@@ -54,6 +77,7 @@ describe AuctionsController do
       auction.auction_statuses[1].user_rate.should eql(10)
 
       response.should redirect_to(auctions_path)
+
     end
   end
 

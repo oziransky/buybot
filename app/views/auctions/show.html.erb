@@ -1,9 +1,20 @@
-<%= render "auction_menu" %>
-<div id="auction_profile">
-  <span><%= t(:auction_details) %></span>
-  <% unless current_user.auctions.empty? %>
-  <table>
-    <%= render "auction" %>
-  </table>
-  <% end %>
+<!-- Run periodic polling on the status of the auction -->
+<%= javascript_tag do %>
+    $(document).ready(
+            function(){
+                setInterval(function(){
+                    $('#auction_details').load("/auctions/<%= @auction.id.to_s %> #auction_details");
+                }, 30000 );
+            });
+<% end %>
+<div id="auction_details">
+  <%= render "auction_menu" %>
+  <div id="auction_profile">
+    <span><%= t(:auction_details) %></span>
+    <% unless current_user.auctions.empty? %>
+        <table>
+          <%= render "auction" %>
+        </table>
+    <% end %>
+  </div>
 </div>
