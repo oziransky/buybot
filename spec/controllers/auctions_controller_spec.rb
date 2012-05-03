@@ -15,6 +15,16 @@ describe AuctionsController do
     subject.current_user.should_not be_nil
   end
 
+  it "should provide online indication" do
+    subject.current_user.updated_at = 5.minutes.ago
+    subject.current_user.online?.should be_true
+  end
+
+  it "should not provide online indication" do
+      subject.current_user.updated_at = 15.minutes.ago
+      subject.current_user.online?.should be_false
+  end
+
   describe "auction creation" do
     price1 = FactoryGirl.create(:price)
     product = Product.find(price1.product_id)
@@ -104,8 +114,6 @@ describe AuctionsController do
   end
 
   it "should delete existing auction" do
-    # run the background job without delay
-    Delayed::Worker.delay_jobs = false
 
     auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id)
 

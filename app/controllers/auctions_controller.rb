@@ -2,6 +2,8 @@
 
 class AuctionsController < ApplicationController
 
+  before_filter :require_login
+
   def create
     product_id = params[:product_id]
 
@@ -36,6 +38,9 @@ class AuctionsController < ApplicationController
     # start the auction
     @auction.status = Auction::ACTIVE
 
+    # virgin auction
+    @auction.bids_received = false
+
     # mark the close date
     @auction.close_at = (Time.now + Auction::DEFAULT_TIME).to_s(:db)
 
@@ -68,19 +73,20 @@ class AuctionsController < ApplicationController
                                                  StoreOwnerMailer::UPDATED))
     # save the new record
     if @auction.save
-      flash[:success] = t(:process_updated)
-      logger.debug "Updating auction. Auction id: #{@auction.id}. Auction status: #{@auction.status}"
-      if @auction.status == Auction::SOLD
-        # should redirect to selling the product
-        flash[:notice] = t(:product_sold)
-        Delayed::Job.enqueue(AuctionDeleteJob.new(current_user.id, @auction.id))
+      if @auction.status == Auction::CHECKOUT
+        # start the checkouts process
+        logger.debug "Start checkouts. Auction id: #{@auction.id}."
+        redirect_to new_checkout_path(:auction_id => @auction.id)
+      else
+        flash[:success] = t(:process_updated)
+        logger.debug "Updating auction. Auction id: #{@auction.id}. Auction status: #{@auction.status}"
+        redirect_to auction_path
       end
     else
       flash[:error] = t(:could_not_update_process)
       logger.error "Unable to update auction. Auction id: #{@auction.id}. Auction status: #{@auction.status}"
+      redirect_to auction_path
     end
-
-    redirect_to auction_path
   end
 
   def destroy
@@ -111,13 +117,35 @@ class AuctionsController < ApplicationController
   end
 
   def show
-    @auctions = current_user.auctions
     @auction = current_user.auctions.find(params[:id])
 
-    @store_names = []
-    @auction.stores.size.times do |index|
-      @store_names[index] = @auction.stores[index].name
+    # handle the case when the auction timeout with bids
+    # in this case we need to proceed automatically to checkout
+    # because the UI will periodically check for updates, here is the place
+    # for that specific status
+    if @auction.status == Auction::CHECKOUT
+      flash[:success] = t(:automatic_checkout)
+      # start the checkouts process
+      logger.debug "Start automatic checkouts. Auction id: #{@auction.id}."
+      redirect_to new_checkout_path(:auction_id => @auction.id)
+    else
+      @auctions = current_user.auctions
+
+      @store_names = []
+      @auction.stores.size.times do |index|
+        @store_names[index] = @auction.stores[index].name
+      end
     end
   end
 
+  private
+
+  def require_login
+    unless user_signed_in?
+      flash[:error] = t(:must_be_logged)
+      # save the current url to return to
+      session["user_return_to"] = request.fullpath
+      redirect_to new_user_session_path
+    end
+  end
 end

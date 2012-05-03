@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120421120755) do
+ActiveRecord::Schema.define(:version => 20120501074453) do
 
   create_table "auction_histories", :force => true do |t|
     t.integer  "product_id"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(:version => 20120421120755) do
     t.integer  "user_id"
     t.integer  "status"
     t.datetime "close_at"
+    t.boolean  "bids_received"
+    t.integer  "checkout_id"
   end
 
   create_table "categories", :force => true do |t|
@@ -57,6 +59,15 @@ ActiveRecord::Schema.define(:version => 20120421120755) do
   create_table "categories_products", :id => false, :force => true do |t|
     t.integer "category_id"
     t.integer "product_id"
+  end
+
+  create_table "checkouts", :force => true do |t|
+    t.float    "final_price"
+    t.string   "product_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "auction_id"
+    t.integer  "status"
   end
 
   create_table "delayed_jobs", :force => true do |t|

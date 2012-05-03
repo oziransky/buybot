@@ -9,6 +9,7 @@ Buybot::Application.routes.draw do
   resources :products
   resources :auctions
   resources :categories
+  resources :checkouts
 
   resources :customer_products do
     collection do

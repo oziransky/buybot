@@ -9,4 +9,12 @@ FactoryGirl.define do
     current_price 100
     status Auction::ACTIVE
   end
+
+  # factory for checkout process
+  factory :checkout do
+    auction_id 1
+    final_price 100
+    product_url { Faker::Internet.domain_name }
+  end
+
 end

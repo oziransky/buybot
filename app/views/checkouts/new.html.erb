@@ -1,0 +1,20 @@
+<p>Deal summary</p>
+<div class="simple_form">
+  <%= form_for @checkout do |f| %>
+      <%= f.label t(:product) %>
+      <%= f.label Product.find(@auction.product_id).name %><br />
+
+      <%= f.label t(:current_price_s) %>
+      <%= f.label @checkout.final_price %><br />
+
+      <%= f.label :product_url %>:
+      <%= f.label @checkout.product_url %><br />
+
+      <%= f.hidden_field :product_url, :value => @checkout.product_url %>
+      <%= f.hidden_field :final_price, :value => @checkout.final_price %>
+      <%= f.hidden_field :status, :value => @checkout.status %>
+      <%= f.hidden_field :auction_id, :value => @auction.id %>
+
+      <%= f.submit t(:confirm) %>
+  <% end %>
+</div>

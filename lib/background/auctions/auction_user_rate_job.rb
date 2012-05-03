@@ -21,7 +21,7 @@ class AuctionUserRateJob < Struct.new(:user_id, :auction_id)
           if history.get_lowest_bid_store == store.id
             # give some extra credit for getting the best bid (20%)
             rates[store.id] += 20
-            # did the auction close with checkout
+            # did the auction close with checkouts
             if history.closed_reason == Auction::SOLD
               # give maximum rate (80%)
               rates[store.id] += 80
