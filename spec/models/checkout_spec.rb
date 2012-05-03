@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Checkout do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it 'should belong to "auction"'do
+    should belong_to(:auction)
+  end
+
 end
