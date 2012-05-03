@@ -1,6 +1,6 @@
 <div class="simple_menu">
   <ul>
-    <% unless @auction.status == Auction::SOLD %>
+    <% unless @auction.in_processing? %>
     <li>
       <%= button_to( t(:buy) , {:action => "update", :status=>Auction::CHECKOUT  }, :method => :put) %>
     </li>

@@ -13,6 +13,7 @@ class CheckoutsController < ApplicationController
     @checkout = Checkout.create(params[:checkout])
     @auction = current_user.auctions.find(@checkout.auction_id)
     @auction.checkout = @checkout
+    @auction.save!
 
     # build the product URL and redirect
     @checkout.product_url = "http://www.somestore.com/checkouts/?product_id=9928"
@@ -29,7 +30,12 @@ class CheckoutsController < ApplicationController
 
   def show
     checkout = Checkout.find(params[:id])
+    checkout.status = Checkout::COMPLETED
+    checkout.save!
+
     auction = Auction.find(checkout.auction_id)
+    auction.status = Auction::SOLD
+    auction.save!
 
     flash[:notice] = t(:product_sale_redirect)
 

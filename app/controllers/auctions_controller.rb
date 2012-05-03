@@ -38,6 +38,9 @@ class AuctionsController < ApplicationController
     # start the auction
     @auction.status = Auction::ACTIVE
 
+    # virgin auction
+    @auction.bids_received = false
+
     # mark the close date
     @auction.close_at = (Time.now + Auction::DEFAULT_TIME).to_s(:db)
 
@@ -114,12 +117,24 @@ class AuctionsController < ApplicationController
   end
 
   def show
-    @auctions = current_user.auctions
     @auction = current_user.auctions.find(params[:id])
 
-    @store_names = []
-    @auction.stores.size.times do |index|
-      @store_names[index] = @auction.stores[index].name
+    # handle the case when the auction timeout with bids
+    # in this case we need to proceed automatically to checkout
+    # because the UI will periodically check for updates, here is the place
+    # for that specific status
+    if @auction.status == Auction::CHECKOUT
+      flash[:success] = t(:automatic_checkout)
+      # start the checkouts process
+      logger.debug "Start automatic checkouts. Auction id: #{@auction.id}."
+      redirect_to new_checkout_path(:auction_id => @auction.id)
+    else
+      @auctions = current_user.auctions
+
+      @store_names = []
+      @auction.stores.size.times do |index|
+        @store_names[index] = @auction.stores[index].name
+      end
     end
   end
 

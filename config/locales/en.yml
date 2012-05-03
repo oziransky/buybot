@@ -16,7 +16,7 @@ en:
   help: "Help"
   invite_friends: "Invite Friends"
   account_settings: "Settings"
-  purchase_hist: "Purchase History"
+  my_auctions: "My Auctions"
   sign_up: "Sign Up"
   update: "Update"
   cancel: "Cancel"
@@ -89,5 +89,6 @@ en:
   auction_updated: "Auction was updated. Current status - %{status}"
   must_be_logged: "You must be logged in to access this section!"
   unable_to_checkout: "Unable to proceed with checkout. Please try again later."
+  automatic_checkout: "Auction timed out, checkout with lowest price received!"
   thankyou_note: "Thank you for purchasing using BuyBot!"
 

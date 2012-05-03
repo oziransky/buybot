@@ -114,8 +114,6 @@ describe AuctionsController do
   end
 
   it "should delete existing auction" do
-    # run the background job without delay
-    Delayed::Worker.delay_jobs = false
 
     auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id)
 
