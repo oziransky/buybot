@@ -2,7 +2,7 @@
   <ul>
     <% unless @auction.status == Auction::SOLD %>
     <li>
-      <%= button_to( t(:buy) , {:action => "update", :status=>Auction::SOLD  }, :method => :put) %>
+      <%= button_to( t(:buy) , {:action => "update", :status=>Auction::CHECKOUT  }, :method => :put) %>
     </li>
     <li>
       <%= button_to get_toggle_link, {:action => "update", :status => get_toggle_status }, :method => :put %>

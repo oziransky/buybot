@@ -20,6 +20,7 @@ en:
   sign_up: "Sign Up"
   update: "Update"
   cancel: "Cancel"
+  confirm: "Proceed to checkout"
   price: "Price"
   delete: "Delete"
   edit: "Edit"  
@@ -48,7 +49,7 @@ en:
   process_deleted: "Successfully deleted the auction"
   could_not_update_process: "Could not update auction"
   process_updated: "Successfully updated the auction"
-  product_sold: "Product sold!"
+  product_sale_redirect: "Redirecting to the store..."
   my_auctions: "My Auctions"
   details: "Details"
   current_price: "Current price: %{price}"
@@ -87,4 +88,6 @@ en:
   auction_started: "New Auction was started"
   auction_updated: "Auction was updated. Current status - %{status}"
   must_be_logged: "You must be logged in to access this section!"
+  unable_to_checkout: "Unable to proceed with checkout. Please try again later."
+  thankyou_note: "Thank you for purchasing using BuyBot!"
 

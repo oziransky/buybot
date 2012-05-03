@@ -3,6 +3,10 @@ class StoreAuctionsController < ApplicationController
 
   def update
     @auction = current_auction
+
+    # mark the auction as one that already received bids
+    @auction.bids_received = true
+
     bid = params[:new_bid]
 
     # mark the current price with the new one
@@ -48,13 +52,10 @@ private
   def current_auctions
     store = Store.find_by_id(session[:current_store_id])
     auctions = store.auctions
-    auctions
   end
 
   def current_auction
-    #debugger
     store = Store.find_by_id(session[:current_store_id])
     auction = store.auctions.find(params[:id])
-    auction
   end
 end
