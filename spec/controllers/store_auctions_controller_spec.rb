@@ -7,7 +7,8 @@ describe StoreAuctionsController do
 
   before(:each) do
     # create basic configuration
-    @auction = FactoryGirl.create(:auction)
+    product = FactoryGirl.create(:product)
+    @auction = FactoryGirl.create(:auction,:product_id=>product.id)
     @store = FactoryGirl.create(:store)
     subject.current_store_owner.stores << @store
     @store.auctions << @auction

@@ -85,6 +85,6 @@ en:
   auction_status: "Auction status:"
   auction_close_time: "Close time:"
   register: "Register"
-  auction_started: "New Auction was started"
   auction_updated: "Auction was updated. Current status - %{status}"
+  auction_started: "New Auction was started"
 

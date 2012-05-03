@@ -75,13 +75,6 @@ ActiveRecord::Schema.define(:version => 20120421120755) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
-  create_table "facebook_infos", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "fbuid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "prices", :force => true do |t|
     t.integer  "product_id"
     t.integer  "store_id"

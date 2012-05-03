@@ -1,11 +1,5 @@
 Buybot::Application.routes.draw do
 
-  resources :facebook_infos
-
-  #get "users/connect_to_fb"
-
-  #get "users/show"
-
   root :to => 'categories#index'
 
   devise_for :store_owners

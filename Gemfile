@@ -21,6 +21,6 @@ group :test, :development do
   gem 'shoulda'
   gem 'ruby-debug19'
   gem 'simplecov', :require=>false
-  gem 'nifty-generators'
+  
 end
-gem "mocha", :group => :test
+

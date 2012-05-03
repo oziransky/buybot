@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-RSpec.configure do |c|
-  # declare an exclusion filter
-  c.filter_run_excluding :broken => true
-end
+#RSpec.configure do |c|
+#  # declare an exclusion filter
+#  c.filter_run_excluding :broken => true
+#end
 
 describe 'Product' do
 
