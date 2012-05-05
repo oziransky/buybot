@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :auctions, :dependent => :destroy
   has_many :auction_histories, :dependent => :destroy
-
+  has_one :facebook_info
 
   def display_name
     email

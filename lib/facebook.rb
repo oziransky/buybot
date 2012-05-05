@@ -1,5 +1,4 @@
 class Facebook
-  # To change this template use File | Settings | File Templates.
 
   class << self
 
@@ -21,13 +20,11 @@ class Facebook
     end
 
     def profile(access_token)
-      if @profile.nil? or @profile.access.access_token == access_token
-        @profile = FbGraph::User.me(access_token).fetch
-      else
-        @profile
-      end
-
+        profile = FbGraph::User.me(access_token).fetch
     end
 
+    def scope
+      @config[:scope] unless @config.nil?
+    end
   end
 end

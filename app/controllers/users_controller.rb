@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
     # redirect user to facebook
     redirect_to client.authorization_uri(
-                    :scope => [:email, :read_stream]
+                    :scope => Facebook.scope
                 )
 
   end
@@ -23,8 +23,9 @@ class UsersController < ApplicationController
     user = User.find_or_create(fb_user)
     sign_in_and_redirect user
     flash[:success] = "Connected to Facebook!"
-
-
+    Delayed::Job.enqueue(FacebookReaderJob.new(user.id))
+    #job = FacebookReaderJob.new(user.id)
+    #job.perform
   end
 
 
