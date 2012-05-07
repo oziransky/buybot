@@ -118,6 +118,7 @@ class AuctionsController < ApplicationController
     @auction.stores.size.times do |index|
       @store_names[index] = @auction.stores[index].name
     end
+
   end
 
 end

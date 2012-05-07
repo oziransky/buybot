@@ -41,6 +41,7 @@ class StoreAuctionsController < ApplicationController
   def show
     @auctions = current_auctions
     @auction = current_auction
+    @user_fb_info = FacebookInfo.find_by_user_id(@auction.user_id)
   end
 
 private
