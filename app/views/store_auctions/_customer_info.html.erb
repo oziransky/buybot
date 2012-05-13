@@ -1,0 +1,17 @@
+<div>
+  <% unless @user_fb_info.nil? %>
+      <p>
+        <%= "Your potential customer has #{@user_fb_info.friends_count} friends" %>
+      </p>
+      <p>
+        <%= (@user_fb_info.gender.eql?("male") ? "He" : "She ") +  " is #{@user_fb_info.relationship}" %>
+      </p>
+      <% unless @user_fb_info.location.nil? %>
+          <p>
+            <%= "Lives in  #{@user_fb_info.location}" %>
+          </p>
+      <% end %>
+      <%= "Interested in #{@user_fb_info.interests}"%>
+
+  <% end %>
+</div>

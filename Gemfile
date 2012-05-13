@@ -10,6 +10,7 @@ gem 'acts_as_tree'
 gem 'delayed_job_active_record'
 gem 'log4r'
 gem 'whenever', :require => false
+gem 'fb_graph'
 gem 'daemons'
 
 group :test, :development do
@@ -20,4 +21,6 @@ group :test, :development do
   gem 'shoulda'
   gem 'ruby-debug19'
   gem 'simplecov', :require=>false
+  
 end
+

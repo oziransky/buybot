@@ -5,7 +5,7 @@ class StoreOwnerMailer < ActionMailer::Base
   default :from => "buybot.mail@gmail.com"
 
   def auction_updated(store_owner, auction)
-    send_email(store_owner, auction, t(:auction_updated, auction.status_to_s))
+    send_email(store_owner, auction, t(:auction_updated, :status=>auction.status_to_s))
   end
 
   def auction_started(store_owner, auction)

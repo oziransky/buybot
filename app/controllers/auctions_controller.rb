@@ -136,6 +136,7 @@ class AuctionsController < ApplicationController
         @store_names[index] = @auction.stores[index].name
       end
     end
+
   end
 
   private

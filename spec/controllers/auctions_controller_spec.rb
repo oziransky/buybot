@@ -26,24 +26,29 @@ describe AuctionsController do
   end
 
   describe "auction creation" do
-    price1 = FactoryGirl.create(:price)
-    product = Product.find(price1.product_id)
-    price2 = FactoryGirl.create(:price, :product => product)
-    owner1 = FactoryGirl.create(:store_owner)
-    owner2 = FactoryGirl.create(:store_owner)
-    store1 = Store.find(product.stores[0].id)
-    store1.store_owner_id = owner1.id
-    store1.save
-    store2 = Store.find(product.stores[1].id)
-    store2.store_owner_id = owner2.id
-    store2.save
+
+    before(:each) do
+
+      price1 = FactoryGirl.create(:price)
+      @product = Product.find(price1.product_id)
+      price2 = FactoryGirl.create(:price, :product => @product)
+      owner1 = FactoryGirl.create(:store_owner)
+      owner2 = FactoryGirl.create(:store_owner)
+      store1 = Store.find(@product.stores[0].id)
+      store1.store_owner_id = owner1.id
+      store1.save
+
+      store2 = Store.find(@product.stores[1].id)
+      store2.store_owner_id = owner2.id
+      store2.save
+    end
 
     it "should create new auction with given product and minimal stores" do
 
-        post :create, :product_id => product.id,
-                      :store_ids => [ product.stores[0].id, product.stores[1].id ]
+        post :create, :product_id => @product.id,
+                      :store_ids => [ @product.stores[0].id, @product.stores[1].id ]
 
-        assigns[:auction].product_id.should eql(product.id)
+        assigns[:auction].product_id.should eql(@product.id)
         assigns[:auction].status.should eql(Auction::ACTIVE)
 
         response.should redirect_to(auctions_path)
@@ -52,10 +57,10 @@ describe AuctionsController do
 
     it "should create new auction and send update email to store owners" do
 
-        post :create, :product_id => product.id,
-                      :store_ids => [ product.stores[0].id, product.stores[1].id ]
+        post :create, :product_id => @product.id,
+                      :store_ids => [ @product.stores[0].id, @product.stores[1].id ]
 
-        assigns[:auction].product_id.should eql(product.id)
+        assigns[:auction].product_id.should eql(@product.id)
         assigns[:auction].status.should eql(Auction::ACTIVE)
 
         # verify emails
@@ -69,19 +74,19 @@ describe AuctionsController do
       history = FactoryGirl.create(:auction_history)
       subject.current_user.auction_histories << history
 
-      history.add_bid(product.stores[0].id, 100)
-      history.add_bid(product.stores[1].id, 110)
+      history.add_bid(@product.stores[0].id, 100)
+      history.add_bid(@product.stores[1].id, 110)
       history.save!
 
       # create auction with 2 stores
-      post :create, :product_id => product.id,
-                    :store_ids => [ product.stores[0].id, product.stores[1].id ]
+      post :create, :product_id => @product.id,
+                    :store_ids => [ @product.stores[0].id, @product.stores[1].id ]
 
-      assigns[:auction].product_id.should eql(product.id)
+      assigns[:auction].product_id.should eql(@product.id)
       assigns[:auction].status.should eql(Auction::ACTIVE)
 
       # should give better rate for first store due to lower bid
-      auction = Auction.find_by_product_id(product.id)
+      auction = Auction.find_by_product_id(@product.id)
       auction.should_not be_nil
       auction.auction_statuses[0].user_rate.should eql(100)
       auction.auction_statuses[1].user_rate.should eql(10)

@@ -11,6 +11,13 @@ Buybot::Application.routes.draw do
   resources :categories
   resources :checkouts
 
+  resources :users do
+    collection do
+      get :show
+      get :connect_to_fb
+      get :authenticate_fb
+    end
+  end
   resources :customer_products do
     collection do
       get :search
@@ -23,5 +30,5 @@ Buybot::Application.routes.draw do
   match '/home', :to => 'pages#home'
   match '/help', :to => 'pages#help'
   match '/invite_friends', :to => 'pages#invite_friends'
-
+  match '/facebook/callback', :to=>'users#authenticate_fb'
 end

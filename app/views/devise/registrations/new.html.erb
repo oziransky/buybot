@@ -1,4 +1,8 @@
 <div class="simple_form">
+
+  <%= t(:sign_up_with) %>
+  <%= link_to image_tag('facebook_32.png'), connect_to_fb_users_path %>
+  <p>Or</p>
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
 

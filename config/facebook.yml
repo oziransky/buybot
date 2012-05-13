@@ -1,0 +1,10 @@
+development: &defaults
+  client_id: 289370537800483
+  client_secret: cdda8e70da6628651803a8e3e021f277
+  scope: email,user_activities,user_birthday,user_groups,user_interests,user_likes,user_location,user_relationships
+  redirect_uri: http://localhost:3000/facebook/callback
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
