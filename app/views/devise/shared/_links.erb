@@ -1,4 +1,4 @@
-<div class="store_owner_auth_links">
+<div class="shared_links">
   <%- if controller_name != 'sessions' %>
       <%= link_to t(:login), new_session_path(resource_name) %><br />
   <% end -%>
@@ -23,4 +23,16 @@
       <%- resource_class.omniauth_providers.each do |provider| %>
           <%= link_to t(:sign_in_with,provider=>provider.to_s.titleize), omniauth_authorize_path(resource_name, provider) %><br />
       <% end -%>
-  <% end -%></div>
+  <% end -%>
+</div>
+
+<script>
+    (function($) {
+        $(".shared_links").position({
+            of: ".devise-main",
+            my: "top",
+            at: "bottom",
+            offset: "20 0"
+        });
+    })(jQuery);
+</script>

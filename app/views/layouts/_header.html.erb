@@ -1,35 +1,33 @@
 <div id="header">
   <div id="logo-and-login">
-    <div id="user_nav" class="ui-widget">
+    <div id="user_nav">
       <% if user_signed_in? %>
-          <div class="logged_area ui-widget-content">
+          <div>
             <ul>
               <li><%= link_to t(:home), root_path %></li>
               <li><%= t :welcome, :user=>current_user.email %></li>
               <li>|</li>
               <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
             </ul>
-            <nav class="main_nav">
-              <ul>
-                <li><%= link_to t(:my_auctions), auctions_path %></li>
-                <li><%= link_to t(:account_settings), edit_user_registration_path %></li>
-                <li><%= link_to t(:help), help_path %></li>
-                <li><%= link_to t(:invite_friends), invite_friends_path %></li>
-              </ul>
-            </nav>
           </div>
-      <% else %>  
+          <div class="menubar">
+            <ul>
+              <li><%= link_to t(:my_auctions), auctions_path %></li>
+              <li><%= link_to t(:account_settings), edit_user_registration_path %></li>
+              <li><%= link_to t(:help), help_path %></li>
+              <li><%= link_to t(:invite_friends), invite_friends_path %></li>
+            </ul>
+          </div>
+      <% else %>
           <div class="login_area">
             <% if not devise_controller? %>
-            <%= link_to t(:login), new_user_session_path %>
-            <%= link_to t(:sign_up), new_user_registration_path %>
+                <%= link_to t(:login), new_user_session_path %>
+                <%= link_to t(:sign_up), new_user_registration_path %>
             <% else %>
-            <%= link_to t(:home), root_path %>
+                <%= link_to t(:home), root_path %>
             <% end %>
           </div>
       <% end %>
     </div>
   </div>
-
-  <%= render 'layouts/register_form' %>
 </div>
