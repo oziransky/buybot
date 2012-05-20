@@ -1,0 +1,143 @@
+/* general */
+body {
+    background-image:url('/images/canvas.png');
+}
+
+/* debug */
+.debug_dump {
+    float: left;
+}
+
+/* header */
+#header li {
+    list-style: none;
+    display: inline;
+}
+#header li a {
+    color: #f6a828;
+}
+.user_nav {
+    background-color: #f6a828;
+    width: 100%;
+}
+.logo img {
+    float: left;
+    width: 100px;
+    height: 60px;
+}
+
+/* main menu configuration */
+#user_nav li.potato-menu-item {
+    width:160px;
+    font-size:16px;
+	background-color: #f6a828;
+}
+#user_nav li.potato-menu-item a {
+    padding:5px 20px 5px 12px;
+    color: #ffffff;
+}
+#user_nav li.potato-menu-hover {
+    background-color: #fdf5ce;
+}
+#user_nav li.potato-menu-item ul {
+    border-top:1px solid #444;
+    border-left:1px solid #444;
+}
+
+/* footer configuration */
+#footer_nav {
+    float: left;
+    width: 100%;
+}
+#footer_nav li.potato-menu-item {
+    width:140px;
+    font-size:14px;
+}
+#footer_nav li.potato-menu-item a {
+    padding:5px 20px 5px 12px;
+    color: #000000;
+}
+
+/* search */
+.search .ui-form {
+    width:800px;
+    margin:0 auto;
+}
+.search .ui-form .ui-widget-content {
+    background: none;
+    border: none;
+}
+.search input {
+    width: 200px;
+    height: 34px;
+}
+.search .ui-button {
+    height: 40px;
+}
+
+/* friend invite */
+.invite .ui-form {
+    width:500px;
+    margin-top: 20px;
+}
+.invite .ui-form .ui-widget-content {
+    font-family: arial, helvetica, clean, sans-serif;
+    padding:10px 20px 5px 20px;
+    font-size:14px;
+    float: left;
+}
+
+/* login/register forms */
+.devise .ui-form {
+    width:500px;
+    margin:0 auto;
+}
+.devise .ui-form .ui-widget-header h3 {
+    margin:10px 0 10px 20px;
+}
+.devise .ui-form .ui-widget-content {
+    font-family: arial, helvetica, clean, sans-serif;
+    padding:10px 20px 5px 20px;
+    font-size:14px;
+}
+.devise .ui-form label {
+    float:left;
+    padding:10px 0 0 20px;
+    width:50px;
+    text-align: right;
+}
+.devise .ui-form .hints {
+    font-size:13px;
+}
+.devise .ui-button {
+    width: 100px;
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+.devise .ui-form .fb_connect p {
+    display: block;
+    font-size: 16px;
+    color: #51638C;
+    text-shadow: white 0 1px 0;
+}
+
+/* main page - categories */
+.categories {
+    width: 20%;
+    list-style: none;
+    float: left;
+}
+.categories li {
+    list-style: none;
+}
+
+/* how it works */
+.how_works img {
+    float: left;
+    width: 260px;
+    height: 400px;
+    padding:10px 0 0 20px;
+    border:1px solid #fbcb09;
+    border-radius: 5px;
+    margin-left: 10px;
+}

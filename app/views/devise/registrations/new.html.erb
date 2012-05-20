@@ -1,26 +1,47 @@
-<div class="simple_form">
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
-
-      <div>
-        <%= f.label t(:email_s) %><br />
-        <%= f.email_field :email %>
+<div class="devise">
+  <div class="ui-widget ui-form">
+    <div class="ui-widget-header ui-corner-all">
+      <h3>Login for BuyBot</h3>
+    </div>
+    <div class="ui-widget-content">
+      <div class="hints" align="right">Already a member?
+        <% if controller_name != 'sessions' %>
+            <%= link_to t(:login), new_session_path(resource_name) %>
+        <% end %>
       </div>
-
-      <div>
-        <%= f.label t(:password_s) %><br />
-        <%= f.password_field :password %>
+      <div class="fb_connect">
+        <p>Use your <b>Facebook</b> account to connect with BuyBot</p>
+        <a href="#" class="facebook_login"></a>
       </div>
-
-      <div>
-        <%= f.label t(:confirm_password) %><br />
-        <%= f.password_field :password_confirmation %>
-      </div>
-
-      <div>
-        <%= f.submit t(:sign_up) %>
-      </div>
-  <% end %>
-
-  <%= render :partial => "devise/shared/links" %>
+      <p align="center"><b>OR</b></p>
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+          <div class="devise-main">
+            <div align="center">
+              <%= f.label t(:email_s) %>
+              <%= f.email_field :email %>
+            </div>
+            <div align="center">
+              <%= f.label t(:password_s) %>
+              <%= f.password_field :password %>
+            </div>
+            <div align="center">
+              <%= f.label t(:confirm_password) %>
+              <%= f.password_field :password_confirmation %>
+            </div>
+            <div>
+              <p align="center"><%= f.submit t(:sign_up) %></p>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
 </div>
+
+<script>
+    $(function() {
+        $( "input:submit", ".devise-main" ).button();
+    });
+</script>
+
+

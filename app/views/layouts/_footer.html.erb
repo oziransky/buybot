@@ -1,15 +1,11 @@
 <div id="footer">
-  <div id="foot">
-    <div id="foot_right">
-      <nav class="footer_nav">
-        <ul>
-          <li><%= link_to t('footer.contact_us'), root_path %></li>
-          <li><%= link_to t('footer.terms'), root_path %></li>
-          <li><%= link_to t('footer.jobs'), root_path %></li>
-          <li><%= link_to t('footer.about'), root_path %></li>
-          <li><%= link_to t('footer.merchant'), new_store_owner_session_path %></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
+  <ul id="footer_nav">
+    <li><%= link_to t(:contact_us), root_path %></li>
+    <li><%= link_to t(:terms), root_path %></li>
+    <li><%= link_to t(:jobs), root_path %></li>
+    <li><%= link_to t(:about), root_path %></li>
+    <% if not user_signed_in? %>
+        <li><%= link_to t(:merchant), new_store_owner_session_path %></li>
+    <% end %>
+  </ul>
 </div>

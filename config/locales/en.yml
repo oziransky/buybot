@@ -74,9 +74,10 @@ en:
   are_you_sure: "Are You Sure?"
   begin_auction: "Begin Auction"
   search_results: "Search Results"
-  footer:
+  select_a_category: "Select a Category"
   blogs: "Blogs"
   contact_us: "Contact us"
+  terms: "Terms"
   jobs: "Jobs"
   about: "About us"
   merchant: "Merchant Login"
@@ -91,4 +92,8 @@ en:
   unable_to_checkout: "Unable to proceed with checkout. Please try again later."
   automatic_checkout: "Auction timed out, checkout with lowest price received!"
   thankyou_note: "Thank you for purchasing using BuyBot!"
+  friend_email: "Friend email address"
+  personal_message: "Hei, I have started using BuyBot for shopping. Give it a try!"
+  send: "Send"
+  friend_invite_subject: "Cool shopping site!"
 

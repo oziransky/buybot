@@ -3,7 +3,8 @@
 <head>
   <title><%= title %></title>
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag 'jquery', 'jquery-ui.min', 'application'%>
+  <%= javascript_include_tag 'jquery', 'jquery-ui.min', 'application',
+                             'jquery.ui.potato.menu', 'jquery.equal-heights'%>
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -17,7 +18,7 @@
   <div id="content">
     <%= yield %>
   </div>
-  
+
   <%= render 'layouts/footer' %>
 
   <%= debug(params) if Rails.env.development? %>
