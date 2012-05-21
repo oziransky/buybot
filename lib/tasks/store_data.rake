@@ -1,8 +1,6 @@
 # encoding: utf-8
 require 'faker'
 
-
-
 def create_categories_and_products(num_of_categories,min_num_of_sub,max_num_of_sub, num_of_products)
   subcategories = []
   Category.create!(:name => "Electronics")
@@ -26,7 +24,7 @@ def create_categories_and_products(num_of_categories,min_num_of_sub,max_num_of_s
                               :catalog_id => n,
                               :image_folder => "public/data/p#{n+1}",
                               :manufacturer => @manufacturers[rand(@manufacturers.count - 1)])
-          p.categories << sub_sub_category                  
+          p.categories << sub_sub_category
         end
       end
     end
@@ -92,7 +90,7 @@ def create_stores_and_inventory()
       puts "creating price #{p.id} - #{store_id} "
       Price.create!(:price => rand(2500),
                     :product_id => p.id,
-                    :store_id => store_id) 
+                    :store_id => store_id)
     end
 
   end
@@ -112,7 +110,6 @@ namespace :db do
     Rake::Task['db:reset'].invoke
 
     create_categories_and_products(number_of_categories, 3,5,num_of_products)
-    #create_categories_and_products(number_of_categories, number_of_sub_categories, num_of_products)
 
     create_stores_owners(num_of_owners)
 

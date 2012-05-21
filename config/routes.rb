@@ -29,6 +29,8 @@ Buybot::Application.routes.draw do
 
   match '/home', :to => 'pages#home'
   match '/help', :to => 'pages#help'
+
+  match '/new_invite', :to => 'pages#new_invite'
   match '/invite_friends', :to => 'pages#invite_friends'
   match '/facebook/callback', :to=>'users#authenticate_fb'
 end

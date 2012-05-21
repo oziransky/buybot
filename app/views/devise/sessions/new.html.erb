@@ -1,22 +1,45 @@
-<div class="simple_form">
-  <%= t(:sign_in_with, :provider=>"Facebook") %>
-  <%= link_to image_tag('facebook_32.png'), connect_to_fb_users_path %>
-  <p></p>
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-      <div><%= f.label t(:email_s) %><br />
-        <%= f.email_field :email %>
+<div class="devise">
+  <div class="devise ui-widget ui-form">
+    <div class="ui-widget-header ui-corner-all">
+      <h3>Login for BuyBot</h3>
+    </div>
+    <div class="ui-widget-content">
+      <div class="hints" align="right">Not a member yet?
+        <% if devise_mapping.registerable? && controller_name != 'registrations' %>
+            <%= link_to t(:signup), new_registration_path(resource_name) %>
+        <% end %>
       </div>
-
-      <div><%= f.label t(:password_s) %><br />
-        <%= f.password_field :password %>
+      <div class="fb_connect">
+        <p align="center">Use your <b>Facebook</b> account to connect with BuyBot</p>
+        <p align="center"><%= link_to image_tag('facebook_32.png'), connect_to_fb_users_path %></p>
       </div>
-
-      <% if devise_mapping.rememberable? -%>
-          <div><%= f.check_box :remember_me %> <%= f.label t(:remember_me_s) %><br /></div>
-      <% end -%>
-
-      <div><%= f.submit t(:enter) %></div>
-  <% end %>
-
-  <%= render :partial => "devise/shared/links" %>
+      <p align="center"><b>OR</b></p>
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+          <div class="devise-main">
+            <div align="center">
+              <%= f.label t(:email_s) %>
+              <%= f.email_field :email %>
+            </div>
+            <div align="center">
+              <%= f.label t(:password_s) %>
+              <%= f.password_field :password %>
+            </div>
+            <div>
+              <p align="center"><%= f.submit t(:login) %></p>
+              <div class="hints">
+                <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
+                    <%= link_to t(:forgot_password), new_password_path(resource_name) %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
 </div>
+
+<script>
+    $(function() {
+        $( "input:submit", ".devise-main" ).button();
+    });
+</script>
