@@ -33,7 +33,14 @@ describe CheckoutsController do
   end
 
   it "should redirect to checkout url" do
-    auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id)
+
+
+    sign_in FactoryGirl.create(:user, :access_token=>'AAAEHLlQdMyMBAGPsI7R5J2DS6zs4QL8GHxJpLYQka0ZC6GVtHLAnTGYM2MaZBxyqZBDQJAwZB9YNSW5KPvD3DZCX7Ea6ijN4SeC2NjkzZBbAZDZD')
+    store = FactoryGirl.create(:store)
+    product = FactoryGirl.create(:product)
+    auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id, :product_id=>product.id)
+    auction_status = FactoryGirl.create(:auction_status,:store_id => store.id,:auction=>auction,:price=>100)
+    auction.auction_statuses << auction_status
     checkout = FactoryGirl.create(:checkout, :auction_id => auction.id, :final_price => auction.current_price )
 
     get :show, :id => checkout.id

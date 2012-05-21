@@ -41,4 +41,16 @@ class Auction < ActiveRecord::Base
       "Checkout Process"
     end
   end
+
+  def lowest_bidder
+    lowest_bid = Float::INFINITY
+    bidder = 0
+    auction_statuses.each do |auction_status|
+      if lowest_bid >= auction_status.price
+        bidder = auction_status.store_id
+        lowest_bid = auction_status.price
+      end
+    end
+    bidder
+  end
 end
