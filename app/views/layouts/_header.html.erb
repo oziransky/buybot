@@ -1,8 +1,10 @@
 <div id="header">
-  <div id="logo-and-login">
-    <div id="user_nav" class="ui-widget">
+  <div class="logo">
+  </div>
+  <div>
+    <div>
       <% if user_signed_in? %>
-          <div class="logged_area ui-widget-content">
+          <div align="right">
             <ul>
               <li><%= link_to t(:home), root_path %></li>
               <li><%= t :welcome, :user=>current_user.email %></li>
@@ -12,21 +14,24 @@
                 <li><%= link_to t(:connect_to_facebook), connect_to_fb_users_path, :method => :get%></li>
               <% end %>
             </ul>
-            <nav class="main_nav">
-              <ul>
-                <li><%= link_to t(:my_auctions), auctions_path %></li>
-                <li><%= link_to t(:account_settings), edit_user_registration_path %></li>
-                <li><%= link_to t(:help), help_path %></li>
-                <li><%= link_to t(:invite_friends), invite_friends_path %></li>
-              </ul>
-            </nav>
           </div>
-      <% else %>  
-          <div class="login_area">
+          <div class="user_nav">
+            <ul id="user_nav">
+              <li><%= link_to t(:my_auctions), auctions_path %></li>
+              <li><%= link_to t(:account_settings), edit_user_registration_path %></li>
+              <li><%= link_to t(:help), help_path %></li>
+              <li><%= link_to t(:invite_friends), new_invite_path %></li>
+            </ul>
+          </div>
+      <% else %>
+          <div align="right">
             <% if not devise_controller? %>
-
-                <%= link_to t(:login), new_user_session_path %>
-                <%= link_to t(:sign_up), new_user_registration_path %>
+                <ul>
+                  <li>Welcome</li>
+                  <li><%= link_to t(:login), new_user_session_path %></li>
+                  <li>or</li>
+                  <li><%= link_to t(:sign_up), new_user_registration_path %></li>
+                </ul>
             <% else %>
                 <%= link_to t(:home), root_path %>
             <% end %>
@@ -34,6 +39,4 @@
       <% end %>
     </div>
   </div>
-
-  <%= render 'layouts/register_form' %>
 </div>
