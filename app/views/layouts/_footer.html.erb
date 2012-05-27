@@ -3,6 +3,7 @@
     <li><%= link_to t(:contact_us), root_path %></li>
     <li><%= link_to t(:terms), root_path %></li>
     <li><%= link_to t(:jobs), root_path %></li>
+    <li><%= link_to t(:help), help_path %></li>
     <li><%= link_to t(:about), root_path %></li>
     <% if not user_signed_in? %>
         <li><%= link_to t(:merchant), new_store_owner_session_path %></li>

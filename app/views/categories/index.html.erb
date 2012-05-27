@@ -2,11 +2,9 @@
   <div class="ui-widget ui-form">
     <div>
       <%= form_tag "customer_products/search", :method => 'get' do %>
-          <div class="search_category  ui-widget-content">
+          <div class="search_category ui-widget-content">
             <p align="center">
               <%= text_field_tag "search", params[:search], :placeholder=>"I want to buy...", :id => "search_input" %>
-              <!--<%= select_tag(:category, ('<option value="">' + t(:select_a_category) + '</option>' + options_from_collection_for_select(@root_categories, :id, :name)).html_safe) %>-->
-              <button><%= t(:select_a_category) %></button>
               <%= submit_tag t(:search), :name => nil%>
             </p>
           </div>
@@ -43,11 +41,6 @@
 <script>
     $(function() {
         $( "input:submit", ".search_category" ).button();
-        $( "button", ".search_category" ).button({
-            icons: {
-                secondary: "ui-icon-triangle-1-s"
-            }
-        });
     });
     $(function() {
         $( "#accordion" ).accordion({
@@ -61,8 +54,5 @@
         });
         $( "#accordion" ).accordion( "option", "icons", null );
     });
-    //    $(function() {
-    //        $('.search_category').equalHeights();
-    //    });
 </script>
 

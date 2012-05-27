@@ -2,7 +2,7 @@ module CustomerProductsHelper
 
 
   def ranges_links(price_range)
-    if not price_range.empty? 
+    if not price_range.empty?
       differance = price_range[1] - price_range[0]
       ranges = []
       if differance > 1000
@@ -18,22 +18,24 @@ module CustomerProductsHelper
       s.html_safe
     end
   end
+
   private
+
   def subdivide_ranges(price_range,step)
-      ranges = []
-      min = price_range[0] - price_range[0]%step
-      index=0
-      while min + step <= price_range[1]
-        max = min + step
-        range = [min,max] 
-        ranges[index]=range
-        min = max
-        index += 1
-      end
-      max = min+step
-      range = [min,max] 
+    ranges = []
+    min = price_range[0] - price_range[0]%step
+    index=0
+    while min + step <= price_range[1]
+      max = min + step
+      range = [min,max]
       ranges[index]=range
-      ranges
-  
+      min = max
+      index += 1
+    end
+    max = min+step
+    range = [min,max]
+    ranges[index]=range
+    ranges
+
   end
 end

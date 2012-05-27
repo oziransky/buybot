@@ -19,10 +19,10 @@ def create_categories_and_products(num_of_categories,min_num_of_sub,max_num_of_s
         subcategories << sub_sub_category
         5.times do |n|
           p = Product.create!(:name => sub_sub_category.name + "#{n+1}",
-                              :description => Faker::Lorem.sentence(4),
+                              :description => Faker::Lorem.sentence(10),
                               :url => "www.monster.com",
                               :catalog_id => n,
-                              :image_folder => "public/data/p#{n+1}",
+                              :image_folder => "data/p1",
                               :manufacturer => @manufacturers[rand(@manufacturers.count - 1)])
           p.categories << sub_sub_category
         end
@@ -44,7 +44,7 @@ def create_categories_and_products(num_of_categories,min_num_of_sub,max_num_of_s
 end
 
 def create_stores_owners(num_of_owners)
-  puts "creating " + num_of_owners.to_s + " store owners"
+  #puts "creating " + num_of_owners.to_s + " store owners"
   num_of_owners.times do |n|
     name = Faker::Name.name
     email = "example-#{n+1}@gmail.com"
@@ -56,13 +56,13 @@ def create_stores_owners(num_of_owners)
 end
 
 def create_stores_and_inventory()
-  puts "createing stores and inventory"
-  puts "products created "+Product.count.to_s
-  puts "store owners created "+StoreOwner.count.to_s
+  #puts "createing stores and inventory"
+  #puts "products created "+Product.count.to_s
+  #puts "store owners created "+StoreOwner.count.to_s
   storeowners = StoreOwner.all
-  puts storeowners.count
+  #puts storeowners.count
   products = Product.all
-  puts products.count
+  #puts products.count
   storeowners.each_with_index do |owner, c|
     @store = owner.stores.create!(:name => "Example Store #{c+=1}",
                                   :address => "Some street in some place",
@@ -81,13 +81,13 @@ def create_stores_and_inventory()
 
   end
   store_ids = Store.all.collect {|s| s.id }
-  puts "there are #{store_ids.count} stores"
+  #puts "there are #{store_ids.count} stores"
   for p in products do
     10.times do
       index = rand(store_ids.count)
-      puts "index is #{index}"
+      #puts "index is #{index}"
       store_id = store_ids[index]
-      puts "creating price #{p.id} - #{store_id} "
+      #puts "creating price #{p.id} - #{store_id} "
       Price.create!(:price => rand(2500),
                     :product_id => p.id,
                     :store_id => store_id)
@@ -107,12 +107,13 @@ namespace :db do
   num_of_owners = 10
 
   task :populate => :environment do
+    # (1) run this first
     Rake::Task['db:reset'].invoke
 
     create_categories_and_products(number_of_categories, 3,5,num_of_products)
 
+    # (2) run this second
     create_stores_owners(num_of_owners)
-
     create_stores_and_inventory()
   end
 end

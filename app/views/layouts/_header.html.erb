@@ -1,30 +1,28 @@
 <div id="header">
   <div class="logo">
+    <%= link_to t(:home), root_path %>
   </div>
   <div>
     <div>
       <% if user_signed_in? %>
-          <div align="right">
+          <div class="user_menu" align="right">
             <ul>
-              <li><%= link_to t(:home), root_path %></li>
-              <li><%= t :welcome, :user=>current_user.email %></li>
-              <li>|</li>
+              <li><%= t(:welcome, :user=>current_user.email) %></li>
               <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
-              <% if current_user.fb_uid%>
-                <li><%= link_to t(:connect_to_facebook), connect_to_fb_users_path, :method => :get%></li>
+              <li><%= link_to t(:account_settings), edit_user_registration_path %></li>
+              <% if current_user.fb_uid.nil? %>
+                  <li><%= link_to t(:connect_to_facebook), connect_to_fb_users_path, :method => :get%></li>
               <% end %>
             </ul>
           </div>
           <div class="user_nav">
             <ul id="user_nav">
               <li><%= link_to t(:my_auctions), auctions_path %></li>
-              <li><%= link_to t(:account_settings), edit_user_registration_path %></li>
-              <li><%= link_to t(:help), help_path %></li>
               <li><%= link_to t(:invite_friends), new_invite_path %></li>
             </ul>
           </div>
       <% else %>
-          <div align="right">
+          <div class="user_menu" align="right">
             <% if not devise_controller? %>
                 <ul>
                   <li>Welcome</li>
@@ -32,11 +30,14 @@
                   <li>or</li>
                   <li><%= link_to t(:sign_up), new_user_registration_path %></li>
                 </ul>
-            <% else %>
-                <%= link_to t(:home), root_path %>
             <% end %>
           </div>
       <% end %>
     </div>
   </div>
 </div>
+
+<style type="text/css">
+    .ui-popup { position: absolute; z-index: 5000; }
+    .ui-menu { width: 200px; }
+</style>

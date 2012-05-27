@@ -1,4 +1,4 @@
-<div id="active_filters">
+<div class="active_filter">
 	<%if not params[:search].nil? %>
 	<div class='active_filter_item'>
 			<span><%=params[:search].to_s%></span>
@@ -20,7 +20,7 @@
 	<%end%>
 	<%if not params[:category].nil? %>
 		<div class='active_filter_item'>
-			<span><%=params[:categories].to_s%></span>		
+			<span><%= Category.find(params[:category].to_i).name %></span>
 			<%= link_to 'x',search_customer_products_path(params.select{|key,val| key!='category'}) %>
 		</div>
 	<%end%>

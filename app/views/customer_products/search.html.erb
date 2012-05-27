@@ -1,28 +1,37 @@
-
-<div id="products_display">
-    <h1><%=t(:search_results)%></h1>
-    <%=render 'active_filters'%>
-    <%= render :partial=>"categories/product",:locals=>{:products=>@search_results.products}%>
-    <%=will_paginate @search_results.products%>
-    
-      
-</div>
-<div id="right-side-bar">
-  <div id="price-ranges">
-    <div><%=t(:price_ranges)%></div>
+<div class="filter">
+  <div>
+    <%= render 'active_filters' %>
+  </div>
+  <div class="filter_sep"></div>
+  <div class="available_filters">
+    <div class="available_filter">
+      <div><%=t(:price_ranges)%></div>
       <%=ranges_links @search_results.price_range%>
     </div>
-    <div id="possible-categories">
+    <div class="available_filter">
       <div><%=t(:categories)%></div>
-        <%for cat in @search_results.prod_categories do%>
+      <%for cat in @search_results.prod_categories do%>
           <div><%=link_to cat.name, search_customer_products_path(Hash[params].update('category'=>cat.id.to_s))%></div>
-	<%end%>
-	
-      </div>
-      <div id="manufacturers">
-        <div class><%=t(:manufacturers)%></div>
-          <%for manufacturer in @search_results.manufacturers do%>
-            <div><%=link_to manufacturer, search_customer_products_path(Hash[params].update(:manufacturer=>manufacturer))%></div>
-          <%end%>
-        </div>
+      <%end%>
+    </div>
+    <div class="available_filter">
+      <div><%=t(:manufacturers)%></div>
+      <%for manufacturer in @search_results.manufacturers do%>
+          <div><%=link_to manufacturer, search_customer_products_path(Hash[params].update(:manufacturer=>manufacturer))%></div>
+      <%end%>
+    </div>
   </div>
+</div>
+
+<div class="clear_sep"></div>
+
+<div class="product_area">
+  <%= render :partial=>"categories/product", :locals=>{ :products => @search_results.products } %>
+  <%= will_paginate @search_results.products %>
+</div>
+
+<script>
+    $(function() {
+        $('.available_filter').equalHeights();
+    });
+</script>
