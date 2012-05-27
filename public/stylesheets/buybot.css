@@ -4,7 +4,7 @@ body {
 }
 a {
     color: #1C94C4;
-    text-decoration: none;
+    /*text-decoration: none;*/
 }
 
 /* debug */
@@ -195,42 +195,98 @@ a {
     padding-left: 20px;
 }
 
-/* product list */
-.product_area {
+/* search/product list */
+.products_list_area {
     width: 90%;
     margin-top: 20px;
     margin-left: 30px;
 }
-.product_area .pagination {
+.products_list_area .pagination {
     padding-left: 20%;
 }
-.product_title {
+.products_list_area .product_title {
     margin-top: 20px;
     padding-left: 5%;
 }
 .product_thumbnail {
     float: left;
 }
-.product_info {
+.products_list_area .product_info {
     margin: 10px 0 10px 0;
     padding-left: 20px;
     float: left;
 }
-.product_info .description {
+.products_list_area .product_info .description {
     margin: 5px 0 10px 0;
     font: normal 12px arial;
     color: gray;
 }
-.product_item {
+.products_list_area .product_item {
     border-bottom: solid 1px #FBCB09;
     line-height: 0;
     float: left;
     width: 80%;
 }
-.get_price {
+.products_list_area .get_price {
     float: right;
     padding-top: 15px;
 }
 .clear_sep {
     clear: left;
+}
+
+/* product selection */
+.product_detailed {
+    width: 90%;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+.product_detailed .product_info .description {
+    margin: 5px 0 10px 0;
+    font: normal 12px arial;
+    color: gray;
+}
+.product_detailed .product_info .title {
+    color: #1C94C4;
+}
+.product_detailed .stores_display {
+    float: left;
+}
+.product_detailed .stores_display .auction_store {
+    border-bottom: solid 1px #FBCB09;
+    line-height: 0;
+    float: left;
+    width: 60%;
+}
+.product_detailed .stores_display .start_auction {
+    float: left;
+    padding-top: 30px;
+    padding-left: 200px;
+}
+.product_detailed .stores_display .title {
+    color: #1C94C4;
+    padding-left: 50px;
+}
+.product_detailed .stores_display .store_select {
+    width: 50px;
+}
+.product_detailed .stores_display .store_review {
+    padding-left: 30px;
+    padding-bottom: 20px;
+}
+.product_detailed .stores_display .auction_store_review {
+    font: normal 12px arial;
+    color: gray;
+    padding-top: 5px;
+    padding-left: 50px;
+}
+.product_detailed .stores_display .final_price_title {
+    font: normal 12px arial;
+    color: gray;
+    padding-left: 215px;
+}
+.product_detailed .stores_display .final_price {
+    color: #FE4600;
+    font-size: 18px;
+    padding-left: 200px;
 }

@@ -24,7 +24,7 @@ en:
   update: "Update"
   cancel: "Cancel"
   confirm: "Proceed to checkout"
-  price: "Price"
+  price: "Final price"
   price_ranges: "Price ranges"
   manufacturers: "Manufacturers"
   delete: "Delete"

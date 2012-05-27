@@ -25,7 +25,7 @@
 
 <div class="clear_sep"></div>
 
-<div class="product_area">
+<div class="products_list_area">
   <%= render :partial=>"categories/product", :locals=>{ :products => @search_results.products } %>
   <%= will_paginate @search_results.products %>
 </div>
