@@ -9,7 +9,7 @@ class Auction < ActiveRecord::Base
   TIMEOUT = 4     # stopped - due to timeout
   CHECKOUT = 5    # stopped - in checkouts process
 
-  DEFAULT_TIME = 5 * 60 # default time is 10 minutes
+  DEFAULT_TIME = 5 * 60
 
   #attr_accessible :product_id, :minimal_step, :maximum_step, :max_num_bids, :current_price, :status, :close_at
   attr_accessible :product_id, :current_price, :status, :close_at, :user_id, :bids_received
@@ -24,6 +24,18 @@ class Auction < ActiveRecord::Base
 
   def in_processing?
     self.status == TIMEOUT || self.status == CHECKOUT || self.status == SOLD
+  end
+
+  def remaining_time?
+    now = Time.parse(Time.now.to_s(:db))
+    close_time = Time.parse(self.close_at.to_s(:db))
+
+    if now > close_time
+      "---"
+    else
+      "#{((close_time - now) / 60).round.to_s}"
+    end
+
   end
 
   def status_to_s

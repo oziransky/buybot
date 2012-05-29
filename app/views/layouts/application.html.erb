@@ -12,9 +12,16 @@
 <div id="container">
   <%= render :partial=>'layouts/header'%>
 
-  <% flash.each do |key, value| %>
-      <div class="flash <%= key %>"><%= value %></div>
+  <% if flash[:notice] %>
+      <div class="flash" id="flash_notice"><%= flash[:notice] %></div>
   <% end %>
+  <% if flash[:success] %>
+      <div class="flash" id="flash_success"><%= flash[:success] %></div>
+  <% end %>
+  <% if flash[:error] %>
+      <div class="flash" id="flash_error"><%= flash[:error] %></div>
+  <% end %>
+
   <div id="content">
     <%= yield %>
   </div>

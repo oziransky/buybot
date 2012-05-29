@@ -1,23 +1,28 @@
-<div id="tabs">
-    <ul>
-      <li><a href="#tabs-1">Open Auctions</a></li>
-      <li><a href="#tabs-2">Paused Auctions</a></li>
-    </ul>
-    <div id="#tabs-1">Open auctions tabs content</div>
-    <div id="#tabs-2">Closed auctions tabs content</div>
+<div class="auctions_list">
+  <h2 class="title"><%= t(:my_auctions) %></h2>
+  <% @auctions.each do |auction| %>
+      <div class="auction_preview">
+        <div class="product_title"><%= Product.find(auction.product_id).name %></div>
+        <div class="clear_sep"></div>
+        <%= image_tag("#{Product.find(auction.product_id).image_folder}/thumbnail.gif",
+                           :class => "product_thumbnail") %>
+        <span><%= link_to t(:details), "/auctions/" + auction.id.to_s, :class => "details_button" %></span>
+        <div class="focus_info">
+          <p><%= "#{t(:this_auction_is)}" %>
+            <span class="info_highlight"><%= " #{auction.status_to_s}" %></span>.</p>
+          <p><%= t(:best_price_sofar) %> <span class="info_highlight"><%= auction.current_price %> NIS</span>.</p>
+          <p><%= "#{t(:will_close_in)}" %>
+            <span class="info_highlight"><%= " #{auction.remaining_time?} " %></span><%= "#{t(:minutes)}"%>.</p>
+        </div>
+      </div>
+      <div class="clear_sep"></div>
+  <% end %>
 </div>
 
-<table id="all_auctions">
-  <tr>
-    <td class="main">
-      <span><%=t(:my_auctions)%></span>
-    </td>
-  </tr>
-  <% @auctions.each do |auction| %>
-      <tr>
-        <td><%= link_to t(:details), "/auctions/" + auction.id.to_s %></td>
-        <td><%= t(:current_price, :price=>auction.current_price) %></td>
-        <td><%= Product.find(auction.product_id).name %></td>
-      </tr>
-  <% end %>
-</table>
+<script>
+    $(function() {
+        $( ".details_button" ).button();
+    });
+</script>
+
+

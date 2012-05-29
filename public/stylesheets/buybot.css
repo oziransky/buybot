@@ -4,7 +4,18 @@ body {
 }
 a {
     color: #1C94C4;
-    /*text-decoration: none;*/
+}
+.flash  {
+    background-color: #F9EDBE;
+    border: 1px solid #F0C36D;
+    color: #333;
+    font-size: 14px;
+    text-align: center;
+    text-indent: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 40%;
+    width: 20%;
 }
 
 /* debug */
@@ -40,7 +51,8 @@ a {
     width:160px;
     font-size:16px;
     background-color: #f6a828;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
+    margin-left: 20px;
 }
 #user_nav li.potato-menu-item a {
     padding:5px 20px 5px 12px;
@@ -242,7 +254,7 @@ a {
     margin-left: 30px;
 }
 .product_detailed .product_info .description {
-    margin: 5px 0 10px 0;
+    padding-top: 10px;
     font: normal 12px arial;
     color: gray;
 }
@@ -278,7 +290,7 @@ a {
     font: normal 12px arial;
     color: gray;
     padding-top: 5px;
-    padding-left: 50px;
+    padding-left: 70px;
 }
 .product_detailed .stores_display .final_price_title {
     font: normal 12px arial;
@@ -288,5 +300,128 @@ a {
 .product_detailed .stores_display .final_price {
     color: #FE4600;
     font-size: 18px;
-    padding-left: 200px;
+    padding-left: 270px;
 }
+
+/* auctions list */
+.auctions_list {
+    width: 80%;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+.auctions_list .title {
+    color: #1C94C4;
+    padding-left: 50px;
+}
+.auctions_list .auction_preview {
+    width: 80%;
+    border-bottom: solid 1px #FBCB09;
+    line-height: 0;
+    float: left;
+    margin-bottom: 20px;
+}
+.auctions_list .auction_preview .product_title {
+    float: left;
+    color: #1C94C4;
+    padding-top: 10px;
+    padding-left: 30px;
+}
+.auctions_list .auction_preview .product_thumbnail {
+    float: left;
+    padding-top: 5px;
+}
+.auctions_list .auction_preview .focus_info {
+    color: grey;
+    font-size: 18px;
+    float: left;
+    padding-top: 30px;
+    padding-left: 40px;
+}
+.info_highlight {
+    color: #FE4600;
+}
+.auctions_list .auction_preview .details_button {
+    float: right;
+    margin-top: 40px;
+}
+
+/* auction details */
+.auction_details {
+    width: 70%;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+.auction_details .product_title {
+    float: left;
+    color: #1C94C4;
+    padding-top: 10px;
+    padding-left: 30px;
+}
+.auction_details .product_thumbnail {
+    float: left;
+    padding-top: 5px;
+}
+.auction_details .focus_info {
+    color: grey;
+    font-size: 18px;
+    float: left;
+    padding-left: 60px;
+}
+.auction_details .stores_in_auction {
+    border-top: solid 1px #FBCB09;
+}
+.auction_details .control {
+    margin-right: 50px;
+}
+.auction_details .control .ui-button {
+    height: 50px;
+    width: 50px;
+    float: right;
+    margin-top: 40px;
+    margin-right: 5px;
+}
+.auction_details .checkout {
+    float: right;
+    margin-right: 50px;
+    padding-bottom: 20px;
+}
+.auction_details .checkout .ui-button {
+    float: right;
+    height: 20px;
+    width: 80px;
+    padding-bottom: 20px;
+}
+.auction_details .auction_store {
+    border-bottom: solid 1px #FBCB09;
+    line-height: 0;
+    float: left;
+    width: 100%;
+}
+.auction_details .title {
+    color: #1C94C4;
+    padding-left: 50px;
+    padding-top: 20px;
+}
+.auction_details .store_review {
+    padding-left: 30px;
+    padding-bottom: 20px;
+}
+.auction_details .final_price_title {
+    font: normal 12px arial;
+    color: gray;
+    padding-left: 215px;
+}
+.auction_details .final_price {
+    color: #FE4600;
+    font-size: 18px;
+    padding-left: 270px;
+}
+.auction_details .store_thumbnail {
+    float: left;
+}
+.auction_details .store_message {
+    float: left;
+    margin-left: 60px;
+    margin-top: 15px;
+}
+

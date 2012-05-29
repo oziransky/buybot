@@ -32,5 +32,6 @@ Buybot::Application.routes.draw do
 
   match '/new_invite', :to => 'pages#new_invite'
   match '/invite_friends', :to => 'pages#invite_friends'
-  match '/facebook/callback', :to=>'users#authenticate_fb'
+  match '/facebook/callback', :to => 'users#authenticate_fb'
+  match '/auctions/message', :to => 'auctions#message'
 end

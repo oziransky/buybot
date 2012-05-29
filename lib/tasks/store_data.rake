@@ -35,7 +35,7 @@ def create_categories_and_products(num_of_categories,min_num_of_sub,max_num_of_s
                               :description => Faker::Lorem.sentence(4),
                               :url => "www.monster.com",
                               :catalog_id => 1,
-                              :image_folder => "public/data/p#{n+1}",
+                              :image_folder => "/data/p1",
                               :manufacturer => @manufacturers[rand(@manufacturers.count - 1)])
     3.times do
       product.categories << subcategories[rand(subcategories.count - 1)]
@@ -68,6 +68,7 @@ def create_stores_and_inventory()
                                   :address => "Some street in some place",
                                   :url => "www.stores.com",
                                   :description => Faker::Lorem.sentence(2),
+                                  :image_path => "/data/s1",
                                   :store_owner_id => owner.id)
 
     100.times do |n|
@@ -108,9 +109,9 @@ namespace :db do
 
   task :populate => :environment do
     # (1) run this first
-    Rake::Task['db:reset'].invoke
-
-    create_categories_and_products(number_of_categories, 3,5,num_of_products)
+    #Rake::Task['db:reset'].invoke
+    #
+    #create_categories_and_products(number_of_categories, 3,5,num_of_products)
 
     # (2) run this second
     create_stores_owners(num_of_owners)

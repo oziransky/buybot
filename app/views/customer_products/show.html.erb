@@ -23,6 +23,7 @@
               <div>
                 <div class="store_review">
                   <%= check_box_tag 'store_ids[]', store.id, false, :class => "store_select" %>
+                  <%= image_tag("data/s1/thumbnail.gif") %>
                   <%= image_tag("check_full.gif", :class => "review_image") %>
                   <span class="final_price_title"><%= t(:price)%>:</span><br/>
                   <span class="auction_store_review"><%= link_to "More about this store", "#" %></span>

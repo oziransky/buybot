@@ -1,20 +1,115 @@
 <!-- Run periodic polling on the status of the auction -->
 <%= javascript_tag do %>
     $(document).ready(
-            function(){
-                setInterval(function(){
-                    $('#auction_details').load("/auctions/<%= @auction.id.to_s %> #auction_details");
-                }, 30000 );
-            });
+    function(){
+    setInterval(function(){
+    $('#auction_details').load("/auctions/<%= @auction.id.to_s %> #auction_details");
+    }, 30000 );
+    });
 <% end %>
-<div id="auction_details">
-  <%= render "auction_menu" %>
-  <div id="auction_profile">
-    <span><%= t(:auction_details) %></span>
-    <% unless current_user.auctions.empty? %>
-        <table>
-          <%= render "auction" %>
-        </table>
-    <% end %>
-  </div>
+
+<div class="auction_details">
+  <% unless @auction.in_processing? %>
+
+      <div>
+        <div class="product_title"><%= @product.name %></div>
+        <div class="clear_sep"></div>
+        <%= image_tag("#{@product.image_folder}/thumbnail.gif",
+                      :class => "product_thumbnail") %>
+        <div class="focus_info">
+          <p><%= "#{t(:this_auction_is)}" %>
+            <span class="info_highlight"><%= " #{@auction.status_to_s}" %></span>.</p>
+          <p><%= t(:best_price_sofar) %> <span class="info_highlight"><%= @auction.current_price %> NIS</span>.</p>
+          <p><%= "#{t(:will_close_in)}" %>
+            <span class="info_highlight"><%= " #{@auction.remaining_time?} " %></span><%= "#{t(:minutes)}"%>.</p>
+        </div>
+      </div>
+
+      <div class="control">
+        <%= link_to_submit("", "play", "") %>
+        <%= form_tag({:action => :update, :status => Auction::ACTIVE}, :method => :put)%>
+        <%= link_to_submit("", "pause", "") %>
+        <%= form_tag({:action => :update, :status => Auction::PAUSED}, :method => :put)%>
+        <%= link_to_submit("", "stop", "") %>
+        <%= form_tag({:action => :destroy, :status => Auction::CHECKOUT}, :method => :delete)%>
+      </div>
+
+      <div class="clear_sep"></div>
+
+      <div class="stores_in_auction">
+        <%for store in @stores do%>
+            <div class="auction_store">
+              <h3 class="title"><%= store.name %></h3>
+              <div>
+                <%= image_tag("data/s1/thumbnail.gif", :class => "store_thumbnail") %>
+                <div class="focus_info">
+                  <p><%= t(:this_store_price) %> <span class="info_highlight"><%= store.product_price(@product) %> NIS</span>.</p>
+                </div>
+              </div>
+              <div class="store_message">
+                <a id="send_message" href="#"><%= t(:send_store_message) %></a>
+              </div>
+              <div class="checkout">
+                <%= link_to_submit("Drop", "", "drop_link") %>
+                <%= link_to_submit("#{t(:buy)}", "", "checkout_link") %>
+                <%= form_tag({:action => :update, :status => Auction::CHECKOUT}, :method => :put)%>
+              </div>
+            </div>
+        <%end%>
+      </div>
+  <% end %>
 </div>
+
+<div id="dialog-message" title="Send a message">
+  <%= form_tag(:action => :message, :method => :put, :id => "send_message_form") do %>
+      <%= text_area_tag(:message_text, nil, :rows => 7, :cols => 35) %>
+  <% end %>
+</div>
+
+<script>
+    $(function() {
+        // buttons
+        $( ".checkout_link" ).button();
+        $( ".drop_link" ).button();
+
+        // controls
+        $( "#play" ).button({
+            text: false,
+            icons: {
+                primary: "ui-icon-play"
+            }
+        });
+        $( "#pause" ).button({
+            text: false,
+            icons: {
+                primary: "ui-icon-pause"
+            }
+        });
+        $( "#stop" ).button({
+            text: false,
+            icons: {
+                primary: "ui-icon-stop"
+            }
+        });
+
+        // message dialog
+        $( "#dialog-message").hide();
+        $( "#send_message" )
+                .click(function() {
+                    $( "#dialog-message" ).dialog({
+                        modal: true,
+                        height: 300,
+                        width: 350,
+                        buttons: {
+                            "Send": function() {
+                                $( "send_message_form" ).submit();
+                                $( this ).dialog( "close" );
+                            },
+                            "Cancel": function() {
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    });
+                });
+    });
+</script>

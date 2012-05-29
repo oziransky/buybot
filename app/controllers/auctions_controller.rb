@@ -114,6 +114,13 @@ class AuctionsController < ApplicationController
 
   def index
     @auctions = current_user.auctions
+
+    if @auctions.size == 0
+      flash[:warning] = t(:no_open_auctions)
+      redirect_to request.referer
+    elsif @auctions.size == 1
+      redirect_to @auctions[0]
+    end
   end
 
   def show
@@ -129,13 +136,14 @@ class AuctionsController < ApplicationController
       logger.debug "Start automatic checkouts. Auction id: #{@auction.id}."
       redirect_to new_checkout_path(:auction_id => @auction.id)
     else
+      # auction is still active
       @auctions = current_user.auctions
-
-      @store_names = []
-      @auction.stores.size.times do |index|
-        @store_names[index] = @auction.stores[index].name
-      end
+      @product = Product.find(@auction.product_id)
+      @stores = @auction.stores
     end
+  end
+
+  def message
 
   end
 

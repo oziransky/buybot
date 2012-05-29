@@ -1,5 +1,5 @@
 class Store < ActiveRecord::Base
-  attr_accessible :name, :address, :url, :description
+  attr_accessible :name, :address, :url, :description, :image_path
 
   belongs_to :store_owner
   # holds many different prices (of products)
