@@ -12,6 +12,7 @@ gem 'log4r'
 gem 'whenever', :require => false
 gem 'fb_graph'
 gem 'daemons'
+gem 'jquery-rails'
 
 group :test, :development do
   gem 'faker', '0.3.1'

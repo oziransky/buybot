@@ -2,13 +2,13 @@
 <%= javascript_tag do %>
     $(document).ready(
     function(){
-    setInterval(function(){
-    $('#auction_details').load("/auctions/<%= @auction.id.to_s %> #auction_details");
-    }, 30000 );
+        setInterval(function(){
+            ajaxPlainGet("/auctions/<%= @auction.id.to_s %>");
+        }, 30000 );
     });
 <% end %>
 
-<div class="auction_details">
+<div class="auction_details" id="auction_view">
   <% unless @auction.in_processing? %>
 
       <div>
@@ -18,25 +18,32 @@
                       :class => "product_thumbnail") %>
         <div class="focus_info">
           <p><%= "#{t(:this_auction_is)}" %>
-            <span class="info_highlight"><%= " #{@auction.status_to_s}" %></span>.</p>
-          <p><%= t(:best_price_sofar) %> <span class="info_highlight"><%= @auction.current_price %> NIS</span>.</p>
+            <span class="info_highlight" id="auction_status"><%= " #{@auction.status_to_s}" %></span>.</p>
+          <p><%= t(:best_price_sofar) %> <span class="info_highlight" id="best_price"><%= @auction.current_price %> NIS</span>.</p>
           <p><%= "#{t(:will_close_in)}" %>
             <span class="info_highlight"><%= " #{@auction.remaining_time?} " %></span><%= "#{t(:minutes)}"%>.</p>
         </div>
       </div>
 
       <div class="control">
-        <%= link_to_submit("", "play", "") %>
-        <%= form_tag({:action => :update, :status => Auction::ACTIVE}, :method => :put)%>
-        <%= link_to_submit("", "pause", "") %>
-        <%= form_tag({:action => :update, :status => Auction::PAUSED}, :method => :put)%>
-        <%= link_to_submit("", "stop", "") %>
-        <%= form_tag({:action => :destroy, :status => Auction::CHECKOUT}, :method => :delete)%>
+        <div>
+          <%= link_to "", {:action => :destroy}, :id => "stop", :remote => true, :method => :delete %>
+        </div>
+        <div>
+          <%= link_to "", {:action => :update, :status => Auction::PAUSED}, :id => "pause", :remote => true, :method => :put %>
+        </div>
+        <div>
+          <%= link_to "", {:action => :update, :status => Auction::ACTIVE}, :id => "play", :remote => true, :method => :put %>
+        </div>
       </div>
 
       <div class="clear_sep"></div>
 
       <div class="stores_in_auction">
+        <!-- hidden form to update the auction status -->
+        <%= form_tag({:action => :update, :status => Auction::CHECKOUT},
+                     :method => :put, :id => "checkout_form")%>
+
         <%for store in @stores do%>
             <div class="auction_store">
               <h3 class="title"><%= store.name %></h3>
@@ -50,9 +57,8 @@
                 <a id="send_message" href="#"><%= t(:send_store_message) %></a>
               </div>
               <div class="checkout">
-                <%= link_to_submit("Drop", "", "drop_link") %>
-                <%= link_to_submit("#{t(:buy)}", "", "checkout_link") %>
-                <%= form_tag({:action => :update, :status => Auction::CHECKOUT}, :method => :put)%>
+                <%= link_to "Drop", "#", :class => "drop_link" %>
+                <%= link_to "#{t(:buy)}", {:action => :update, :status => Auction::CHECKOUT}, :class => "checkout_link", :remote => true, :method => :put %>
               </div>
             </div>
         <%end%>

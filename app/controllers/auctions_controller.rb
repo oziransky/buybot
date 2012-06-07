@@ -80,12 +80,16 @@ class AuctionsController < ApplicationController
       else
         flash[:success] = t(:process_updated)
         logger.debug "Updating auction. Auction id: #{@auction.id}. Auction status: #{@auction.status}"
-        redirect_to auction_path
+
+        respond_to do |format|
+          format.html { redirect_to auction_path }
+          format.js
+        end
       end
     else
       flash[:error] = t(:could_not_update_process)
       logger.error "Unable to update auction. Auction id: #{@auction.id}. Auction status: #{@auction.status}"
-      redirect_to auction_path
+      #redirect_to auction_path
     end
   end
 
@@ -109,7 +113,10 @@ class AuctionsController < ApplicationController
     end
 
     # let the system process, go home
-    redirect_to root_path
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js
+    end
   end
 
   def index
@@ -140,6 +147,11 @@ class AuctionsController < ApplicationController
       @auctions = current_user.auctions
       @product = Product.find(@auction.product_id)
       @stores = @auction.stores
+
+      respond_to do |format|
+        format.html
+        format.js
+      end
     end
   end
 
