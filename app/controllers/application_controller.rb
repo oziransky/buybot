@@ -2,6 +2,7 @@ include ActionView::Helpers::RawOutputHelper
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :user_facebook
   before_filter :load_categories
   after_filter :user_activity
   layout :layout_by_resource
@@ -32,9 +33,16 @@ class ApplicationController < ActionController::Base
     @root_categories = @root_categories || Category.top_categories.unshift
   end
 
+  def user_facebook
+    if user_signed_in?
+      @fb_info = FacebookInfo.find(current_user.id) unless current_user.fb_uid.nil?
+    end
+  end
+
   def user_activity
     if user_signed_in?
       current_user.try :touch
+      @fb_info = FacebookInfo.find(current_user.id) unless current_user.fb_uid.nil?
     end
   end
 end

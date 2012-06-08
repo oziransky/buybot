@@ -7,7 +7,7 @@
       <% if user_signed_in? %>
           <div class="user_menu" align="right">
             <ul>
-              <li><%= t(:welcome, :user=>current_user.email) %></li>
+              <li><%= t(:welcome, :user => show_nick) %></li>
               <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
               <li><%= link_to t(:account_settings), edit_user_registration_path %></li>
               <% if current_user.fb_uid.nil? %>

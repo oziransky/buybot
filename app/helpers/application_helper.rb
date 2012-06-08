@@ -8,4 +8,13 @@ module ApplicationHelper
       "#{base_title} | #{@title}"
     end
   end
+
+  def show_nick
+    if current_user.fb_uid.nil?
+      current_user.email
+    end
+
+    @fb_info.name
+  end
+
 end
