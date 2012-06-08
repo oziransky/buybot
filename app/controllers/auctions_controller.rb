@@ -61,7 +61,7 @@ class AuctionsController < ApplicationController
                                                  StoreOwnerMailer::STARTED))
 
     # show all open auctions for this user
-    redirect_to auction_path
+    redirect_to @auction
   end
 
   def update

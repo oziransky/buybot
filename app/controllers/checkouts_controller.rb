@@ -40,6 +40,7 @@ class CheckoutsController < ApplicationController
     flash[:notice] = t(:product_sale_redirect)
 
     # run the auction delete
+    Delayed::Job.enqueue(PostOnFacebookJob.new(current_user.id, auction.product_id, auction.checkout.final_price, auction.lowest_bidder))
     Delayed::Job.enqueue(AuctionDeleteJob.new(current_user.id, auction.id))
 
     # redirect to the actual store

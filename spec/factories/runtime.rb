@@ -10,6 +10,10 @@ FactoryGirl.define do
     status Auction::ACTIVE
   end
 
+  factory :auction_status do
+
+  end
+
   # factory for checkout process
   factory :checkout do
     auction_id 1

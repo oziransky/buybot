@@ -51,7 +51,7 @@ describe AuctionsController do
         assigns[:auction].product_id.should eql(@product.id)
         assigns[:auction].status.should eql(Auction::ACTIVE)
 
-        response.should redirect_to(auctions_path)
+        response.should redirect_to(auction_path(assigns[:auction].id))
 
     end
 
@@ -91,7 +91,7 @@ describe AuctionsController do
       auction.auction_statuses[0].user_rate.should eql(100)
       auction.auction_statuses[1].user_rate.should eql(10)
 
-      response.should redirect_to(auctions_path)
+      redirect_to(auction_path(assigns[:auction].id))
 
     end
   end
@@ -146,7 +146,8 @@ describe AuctionsController do
   end
 
   it "should show a specific auction for current user" do
-    auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id)
+    product = FactoryGirl.create(:product)
+    auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id, :product_id => product.id)
 
     get :show, :id => auction.id
 

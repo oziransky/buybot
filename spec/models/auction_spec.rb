@@ -43,5 +43,28 @@ describe Auction do
 
     end
   end
+
+  describe 'lowest_bidder' do
+    it 'should return the id of the store with the lowest bid' do
+
+      auction = FactoryGirl.create(:auction, :status=>Auction::ACTIVE)
+      auction_id = auction.id
+      store1 = FactoryGirl.create(:store)
+      store2 = FactoryGirl.create(:store)
+      auction.stores << store1
+      auction.stores << store2
+
+      auction.auction_statuses.find_by_store_id(store1.id).update_attributes(:price => 100)
+      auction.auction_statuses.find_by_store_id(store2.id).update_attributes(:price => 50)
+      auction.save!
+
+      auction = Auction.find auction_id
+
+      puts auction.auction_statuses.to_s
+      auction.lowest_bidder.should ==  store2.id
+
+
+    end
+  end
 end
 
