@@ -4,6 +4,18 @@ $(document).ready(function() {
     $('#footer_nav').ptMenu();
 });
 
+// handle the flash fadeout
+function flash_fadeout() {
+    var flash_div = $(".flash")
+    setTimeout(function(){
+            flash_div.fadeOut(2000,
+                function(){
+                    flash_div.html("");
+                })
+        },
+        1400);
+}
+
 // handle the flash messages
 function notify(flash_message) {
     var flash_div = $(".flash")

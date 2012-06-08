@@ -19,6 +19,7 @@ en:
   sign_up_with: "Sign Up With "
   connect_to_facebook: "Connect to Facebook"
   connected_to_facebook: "Connected to Facebook!"
+  logged_out: "Successfully logged out"
   update: "Update"
   cancel: "Cancel"
   confirm: "Proceed to checkout"

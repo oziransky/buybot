@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def connect_to_fb
     client = Facebook.app
 
@@ -22,5 +21,13 @@ class UsersController < ApplicationController
     flash[:success] = t(:connected_to_facebook)
 
     Delayed::Job.enqueue(FacebookReaderJob.new(user.id))
+  end
+
+  def destroy
+    sign_out current_user
+
+    flash[:success] = t(:logged_out)
+
+    redirect_to (:back)
   end
 end

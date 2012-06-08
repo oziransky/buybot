@@ -10,17 +10,9 @@
 <body>
 
 <div id="container">
-  <%= render :partial=>'layouts/header'%>
+  <%= render :partial=>'layouts/header' %>
 
-  <% if flash[:notice] %>
-      <div class="flash" id="flash_notice"><%= flash[:notice] %></div>
-  <% end %>
-  <% if flash[:success] %>
-      <div class="flash" id="flash_success"><%= flash[:success] %></div>
-  <% end %>
-  <% if flash[:error] %>
-      <div class="flash" id="flash_error"><%= flash[:error] %></div>
-  <% end %>
+  <%= render :partial=> 'layouts/flash_msgs' %>
 
   <div id="content">
     <%= yield %>
