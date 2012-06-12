@@ -107,11 +107,16 @@ a {
     width:500px;
     margin-top: 20px;
 }
-.invite .ui-form .ui-widget-content {
-    font-family: arial, helvetica, clean, sans-serif;
-    padding:10px 20px 5px 20px;
-    font-size:14px;
-    float: left;
+.invite .ui-form .ui-button {
+    height: 50px;
+    width: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.invite .ui-form .friend_email {
+    width: 330px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* login/register forms */

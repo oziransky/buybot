@@ -76,7 +76,11 @@ class AuctionsController < ApplicationController
       if @auction.status == Auction::CHECKOUT
         # start the checkouts process
         logger.debug "Start checkouts. Auction id: #{@auction.id}."
-        redirect_to new_checkout_path(:auction_id => @auction.id)
+
+        respond_to do |format|
+          format.html { redirect_to new_checkout_path(:auction_id => @auction.id) }
+          format.js { render :js => "window.location = '#{new_checkout_path(:auction_id => @auction.id)}'" }
+        end
       else
         flash[:success] = t(:process_updated)
         logger.debug "Updating auction. Auction id: #{@auction.id}. Auction status: #{@auction.status}"
@@ -89,7 +93,6 @@ class AuctionsController < ApplicationController
     else
       flash[:error] = t(:could_not_update_process)
       logger.error "Unable to update auction. Auction id: #{@auction.id}. Auction status: #{@auction.status}"
-      #redirect_to auction_path
     end
   end
 
@@ -115,7 +118,7 @@ class AuctionsController < ApplicationController
     # let the system process, go home
     respond_to do |format|
       format.html { redirect_to root_path }
-      format.js
+      format.js { render :js => "window.location = '/'" }
     end
   end
 

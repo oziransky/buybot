@@ -5,8 +5,7 @@
     </div>
     <div class="ui-widget-content">
       <%= form_tag :controller => 'pages', :action => 'invite_friends' do %>
-          <%= label_tag(:email, t(:friend_email)) %>
-          <%= text_field_tag(:email, nil, :placeholder => t(:friend_email) ) %>
+          <%= text_field_tag(:email, nil, :placeholder => t(:friend_email), :class => "friend_email" ) %>
           <%= text_area_tag(:message, t(:personal_message), :size => "40x10" ) %><br/>
           <%= submit_tag(t(:send)) %>
       <% end %>

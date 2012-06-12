@@ -7,6 +7,11 @@ class CheckoutsController < ApplicationController
     @auction = current_user.auctions.find(auction_id)
     @checkout = Checkout.new(:final_price => @auction.current_price)
     @checkout.auction_id = @auction.id
+
+    respond_to do |format|
+      format.html
+      format.js { render :partial => 'new'}
+    end
   end
 
   def create

@@ -27,6 +27,14 @@ class ApplicationController < ActionController::Base
     request.env['omniauth.origin'] || stored_location_for(resource) || root_path
   end
 
+  #def redirect_to(options = {}, response_status = {})
+  #  if request.xhr?
+  #    render(:update) {|page| page.redirect_to(options)}
+  #  else
+  #    super(options, response_status)
+  #  end
+  #end
+
   private
 
   def load_categories
@@ -35,7 +43,9 @@ class ApplicationController < ActionController::Base
 
   def user_facebook
     if user_signed_in?
-      @fb_info = FacebookInfo.find(current_user.id) unless current_user.fb_uid.nil?
+      if FacebookInfo.find_by_user_id(current_user.id)
+        @fb_info = FacebookInfo.find(current_user.id) unless current_user.fb_uid.nil?
+      end
     end
   end
 
