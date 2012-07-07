@@ -1,15 +1,23 @@
-<%= render "store_mng_menu" %>
-<table id="all_stores">
-  <tr>
-    <td class="main">
-      <span><%=t(:store_list)%></span>
-    </td>
-  </tr>
+<div class="stores_list">
+  <h3 class="title"><%= t(:store_list, :name => current_store_owner.get_name) %></h3>
   <% unless current_store_owner.stores.empty? %>
       <% @stores.each do |store| %>
-          <tr>
-            <td><%= link_to store.name, "/stores/" + store.id.to_s %></td>
-          </tr>
+          <div class="store_list_item">
+            <div class="name"><%= store.name %></div>
+            <div class="store_link"><%= link_to t(:more), "/stores/" + store.id.to_s %></div>
+          </div>
       <% end %>
   <% end %>
-</table>
+  <div>
+    <div class="create_new_store"><%= link_to t(:new_store), new_store_path %></div>
+  </div>
+</div>
+
+<div class="clear_sep"></div>
+
+<script>
+    $(function() {
+        $( ".create_new_store" ).button();
+        $( ".store_link" ).button();
+    });
+</script>

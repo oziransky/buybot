@@ -1,28 +1,22 @@
-<%= render "product_mng_menu" %>
-<table class="simple_align">
-  <tr>
-    <td>
-      <span><%=t(:products)%></span>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div class="simple_menu">
-        <ul>
-          <% for product in @products %>
-            <li><%= link_to product.name, "/products/#{product.id}" %></li>
-           <% end %>
-        </ul>
+<div class="products_list">
+  <h3 class="title"><%=t(:products)%></h3>
+  <% for product in @products %>
+      <div class="product_list_item">
+        <div class="product_name"><%= product.name %></div>
+        <div><%= link_to t(:more), "/products/#{product.id}", :class => "product_link" %></div>
       </div>
+  <% end %>
+  <span><%= will_paginate @products %></span>
+  <%= link_to t(:new_product), new_product_path, :class => "create_new_product" %>
+</div>
 
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <span><%= will_paginate @products %></span>
-    </td>
-  </tr>
-</table>
+<div class="clear_sep"></div>
 
+<script>
+    $(function() {
+        $( ".create_new_product" ).button();
+        $( ".product_link" ).button();
+    });
+</script>
 
 

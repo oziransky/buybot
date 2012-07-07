@@ -10,9 +10,9 @@ class Product < ActiveRecord::Base
 
   validates :name, :presence => true
   validates :manufacturer,  :presence => true
-  
+
   def self.search(search_params)
-    if (search_params[:search] != nil)
+    if search_params[:search] != nil
       logger.debug "the search parameter is " + search_params[:search]
       filter(where("name LIKE ?","%#{search_params[:search]}%"),search_params)
     else
@@ -26,46 +26,46 @@ class Product < ActiveRecord::Base
   end
 
   def self.price_range(products)
-    if not products.empty?
+    unless products.empty?
       all_prices = products.collect {|p| p.minimum_price}
       [all_prices.min,all_prices.max]
-    else
-      []
     end
 
+    []
   end
-  
+
   def self.all_manufacturers(products)
     manufacturers = products.collect {|p| p.manufacturer}
     manufacturers.flatten.uniq
   end
-  
+
   def minimum_price
     prices.min.price
   end
-  
+
   def child_of?(category_id)
     return true if (category_ids.include?(category_id))
 
     for cat in categories do
       ancestors_ids = cat.ancestors.collect {|a| a.id}
-        if ancestors_ids.include?(category_id)
-          return true
-        end	
+      if ancestors_ids.include?(category_id)
+        true
+      end
     end
 
-    return false
-end
+    false
+  end
 
-#filters the search result by category and manufacturer. todo-price-ranges
-private 
+  #filters the search result by category and manufacturer. todo-price-ranges
+  private
+
   def self.filter(products, filters)
     result = products
     if filters[:categories] != nil and filters[:categories] != ""
       logger.debug "filtering by category id #{filters[:categories]}"
       result = result.find_all{ |product| product.child_of?(filters[:categories].to_i)}
     end
-    if filters[:manufacturer] != nil 
+    if filters[:manufacturer] != nil
       logger.debug "filtering by manufacturer #{filters[:manufacturer]}"
       result = result.find_all{|product| product.manufacturer == filters[:manufacturer]}
     end
@@ -76,5 +76,5 @@ private
     end
     result
   end
-  
+
 end

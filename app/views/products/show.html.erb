@@ -1,11 +1,24 @@
-<%= render "product_menu" %>
-<table id="product_profile">
-  <tr>
-    <td class="main">
-      <span><%=t(:details)%></span>
-    </td>
-  </tr>
+<div class="product_details">
+  <div>
+    <h3 class="title"><%=t(:details)%></h3>
+  </div>
   <% unless @store.products.empty? %>
-    <%= render @product %>
+      <%= image_tag("#{@product.image_folder}/thumbnail.gif") %>
+      <div class="product_summary">
+        <div><%=t(:product)%> <%= @product.name %></div>
+        <div><%= t(:your_price) %> <b><%= @price %></b></div>
+        <div><%=t(:minimum_price)%> <b><%= @product.minimum_price %></b></div>
+        <div><%=t(:description)%> <%= @product.description %></div>
+      </div>
+      <div class="edit_details"><%= link_to t(:edit), edit_product_path, :id => "edit_details" %></div>
   <% end %>
-</table>
+</div>
+
+<div class="clear_sep"></div>
+
+<script>
+    $(function() {
+        $( "#edit_details" ).button();
+    });
+</script>
+

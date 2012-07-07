@@ -1,13 +1,8 @@
 <div id="footer">
-  <div id="foot">
-    <div id="foot_right">
-      <nav class="footer_nav">
-        <ul>
-          <li><%= link_to t(:contact_us,:scope=>:footer), root_path %></li>
-          <li><%= link_to t(:terms, :scope=>:footer), root_path %></li>
-          <li><%= link_to t(:about,:scope=>:footer), root_path %></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
+  <ul id="footer_nav">
+    <li><%= link_to t(:contact_us,:scope=>:footer), root_path %></li>
+    <li><%= link_to t(:terms, :scope=>:footer), root_path %></li>
+    <li><%= link_to t(:about,:scope=>:footer), root_path %></li>
+    <li><%= link_to t(:help), help_path %></li>
+  </ul>
 </div>

@@ -27,14 +27,6 @@ class ApplicationController < ActionController::Base
     request.env['omniauth.origin'] || stored_location_for(resource) || root_path
   end
 
-  #def redirect_to(options = {}, response_status = {})
-  #  if request.xhr?
-  #    render(:update) {|page| page.redirect_to(options)}
-  #  else
-  #    super(options, response_status)
-  #  end
-  #end
-
   private
 
   def load_categories

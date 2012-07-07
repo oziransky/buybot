@@ -7,7 +7,13 @@ Buybot::Application.routes.draw do
 
   resources :stores
   resources :products
-  resources :auctions
+
+  resources :auctions do
+    collection do
+      put :message
+      put :drop_shop
+    end
+  end
   resources :categories
   resources :checkouts
 
@@ -21,7 +27,6 @@ Buybot::Application.routes.draw do
   resources :customer_products do
     collection do
       get :search
-      put :start_auction
    end
   end
 
@@ -33,5 +38,5 @@ Buybot::Application.routes.draw do
   match '/new_invite', :to => 'pages#new_invite'
   match '/invite_friends', :to => 'pages#invite_friends'
   match '/facebook/callback', :to => 'users#authenticate_fb'
-  match '/auctions/message', :to => 'auctions#message'
+
 end

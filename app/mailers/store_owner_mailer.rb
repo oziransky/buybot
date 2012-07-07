@@ -1,6 +1,7 @@
 class StoreOwnerMailer < ActionMailer::Base
   STARTED = 0
   UPDATED = 1
+  DROPPED = 2
 
   default :from => "buybot.mail@gmail.com"
 
@@ -10,6 +11,10 @@ class StoreOwnerMailer < ActionMailer::Base
 
   def auction_started(store_owner, auction)
     send_email(store_owner, auction, t(:auction_started))
+  end
+
+  def store_dropped(store_owner, auction)
+    send_email(store_owner, auction, t(:store_dropped))
   end
 
   private

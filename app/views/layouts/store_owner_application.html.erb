@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Store Management</title>
+  <title><%= t(:store_management) %></title>
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag 'jquery', 'application' %>
+  <%= javascript_include_tag 'jquery.min', 'jquery_ujs', 'jquery-ui.min', 'jquery.ui.potato.menu',
+                             'jquery.equal-heights', 'application' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
 
 <div id="container">
-  <div id="store_title">
-    <span><%= t(:store_mangement) %></span>
-  </div>
-  <%= render 'layouts/store_header' %>
-  <% flash.each do |key, value| %>
-      <div class="flash <%= key %>"><%= value %></div>
-  <% end %>
+  <%= render :partial=>'layouts/store_header' %>
+
+  <%= render :partial=> 'layouts/flash_msgs' %>
+
   <div id="content">
     <%= yield %>
   </div>
+
   <%= render 'layouts/store_footer' %>
 
-  <%= debug(params) if Rails.env.development? %>
+  <!--<%= debug(params) if Rails.env.development? %>-->
 </div>
 
 </body>

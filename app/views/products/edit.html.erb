@@ -1,30 +1,60 @@
-<div class="simple_form">
-  <%= form_for @product do |f| %>
-      <%= f.label :name %>:<br />
-      <%= f.text_field :name %><br />
-
-      <%= f.label :url %>:<br />
-      <%= f.url_field :url %><br />
-
-      <%= f.label :image_folder %>:<br />
-      <%= f.text_field :image_folder %><br />
-
-      <%= f.label :manufacturer %>:<br />
-      <%= f.text_field :manufacturer %><br />
-
-      <%= f.label :description %>:<br />
-      <%= f.text_area :description, :rows => 3 %><br />
-
-      <%= f.label :sub_category %>:<br />
-      <%= collection_select('product', 'category_ids', Category.top_categories, :id, :name, {}, { :name => 'product[category_ids][]'}) %><br />
-
-      <%= f.fields_for :prices do |builder| %>
-          <% if builder.object.store_id == @store.id %>
-              <%= builder.label :price %>:<br />
-              <%= builder.text_field :price %><br />
+<div align="center" class="edit_product_details">
+  <div class="ui-widget ui-form">
+    <div class="ui-widget-header ui-corner-all">
+      <h3><%= t(:edit) %> <%= @product.name %></h3>
+    </div>
+    <div class="ui-widget-content">
+      <%= form_for @product do |f| %>
+          <div class="edit_row">
+            <%= f.label :name %>
+            <%= f.text_field :name %><br />
+          </div>
+          <div class="edit_row">
+            <%= f.label :sub_category %>
+            <%= collection_select('product', 'category_ids', Category.top_categories, :id, :name, {}, { :name => 'product[category_ids][]'}) %><br />
+          </div>
+          <div class="clear_sep"></div>
+          <div class="edit_row">
+            <%= f.label :url %>
+            <%= f.url_field :url %><br />
+          </div>
+          <div class="edit_row">
+            <%= f.label :manufacturer %>
+            <%= f.text_field :manufacturer %><br />
+          </div>
+          <div class="edit_row">
+            <%= f.label :image_folder %>
+            <%= f.text_field :image_folder %><br />
+          </div>
+          <div class="clear_sep"></div>
+          <div class="edit_row">
+            <%= f.label :description %>
+            <%= f.text_area :description, :rows => 4, :cols => 30 %><br />
+          </div>
+          <%= f.fields_for :prices do |builder| %>
+              <% if builder.object.store_id == @store.id %>
+                  <div class="edit_row">
+                    <%= builder.label :price %>
+                    <%= builder.text_field :price %><br />
+                  </div>
+              <% end %>
           <% end %>
-      <% end %>
 
-      <%= f.submit "Update Product" %>
-  <% end %>
+          <div class="edit_row">
+            <%= link_to t(:update), "#", :id => "product_edit_submit", :onclick=>"$('form').submit()" %>
+            <%= link_to t(:cancel), product_path, :id => "product_edit_cancel" %>
+          </div>
+      <% end %>
+    </div>
+  </div>
 </div>
+
+<script>
+    $(function() {
+        $( "#product_edit_submit", ".edit_product_details" ).button();
+        $( "#product_edit_cancel", ".edit_product_details" ).button();
+    });
+</script>
+
+
+

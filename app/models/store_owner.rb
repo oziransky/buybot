@@ -8,4 +8,12 @@ class StoreOwner < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :remember_me
 
   has_many :stores, :dependent => :destroy
+
+  def get_name
+    if not first_name.nil? and not last_name.nil?
+      "#{first_name} #{last_name}"
+    else
+      "John Doe"
+    end
+  end
 end

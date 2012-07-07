@@ -7,6 +7,7 @@ class CheckoutsController < ApplicationController
     @auction = current_user.auctions.find(auction_id)
     @checkout = Checkout.new(:final_price => @auction.current_price)
     @checkout.auction_id = @auction.id
+    @product = Product.find(@auction.product_id)
 
     respond_to do |format|
       format.html
@@ -21,7 +22,7 @@ class CheckoutsController < ApplicationController
     @auction.save!
 
     # build the product URL and redirect
-    @checkout.product_url = "http://www.somestore.com/checkouts/?product_id=9928"
+    @checkout.product_url = "http://www.ofiri.co.il/?storeid=6632&view=products&id=534890"
     @checkout.status = Checkout::COMPLETED
 
     if @checkout.save

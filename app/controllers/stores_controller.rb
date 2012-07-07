@@ -36,9 +36,14 @@ class StoresController < ApplicationController
   def update
     @stores = current_store_owner.stores
     @store = @stores.find(params[:id])
+
     if @store.update_attributes!(params[:store])
       flash[:success] = "Store updated."
-      redirect_to @store
+
+      respond_to do |format|
+        format.html { redirect_to @store }
+        format.js { render :js => "window.location = '/stores/#{@store.id}'" }
+      end
     else
       flash[:error] = "Unable to update store."
       render 'edit'

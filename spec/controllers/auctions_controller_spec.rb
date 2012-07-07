@@ -9,6 +9,19 @@ describe AuctionsController do
 
     # run the background job without delay
     Delayed::Worker.delay_jobs = false
+
+    price1 = FactoryGirl.create(:price)
+    @product = Product.find(price1.product_id)
+    price2 = FactoryGirl.create(:price, :product => @product)
+    owner1 = FactoryGirl.create(:store_owner)
+    owner2 = FactoryGirl.create(:store_owner)
+    store1 = Store.find(@product.stores[0].id)
+    store1.store_owner_id = owner1.id
+    store1.save
+
+    store2 = Store.find(@product.stores[1].id)
+    store2.store_owner_id = owner2.id
+    store2.save
   end
 
   it "should have a valid user signed in" do
@@ -21,51 +34,35 @@ describe AuctionsController do
   end
 
   it "should not provide online indication" do
-      subject.current_user.updated_at = 15.minutes.ago
-      subject.current_user.online?.should be_false
+    subject.current_user.updated_at = 15.minutes.ago
+    subject.current_user.online?.should be_false
   end
 
   describe "auction creation" do
 
-    before(:each) do
-
-      price1 = FactoryGirl.create(:price)
-      @product = Product.find(price1.product_id)
-      price2 = FactoryGirl.create(:price, :product => @product)
-      owner1 = FactoryGirl.create(:store_owner)
-      owner2 = FactoryGirl.create(:store_owner)
-      store1 = Store.find(@product.stores[0].id)
-      store1.store_owner_id = owner1.id
-      store1.save
-
-      store2 = Store.find(@product.stores[1].id)
-      store2.store_owner_id = owner2.id
-      store2.save
-    end
-
     it "should create new auction with given product and minimal stores" do
 
-        post :create, :product_id => @product.id,
-                      :store_ids => [ @product.stores[0].id, @product.stores[1].id ]
+      post :create, :product_id => @product.id,
+           :store_ids => [ @product.stores[0].id, @product.stores[1].id ]
 
-        assigns[:auction].product_id.should eql(@product.id)
-        assigns[:auction].status.should eql(Auction::ACTIVE)
+      assigns[:auction].product_id.should eql(@product.id)
+      assigns[:auction].status.should eql(Auction::ACTIVE)
 
-        response.should redirect_to(auction_path(assigns[:auction].id))
+      response.should redirect_to(auction_path(assigns[:auction].id))
 
     end
 
     it "should create new auction and send update email to store owners" do
 
-        post :create, :product_id => @product.id,
-                      :store_ids => [ @product.stores[0].id, @product.stores[1].id ]
+      post :create, :product_id => @product.id,
+           :store_ids => [ @product.stores[0].id, @product.stores[1].id ]
 
-        assigns[:auction].product_id.should eql(@product.id)
-        assigns[:auction].status.should eql(Auction::ACTIVE)
+      assigns[:auction].product_id.should eql(@product.id)
+      assigns[:auction].status.should eql(Auction::ACTIVE)
 
-        # verify emails
-        ActionMailer::Base.deliveries.should_not be_empty
-        ActionMailer::Base.deliveries.size.should eql(2)
+      # verify emails
+      ActionMailer::Base.deliveries.should_not be_empty
+      ActionMailer::Base.deliveries.size.should eql(2)
 
     end
 
@@ -80,7 +77,7 @@ describe AuctionsController do
 
       # create auction with 2 stores
       post :create, :product_id => @product.id,
-                    :store_ids => [ @product.stores[0].id, @product.stores[1].id ]
+           :store_ids => [ @product.stores[0].id, @product.stores[1].id ]
 
       assigns[:auction].product_id.should eql(@product.id)
       assigns[:auction].status.should eql(Auction::ACTIVE)
@@ -97,7 +94,9 @@ describe AuctionsController do
   end
 
   describe "update" do
+
     it "should update existing auction with new status" do
+
       auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id)
 
       post :update, :id => auction.id, :status => Auction::PAUSED
@@ -105,9 +104,11 @@ describe AuctionsController do
       assigns[:auction].status.should eql(Auction::PAUSED)
 
       response.should redirect_to(auction_path)
+
     end
 
     it "should flash message if the action status is changed to 'SOLD'" do
+
       auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id)
 
       post :update, :id => auction.id, :status => Auction::SOLD
@@ -115,7 +116,9 @@ describe AuctionsController do
       assigns[:auction].status.should eql(Auction::SOLD)
 
       flash[:success].should_not be_nil
+
     end
+
   end
 
   it "should delete existing auction" do
@@ -133,9 +136,11 @@ describe AuctionsController do
     Auction.exists?(auction.id).should be_false
 
     response.should redirect_to(root_path)
+
   end
 
   it "should show all open auction for current user" do
+
     FactoryGirl.create_list(:auction, 3, :user_id => subject.current_user.id)
 
     get :index
@@ -143,9 +148,11 @@ describe AuctionsController do
     assigns[:auctions].size.should eql(3)
 
     response.should be_success
+
   end
 
   it "should show a specific auction for current user" do
+
     product = FactoryGirl.create(:product)
     auction = FactoryGirl.create(:auction, :user_id => subject.current_user.id, :product_id => product.id)
 
@@ -154,6 +161,25 @@ describe AuctionsController do
     assigns[:auctions].size.should eql(1)
 
     response.should be_success
+
+  end
+
+  it "should drop a given store from the auction" do
+
+    # create an auction with two stores
+    post :create, :product_id => @product.id,
+         :store_ids => [ @product.stores[0].id, @product.stores[1].id ]
+
+    auction = assigns[:auction]
+
+    response.should redirect_to(auction_path(auction.id))
+
+    put :drop_shop, :auction_id => auction.id, :store => @product.stores[0].id
+
+    auction = assigns[:auction]
+
+    auction.stores.size.should eql(1)
+
   end
 
 end

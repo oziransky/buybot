@@ -45,7 +45,7 @@
                      :method => :put, :id => "checkout_form")%>
 
         <%for store in @stores do%>
-            <div class="auction_store">
+            <div class="auction_store" id="<%= "store_#{store.id}" %>">
               <h3 class="title"><%= store.name %></h3>
               <div>
                 <%= image_tag("data/s1/thumbnail.gif", :class => "store_thumbnail") %>
@@ -57,7 +57,8 @@
                 <a id="send_message" href="#"><%= t(:send_store_message) %></a>
               </div>
               <div class="checkout">
-                <%= link_to "Drop", "#", :class => "drop_link" %>
+                <%= link_to "#{t(:drop)}", {:action => :drop_shop, :auction_id => @auction.id, :store => store.id},
+                            :class => "drop_link", :remote => true, :method => :put %>
                 <%= link_to "#{t(:buy)}", {:action => :update, :status => Auction::CHECKOUT}, :class => "checkout_link", :remote => true, :method => :put %>
               </div>
             </div>

@@ -47,27 +47,28 @@ a {
 }
 
 /* main menu configuration */
-#user_nav li.potato-menu-item {
+#user_nav .potato-menu-item {
     width:160px;
     font-size:16px;
-    background-color: #f6a828;
-    /*border-radius: 5px;*/
     margin-left: 20px;
 }
-#user_nav li.potato-menu-item a {
+#user_nav .potato-menu-item a {
     padding:5px 20px 5px 12px;
     color: #ffffff;
 }
-#user_nav li.potato-menu-hover a {
+#user_nav .potato-menu-hover a {
     color: #f6a828;
 }
-#user_nav li.potato-menu-hover {
+#user_nav .potato-menu-hover {
     background-color: #fdf5ce;
 }
-#user_nav li.potato-menu-item ul {
-    border-top:1px solid #444;
-    border-left:1px solid #444;
+#user_nav .potato-menu-group .potato-menu-item {
+    background-color: #f6a828;
 }
+#user_nav .potato-menu-group .potato-menu-item a {
+    color: #ffffff;
+}
+
 
 /* footer configuration */
 #footer_nav {
@@ -433,3 +434,163 @@ a {
     margin-top: 15px;
 }
 
+/* Checkout */
+.checkout_form {
+    float: left;
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 20%;
+}
+.checkout_form .ui-widget-header {
+    padding-left: 40%;
+}
+.checkout_form .content {
+    padding-top: 25px;
+    padding-left: 20%;
+    color: grey;
+    font-size: 18px;
+}
+.checkout_form .ui-button {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+/* Store management show */
+.store_details {
+    margin-left: 50px;
+    float: left;
+}
+.store_details .title {
+    color: #1C94C4;
+}
+.store_details .store_summary {
+    margin-top: 20px;
+    font-size: 18px;
+}
+.store_details .edit_details {
+    margin-top: 20px;
+}
+
+/* Store management edit */
+.edit_store_details .ui-form {
+    width:800px;
+    margin-top: 20px;
+}
+.edit_store_details .ui-form .ui-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.edit_store_details label {
+    width: 100px;
+    margin-right: 5px;
+    margin-left: 30px;
+    text-align: right;
+    float: left;
+}
+.edit_store_details .edit_row {
+    margin-top: 10px;
+}
+
+/* Stores list */
+.stores_list {
+    width: 40%;
+    margin-left: 50px;
+    float: left;
+}
+.stores_list .title {
+    color: #1C94C4;
+    padding-bottom: 20px;
+}
+.stores_list .store_link {
+    font-size: 12px;
+}
+.stores_list .store_list_item {
+    border-bottom: solid 1px #FBCB09;
+    line-height: 0;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.stores_list .store_list_item .name {
+    margin-top: 40px;
+    margin-left: 20px;
+}
+.stores_list .store_list_item .store_link {
+    margin-left: 80%;
+    margin-bottom: 10px;
+}
+.stores_list .create_new_store {
+    margin-left: 40px;
+}
+
+/* Products list */
+.products_list {
+    width: 40%;
+    margin-left: 50px;
+    float: left;
+}
+.products_list .title {
+    color: #1C94C4;
+    padding-bottom: 20px;
+}
+.products_list .product_link {
+    font-size: 12px;
+}
+.products_list .product_list_item {
+    border-bottom: solid 1px #FBCB09;
+    line-height: 0;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.products_list .product_list_item .name {
+    margin-top: 40px;
+    margin-left: 20px;
+}
+.products_list .product_list_item .product_link {
+    margin-left: 80%;
+    margin-bottom: 10px;
+}
+.products_list .create_new_product {
+    margin-top: 10px;
+    margin-left: 40px;
+}
+
+/* Products management show */
+.product_details {
+    margin-left: 50px;
+    float: left;
+}
+.product_details .title {
+    color: #1C94C4;
+}
+.product_details .product_summary {
+    margin-top: 20px;
+    font-size: 18px;
+}
+.product_details .edit_details {
+    margin-top: 20px;
+}
+
+/* Product management edit */
+.edit_product_details .ui-form {
+    width:800px;
+    margin-top: 20px;
+}
+.edit_product_details .ui-form .ui-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.edit_product_details label {
+    width: 100px;
+    margin-right: 5px;
+    margin-left: 30px;
+    text-align: right;
+    float: left;
+}
+.edit_product_details select {
+    width: 260px;
+}
+.edit_product_details .edit_row {
+    margin-top: 10px;
+}

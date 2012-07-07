@@ -37,6 +37,12 @@ class ProductsController < ApplicationController
   def show
     @store = get_store
     @product = @store.products.find(params[:id])
+    @price = 0
+    @product.prices.each do |price|
+      if price.store_id == @store.id
+        @price = price.price
+      end
+    end
   end
 
   def index

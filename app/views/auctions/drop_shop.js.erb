@@ -1,0 +1,12 @@
+$("#flash_messages").html("<%= escape_javascript(render :partial => 'layouts/flash_msgs').html_safe %>");
+flash_fadeout();
+
+var store_div = $('#store_<%= @store.id %>')
+
+setTimeout(function(){
+    store_div.fadeOut(1000,
+        function(){
+            store_div.html("");
+        })
+    },
+    1400);

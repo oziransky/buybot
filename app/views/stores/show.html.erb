@@ -1,11 +1,22 @@
-<%= render "store_menu" %>
-<table id="store_profile">
-  <tr>
-    <td class="main">
-      <span><%=t(:details)%></span>
-    </td>
-  </tr>
+<div class="store_details">
+  <div>
+    <h3 class="title"><%= @store.name %></h3>
+  </div>
   <% unless current_store_owner.stores.empty? %>
-    <%= render @store %>
+      <%= image_tag("data/s1/thumbnail.gif") %>
+      <div class="store_summary">
+        <div><%=t(:site)%> <%= link_to @store.url, @store.url %></div>
+        <div><%=t(:address)%>: <%= @store.address %></div>
+        <div><%= t(:description) %> <%= @store.description %></div>
+      </div>
+      <div class="edit_details"><%= link_to t(:edit), edit_store_path, :id => "edit_details" %></div>
   <% end %>
-</table>
+</div>
+
+<div class="clear_sep"></div>
+
+<script>
+    $(function() {
+        $( "#edit_details" ).button();
+    });
+</script>

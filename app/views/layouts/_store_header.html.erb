@@ -1,24 +1,54 @@
 <div id="header">
-  <div id="user_nav">
+  <div class="logo">
+    <%= link_to t(:home), root_path %>
+  </div>
+
+  <div>
     <% if store_owner_signed_in? %>
-        <div class="logged_area">
+        <div class="user_menu" align="right">
           <ul>
             <li><%= t :welcome, :user=>current_store_owner.email %></li>
             <li>|</li>
             <li>
               <%= link_to t(:logout), destroy_store_owner_session_path, :method => :delete %>
             </li>
+            <li><%= link_to t(:account_settings), edit_store_owner_registration_path %></li>
           </ul>
         </div>
     <% end %>
   </div>
 
-  <nav class="main_nav">
-    <ul>
+  <div class="user_nav">
+    <ul id="user_nav">
       <li><%= link_to t(:current_auctions), store_auctions_path %></li>
-      <li><%= link_to t(:store_management), stores_path %></li>
-      <li><%= link_to t(:account_settings), edit_store_owner_registration_path %></li>
-      <li><%= link_to t(:help), help_path %></li>
+      <% if controller.controller_name == "stores" %>
+          <% unless controller.action_name == "new" and @store.nil? %>
+              <li><%= link_to t(:store_management), stores_path %>
+                <ul>
+                  <% unless @store.nil? %>
+                      <li><%= link_to t(:edit), edit_store_path %></li>
+                      <li><%= link_to t(:manage_products), products_path %></li>
+                      <li><%= link_to t(:manage_clerks), "#" %></li>
+                      <li><%= link_to t(:delete), @store, :method => :delete, :confirm => t(:are_you_sure), :title => @store.name %></li>
+                  <% end %>
+                </ul>
+              </li>
+          <% end %>
+      <% end %>
+      <% if controller.controller_name == "products" %>
+          <% unless controller.action_name == "new" %>
+              <li><%= link_to t(:products), products_path %>
+                <ul>
+                  <% unless @product.nil? %>
+                      <li><%= link_to t(:edit), edit_product_path %></li>
+                      <li><%= link_to t(:delete), @product, :method => :delete, :confirm => "Are you sure?"%></li>
+                      <li><%= link_to t(:copy), "#" %></li>
+                  <% end %>
+                </ul>
+              </li>
+          <% end %>
+      <% end %>
+      <li><%= link_to t(:reports), "#" %></li>
     </ul>
-  </nav>
+  </div>
 </div>

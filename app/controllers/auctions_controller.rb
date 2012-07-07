@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class AuctionsController < ApplicationController
 
   before_filter :require_login
@@ -57,8 +55,7 @@ class AuctionsController < ApplicationController
     Delayed::Job.enqueue(AuctionUserRateJob.new(current_user.id, @auction.id))
 
     # send emails to all store owners indicating that auction was started
-    Delayed::Job.enqueue(AuctionStoreMailJob.new(@auction.id,
-                                                 StoreOwnerMailer::STARTED))
+    notify_all_stores(@auction, StoreOwnerMailer::STARTED)
 
     # show all open auctions for this user
     redirect_to @auction
@@ -69,8 +66,8 @@ class AuctionsController < ApplicationController
     @auction.status = params[:status].to_i
 
     # send emails to all store owners indicating that auction was updated
-    Delayed::Job.enqueue(AuctionStoreMailJob.new(@auction.id,
-                                                 StoreOwnerMailer::UPDATED))
+    notify_all_stores(@auction, StoreOwnerMailer::UPDATED)
+
     # save the new record
     if @auction.save
       if @auction.status == Auction::CHECKOUT
@@ -102,8 +99,8 @@ class AuctionsController < ApplicationController
     @auction.status = Auction::CANCELED
 
     # send emails to all store owners indicating that auction was updated
-    Delayed::Job.enqueue(AuctionStoreMailJob.new(@auction.id,
-                                                 StoreOwnerMailer::UPDATED))
+    notify_all_stores(@auction, StoreOwnerMailer::UPDATED)
+
     # save the new record
     if @auction.save
       # create a background task that will handle the analysis and delete the auction
@@ -158,11 +155,64 @@ class AuctionsController < ApplicationController
     end
   end
 
+  def drop_shop
+    @auction = current_user.auctions.find(params[:auction_id])
+    @store = Store.find(params[:store])
+    @auction.stores.delete(@store)
+
+    last_shop = false
+
+    # notify the store that it was dropped
+    notify_store(@auction, StoreOwnerMailer::DROPPED, @store)
+
+    # if this is the last store, cancel the auction
+    if @auction.stores.size == 0
+      # create a background task that will handle the analysis and delete the auction
+      Delayed::Job.enqueue(AuctionDeleteJob.new(current_user.id, @auction.id))
+      @auction.status = Auction::CANCELED
+
+      last_shop = true
+    end
+
+    if @auction.save
+      if last_shop
+        flash[:success] = t(:process_deleted)
+        logger.debug "Deleting auction. Auction id: #{@auction.id}"
+      else
+        flash[:success] =  t(:store_dropped, :store => @store.name)
+        logger.debug "Dropping store #{@store.id} from auction. Auction id: #{@auction.id}"
+      end
+    else
+      flash[:error] = t(:could_not_drop_store)
+      logger.error "Unable to drop store #{@store.id} from auction auction. Auction id: #{@auction.id}"
+    end
+
+    respond_to do |format|
+      format.html { render :nothing => true }
+      if last_shop
+        format.js { render :js => "window.location = '/'" }
+      else
+        format.js
+      end
+    end
+  end
+
   def message
 
   end
 
   private
+
+  def notify_all_stores(auction, status)
+    auction.stores.each do |store|
+      notify_store(auction, status, store)
+    end
+  end
+
+  def notify_store(auction, status, store)
+    store_owner = StoreOwner.find(store.store_owner_id)
+    Delayed::Job.enqueue(AuctionStoreMailJob.new(store_owner, auction, status))
+  end
 
   def require_login
     unless user_signed_in?
