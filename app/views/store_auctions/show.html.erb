@@ -1,44 +1,124 @@
 <!-- Run periodic polling on the status of the auction -->
 <%= javascript_tag do %>
     $(document).ready(
-        function(){
-            setInterval(function(){
-                $('#auction_details').load("/store_auctions/<%= @auction.id.to_s %> #auction_details");
-            }, 30000 );
-        });
+    function(){
+    setInterval(function(){
+    $('#status').load("/store_auctions/<%= @auction.id.to_s %> #status");
+    }, 30000 );
+    });
 <% end %>
-<div id="auction_details">
-  <%= render "auction_menu" %>
-  <div id="auction_profile">
-    <span><%=t(:process_details)%></span>
-    <table>
-      <%= render "auction" %>
+
+<div class="store_auction_details">
+  <h3 class="title"><%=t(:process_details)%></h3>
+
+  <div>
+
+    <div id="store_auction_details" class="auction">
+      <div id="status" class="auction_row">
+        <%= t(:auction_status) %>
+        <%= @auction.status_to_s %>
+      </div>
+      <div class="auction_row">
+        <%= t(:auction_close_time) %>
+        <%= @auction.close_at.to_time.to_s(:db) %>
+      </div>
+      <div class="auction_row">
+        <%= t(:user_rating) %>
+        <%= user_rate(@auction) %>
+        <button id="more_info" class="more_info">...</button>
+      </div>
+      <div class="auction_row">
+        <%= t(:product) %>
+        <%= @product.name %>
+      </div>
+      <div class="auction_row">
+        <%= t(:current_price_s) %>
+        <%= @auction.current_price %>
+      </div>
+    </div>
+
+    <div class="auction_control">
       <% unless @auction.status == Auction::SOLD %>
-          <tr>
-            <td><%=t(:other_bids)%></td>
-            <td>&nbsp;</td>
-          </tr>
-          <% other_bids.each_with_index do |bid, index| %>
-              <tr>
-                <td><%= index+1 %>.</td>
-                <td><%= bid %></td>
-              </tr>
+          <div class="other bids">
+            <h4 class="title"><%= t(:other_bids) %></h4>
+            <% other_bids.each_with_index do |bid, index| %>
+                <% if lower_bid?(bid)  %>
+                    <div class="lower_bid"><%= "#{index + 1}. #{bid}" %></div>
+                <% else %>
+                    <div class="higher_bid"><%= "#{index + 1}. #{bid}" %></div>
+                <% end %>
+            <% end %>
+          </div>
+      <% end %>
+
+      <% if @auction.active? %>
+          <% form_tag(request.path, :method =>'put') do %>
+              <%= text_field_tag :new_bid, @auction.current_price.to_s, :size => 7, :class => "new_bid" %>
+              <div>
+                <%= submit_tag t(:make_bid), :id => "submit_bid" %>
+              </div>
           <% end %>
       <% end %>
-      <tr>
-        <td>
-          <% if @auction.active? %>
-              <% form_tag(request.path, :method =>'put') do %>
-                  <%= text_field_tag :new_bid, @auction.current_price.to_s, :size => 7 %>
-                  <div>
-                    <%= submit_tag t(:make_bid) %>
-                  </div>
-              <% end %>
-          <% end %>
-        </td>
-      </tr>
-    </table>
-    <%= render :partial => 'customer_info' %>
+
+    </div>
 
   </div>
+
+  <%= render "customer_info" %>
+
+  <div id="dialog-message" title="Send a message">
+    <%= form_tag( {:action => :message, :method => :post, :remote => true}, {:id => "send_message_form"}) do %>
+        <%= text_area_tag(:message_text, nil, :rows => 7, :cols => 35) %>
+    <% end %>
+  </div>
+
 </div>
+
+<script>
+    $(function() {
+        $( "#submit_bid" ).button();
+        // info dialog
+        $( "#customer_info").hide();
+        $( "#more_info" )
+                .click(function() {
+                    $( "#customer_info" ).dialog({
+                        modal: true,
+                        height: 300,
+                        width: 350,
+                        buttons: {
+                            "Done": function() {
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    });
+                });
+        $('#send_message_form').submit(function() {
+            var valuesToSubmit = $(this).serialize();
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: valuesToSubmit
+            });
+            return false; // prevents normal behaviour
+        });
+        // message dialog
+        $( "#dialog-message").hide();
+        $( "#send_message" )
+                .click(function() {
+                    $( "#dialog-message" ).dialog({
+                        modal: true,
+                        height: 300,
+                        width: 350,
+                        buttons: {
+                            "Send": function() {
+                                $( "#send_message_form" ).submit();
+                                $( this ).dialog( "close" );
+                            },
+                            "Cancel": function() {
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    });
+                });
+    });
+</script>

@@ -50,11 +50,11 @@
               <div>
                 <%= image_tag("data/s1/thumbnail.gif", :class => "store_thumbnail") %>
                 <div class="focus_info">
-                  <p><%= t(:this_store_price) %> <span class="info_highlight"><%= store.product_price(@product) %> NIS</span>.</p>
+                  <p><%= t(:this_store_price) %> <span class="info_highlight"><%= get_auction_price(store) %> NIS</span>.</p>
                 </div>
               </div>
-              <div class="store_message">
-                <a id="send_message" href="#"><%= t(:send_store_message) %></a>
+              <div class="store_message_link">
+                <a class="send_message" href="#"><%= t(:send_store_message) %></a>
               </div>
               <div class="checkout">
                 <%= link_to "#{t(:drop)}", {:action => :drop_shop, :auction_id => @auction.id, :store => store.id},
@@ -68,8 +68,9 @@
 </div>
 
 <div id="dialog-message" title="Send a message">
-  <%= form_tag(:action => :message, :method => :put, :id => "send_message_form") do %>
+  <%= form_tag( {:action => :message, :method => :post, :remote => true}, {:id => "send_message_form"}) do %>
       <%= text_area_tag(:message_text, nil, :rows => 7, :cols => 35) %>
+      <!--<%= submit_tag("Send") %>-->
   <% end %>
 </div>
 
@@ -98,10 +99,18 @@
                 primary: "ui-icon-stop"
             }
         });
-
+        $("#send_message_form").submit(function() {
+            var valuesToSubmit = $(this).serialize();
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: valuesToSubmit
+            });
+            return false; // prevents normal behaviour
+        });
         // message dialog
         $( "#dialog-message").hide();
-        $( "#send_message" )
+        $( ".send_message" )
                 .click(function() {
                     $( "#dialog-message" ).dialog({
                         modal: true,
@@ -109,7 +118,7 @@
                         width: 350,
                         buttons: {
                             "Send": function() {
-                                $( "send_message_form" ).submit();
+                                $( "#send_message_form" ).submit();
                                 $( this ).dialog( "close" );
                             },
                             "Cancel": function() {

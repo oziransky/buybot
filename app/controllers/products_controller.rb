@@ -1,5 +1,6 @@
 # encoding: utf-8
 class ProductsController < ApplicationController
+
   def new
     @store = get_store
     @product = @store.products.new
@@ -60,6 +61,28 @@ class ProductsController < ApplicationController
       flash[:error] = "Unable to delete product."
       render @product
     end
+  end
+
+  def new_feed
+    @store = get_store
+    @feed_type = Product.get_feeds
+  end
+
+  def upload
+    uploaded_io = params[:feed]
+
+    file_path = Rails.root.join("public", "uploads", "#{Time.now.to_i}_#{uploaded_io.original_filename}")
+
+    File.open(file_path, 'w') do |file|
+      file.write(uploaded_io.read)
+    end
+
+    # create a background job to read and create the products
+    Delayed::Job.enqueue(UploadJob.new(params[:store_id], file_path, params[:feed_type]))
+
+    flash[:success] = "Feed file was successfully uploaded"
+
+    redirect_to products_path
   end
 
   private

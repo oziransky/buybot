@@ -1,5 +1,5 @@
 <div class="auctions_list">
-  <h2 class="title"><%= t(:my_auctions) %></h2>
+  <h2 class="title"><%= t(:active_auctions) %></h2>
   <% @auctions.each do |auction| %>
       <div class="auction_preview">
         <div class="product_title"><%= Product.find(auction.product_id).name %></div>

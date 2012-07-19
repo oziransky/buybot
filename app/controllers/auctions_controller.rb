@@ -198,28 +198,34 @@ class AuctionsController < ApplicationController
   end
 
   def message
+    @message = params[:message_text]
 
-  end
+    flash[:success] = "Message was successfully sent to store"
 
-  private
-
-  def notify_all_stores(auction, status)
-    auction.stores.each do |store|
-      notify_store(auction, status, store)
+    respond_to do |format|
+      format.js
     end
   end
+end
 
-  def notify_store(auction, status, store)
-    store_owner = StoreOwner.find(store.store_owner_id)
-    Delayed::Job.enqueue(AuctionStoreMailJob.new(store_owner, auction, status))
+private
+
+def notify_all_stores(auction, status)
+  auction.stores.each do |store|
+    notify_store(auction, status, store)
   end
+end
 
-  def require_login
-    unless user_signed_in?
-      flash[:error] = t(:must_be_logged)
-      # save the current url to return to
-      session["user_return_to"] = request.fullpath
-      redirect_to new_user_session_path
-    end
+def notify_store(auction, status, store)
+  store_owner = StoreOwner.find(store.store_owner_id)
+  Delayed::Job.enqueue(AuctionStoreMailJob.new(store_owner, auction, status))
+end
+
+def require_login
+  unless user_signed_in?
+    flash[:error] = t(:must_be_logged)
+    # save the current url to return to
+    session["user_return_to"] = request.fullpath
+    redirect_to new_user_session_path
   end
 end

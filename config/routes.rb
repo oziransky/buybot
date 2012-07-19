@@ -6,7 +6,13 @@ Buybot::Application.routes.draw do
   devise_for :users
 
   resources :stores
-  resources :products
+
+  resources :products do
+    collection do
+      post :upload
+      get :new_feed
+    end
+  end
 
   resources :auctions do
     collection do
@@ -24,13 +30,18 @@ Buybot::Application.routes.draw do
       get :authenticate_fb
     end
   end
+
   resources :customer_products do
     collection do
       get :search
    end
   end
 
-  resources :store_auctions
+  resources :store_auctions do
+    collection do
+      post :message
+    end
+  end
 
   match '/home', :to => 'pages#home'
   match '/help', :to => 'pages#help'

@@ -4,7 +4,7 @@ gem 'rails', '3.0.9'
 gem 'rake', '>=0.9.2'
 
 gem 'mysql2', '0.2.7'
-gem 'will_paginate', '3.0.pre2'
+gem 'will_paginate'
 gem 'devise'
 gem 'acts_as_tree'
 gem 'delayed_job_active_record'
@@ -22,6 +22,5 @@ group :test, :development do
   gem 'shoulda'
   gem 'ruby-debug19'
   gem 'simplecov', :require=>false
-  
 end
 

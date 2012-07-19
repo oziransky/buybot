@@ -1,4 +1,10 @@
 class Product < ActiveRecord::Base
+
+  PRICE_GRABBER = 0
+  SHOPZILLA = 1
+  GOOGLE_STORES = 2
+  SHOPPING = 3
+
   attr_accessible :name, :description, :url, :image_folder, :manufacturer,
                   :store_id, :prices_attributes, :categories_attributes, :category_ids
 
@@ -57,6 +63,10 @@ class Product < ActiveRecord::Base
   end
 
   #filters the search result by category and manufacturer. todo-price-ranges
+  def self.get_feeds
+    ["PRICE_GRABBER", "SHOPZILLA", "GOOGLE_STORES", "SHOPPING"]
+  end
+
   private
 
   def self.filter(products, filters)

@@ -15,4 +15,9 @@ module AuctionsHelper
       "Resume Auction"
     end
   end
+
+  def get_auction_price(store)
+    @auction.auction_statuses.where("store_id = ?", store.id).first.price
+  end
+
 end

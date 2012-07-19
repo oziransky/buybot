@@ -428,7 +428,7 @@ a {
 .auction_details .store_thumbnail {
     float: left;
 }
-.auction_details .store_message {
+.auction_details .store_message_link {
     float: left;
     margin-left: 60px;
     margin-top: 15px;
@@ -572,7 +572,7 @@ a {
     margin-top: 20px;
 }
 
-/* Product management edit */
+/* Product management edit/new */
 .edit_product_details .ui-form {
     width:800px;
     margin-top: 20px;
@@ -594,3 +594,96 @@ a {
 .edit_product_details .edit_row {
     margin-top: 10px;
 }
+
+/* Product feed upload */
+.upload_feed_form .ui-form {
+    width:800px;
+    margin-top: 20px;
+}
+.upload_feed_form .ui-form .ui-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.upload_feed_form label {
+    width: 150px;
+    margin-right: 5px;
+    margin-left: 30px;
+    text-align: right;
+    float: left;
+}
+.upload_feed_form select {
+    width: 260px;
+}
+.upload_feed_form .file_chooser {
+    margin-left: 230px;
+}
+.upload_feed_form .edit_row {
+    margin-top: 20px;
+}
+
+/* store auction list */
+.store_auction_list {
+    width: 40%;
+    margin-left: 50px;
+    float: left;
+}
+.store_auction_list .title {
+    color: #1C94C4;
+    padding-bottom: 20px;
+}
+.store_auction_list .auction_list_item {
+    border-bottom: solid 1px #FBCB09;
+    line-height: 0;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    margin-top: 10px;
+}
+.store_auction_list .auction_item {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.store_auction_list .ui-button {
+    margin-top: 0;
+    margin-left: 50%;
+    width: 100px;
+}
+
+/* Store auction details */
+.store_auction_details {
+    width: 50%;
+    margin-left: 50px;
+    float: left;
+}
+.store_auction_details .title {
+    color: #1C94C4;
+    padding-bottom: 10px;
+}
+.store_auction_details .auction {
+    padding-bottom: 30px;
+    padding-left: 40px;
+}
+.store_auction_details .auction_row {
+    padding-bottom: 10px;
+}
+.store_auction_details .auction_control {
+    width: 70%;
+    border-top: solid 1px #FBCB09;
+    border-bottom: solid 1px #FBCB09;
+    padding-left: 40px;
+    padding-bottom: 20px;
+}
+.store_auction_details .auction_control .new_bid {
+    font-size: 16px;
+    margin-top: 30px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.store_auction_details .auction_control .lower_bid {
+    color: #fb0512;
+}
+
+
+

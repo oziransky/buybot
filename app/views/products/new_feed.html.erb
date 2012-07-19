@@ -1,0 +1,28 @@
+<div align="center" class="upload_feed_form">
+  <div class="ui-widget ui-form">
+    <div class="ui-widget-header ui-corner-all">
+      <h3><%= t(:upload_feed) %> for <%= @store.name %></h3>
+    </div>
+    <div class="ui-widget-content">
+      <%= form_tag({:action => :upload}, :multipart => true) do %>
+          <%= hidden_field 'store_id', @store.id %>
+          <div class="edit_row">
+            <%= label_tag t(:select_feed_type) %>
+            <%= select_tag 'feed_type', options_from_collection_for_select(@feed_type, "to_s", "to_s") %><br />
+          </div>
+          <div class="edit_row">
+            <%= file_field_tag 'feed', :class => "file_chooser" %><br />
+          </div>
+          <div class="edit_row">
+            <%= submit_tag t(:upload_feed), :id => "file_upload_submit" %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+    $(function() {
+        $( "#file_upload_submit", ".upload_feed_form" ).button();
+    });
+</script>

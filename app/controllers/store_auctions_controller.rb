@@ -39,6 +39,12 @@ class StoreAuctionsController < ApplicationController
     else
       # find all active auctions for that store
       @auctions = store.auctions.where("status = ? OR status = ?", Auction::ACTIVE, Auction::PAUSED)
+
+      @products = []
+
+      @auctions.each do |auction|
+        @products.push(Product.find(auction.product_id))
+      end
     end
   end
 
@@ -46,6 +52,17 @@ class StoreAuctionsController < ApplicationController
     @auctions = current_auctions
     @auction = current_auction
     @user_fb_info = FacebookInfo.find_by_user_id(@auction.user_id)
+    @product = Product.find(@auction.product_id)
+  end
+
+  def message
+    @message = params[:message_text]
+
+    flash[:success] = "Message was successfully sent to user"
+
+    respond_to do |format|
+      format.js
+    end
   end
 
 private

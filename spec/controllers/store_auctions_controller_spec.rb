@@ -133,5 +133,18 @@ describe StoreAuctionsController do
     end
   end
 
+  describe "message" do
+
+    it "should send a message to the user" do
+
+      msg_text = "This is a text message"
+
+      post :message, :message_text => msg_text
+      assigns[:message].should eql(msg_text)
+
+      flash[:success].should_not be_nil
+    end
+  end
+
 end
 

@@ -10,7 +10,7 @@
             <li><%= t :welcome, :user=>current_store_owner.email %></li>
             <li>|</li>
             <li>
-              <%= link_to t(:logout), destroy_store_owner_session_path, :method => :delete %>
+              <%= link_to t(:logout), destroy_store_owner_session_path %>
             </li>
             <li><%= link_to t(:account_settings), edit_store_owner_registration_path %></li>
           </ul>
@@ -39,6 +39,8 @@
           <% unless controller.action_name == "new" %>
               <li><%= link_to t(:products), products_path %>
                 <ul>
+                  <li><%= link_to t(:upload_feed), new_feed_products_path %></li>
+                  <li><%= link_to t(:new_product), new_product_path %></li>
                   <% unless @product.nil? %>
                       <li><%= link_to t(:edit), edit_product_path %></li>
                       <li><%= link_to t(:delete), @product, :method => :delete, :confirm => "Are you sure?"%></li>
@@ -47,6 +49,14 @@
                 </ul>
               </li>
           <% end %>
+      <% end %>
+      <% if controller.controller_name == "store_auctions" %>
+          <li><%= link_to t(:auction_management), "#" %>
+            <ul>
+              <li><%= link_to t(:send_message), "#", :id => "send_message" %></li>
+              <li><%= link_to t(:cancel_auction), "#" %></li>
+            </ul>
+          </li>
       <% end %>
       <li><%= link_to t(:reports), "#" %></li>
     </ul>

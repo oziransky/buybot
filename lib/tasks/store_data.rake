@@ -109,9 +109,9 @@ namespace :db do
 
   task :populate => :environment do
     # (1) run this first
-    #Rake::Task['db:reset'].invoke
-    #
-    #create_categories_and_products(number_of_categories, 3,5,num_of_products)
+    Rake::Task['db:reset'].invoke
+
+    create_categories_and_products(number_of_categories, 3,5,num_of_products)
 
     # (2) run this second
     create_stores_owners(num_of_owners)

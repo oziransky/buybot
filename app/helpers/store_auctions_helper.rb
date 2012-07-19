@@ -1,14 +1,19 @@
 module StoreAuctionsHelper
+
   def other_bids
     list = []
 
     store_id = session[:current_store_id]
     @auction.auction_statuses.collect { |a|
-      if not a.store_id == store_id
+      unless a.store_id == store_id
         list.insert(0, a.price)
       end
     }
     list.sort!
+  end
+
+  def lower_bid?(bid)
+    bid < @auction.current_price
   end
 
   def user_rate(auction)
